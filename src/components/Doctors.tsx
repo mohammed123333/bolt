@@ -6,7 +6,7 @@ const Doctors = () => {
       name: 'د. سارة أحمد',
       specialty: 'أخصائية أمراض القلب',
       experience: '15+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/5999735/pexels-photo-5999735.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=400',
       qualifications: ['دكتوراه في الطب، الجامعة الأردنية', 'زمالة أمراض القلب', 'عضو الجمعية الأردنية لأمراض القلب']
     },
     {
@@ -52,7 +52,7 @@ const Doctors = () => {
                 <img 
                   src={doctor.image} 
                   alt={doctor.name}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
