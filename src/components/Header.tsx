@@ -28,11 +28,13 @@ const Header = () => {
       {/* Main Navigation */}
       <nav className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <div className="text-2xl font-bold text-blue-600">طب جو</div>
-            <div className="mr-2 text-sm text-gray-600 hidden sm:block">حجز المواعيد الطبية</div>
-          </div>
-
+        <div className="flex items-center">
+          <img 
+  src="/images/logo.png" 
+  alt="طب جو" 
+  className="h-20 w-auto bg-white p-1 rounded shadow-none border border-white"
+/>
+</div>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 space-x-reverse">
             <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">الرئيسية</a>

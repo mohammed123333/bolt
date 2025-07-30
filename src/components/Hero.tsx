@@ -54,9 +54,9 @@ const Hero = () => {
           <div className="relative">
             <div className="relative z-10">
               <img 
-                src="https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                src="/images/woman at the dentist.jpg" 
                 alt="مريض مبتسم يتلقى استشارة من طبيب في عيادته" 
-                className="rounded-2xl shadow-2xl"
+                className="scale-[1.1] float-left mr-4 rounded-2xl shadow-2xl"
               />
             </div>
             <div className="absolute -top-4 -right-4 w-72 h-72 bg-blue-200 rounded-full opacity-20 z-0"></div>
