@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Star, ArrowRight, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const PersonalInfoPage = () => {
   const location = useLocation();
@@ -82,43 +83,50 @@ const PersonalInfoPage = () => {
       }, 3000);
     }
   };
-
-  const sendEmailNotifications = () => {
-    const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
-    
-    // Email content for patient
-    const patientEmailContent = `طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'} في ${formatDate(date)} عند ${formatTime(time)} مع دكتور/ة مهند الزعبي، للتواصل مع خدمة العملاء: +962798376025
-
-Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed on ${formatDate(date)} at ${formatTime(time)} with Dr. Muhaned Alzoubi. For customer service: +962798376025`;
-
-    // Email content for doctor
-    const doctorEmailContent = `طب جو: لدى الدكتور مهند الزعبي حجز يوم ${formatDate(date)},
-الساعة: ${formatTime(time)},
-التأمين: ${formData.insurance || 'غير محدد'},
-اسم المريض: ${formData.firstName} ${formData.lastName},
-البريد الإلكتروني: ${formData.email},
-رقم المريض: ${fullPhoneNumber}
-
-Tib Jo: Dr. Muhaned Alzoubi has an appointment on ${formatDate(date)},
-Time: ${formatTime(time)},
-Insurance: ${formData.insurance || 'Not specified'},
-Patient Name: ${formData.firstName} ${formData.lastName},
-Patient Email: ${formData.email},
-Patient Phone: ${fullPhoneNumber}`;
-
-    // Create mailto links for email notifications
-    const patientEmailUrl = `mailto:${formData.email}?subject=تأكيد حجز موعد - طب جو&body=${encodeURIComponent(patientEmailContent)}`;
-    
-    const doctorEmailUrl = `mailto:dr.muhaned@example.com?subject=حجز موعد جديد - طب جو&body=${encodeURIComponent(doctorEmailContent)}`;
-    
-    const adminEmailContent = `تم حجز موعد جديد في طب جو\n\n--- رسالة المريض ---\n${patientEmailContent}\n\n--- رسالة الطبيب ---\n${doctorEmailContent}`;
-    const adminEmailUrl = `mailto:mohamz88@yahoo.com?subject=حجز موعد جديد - طب جو&body=${encodeURIComponent(adminEmailContent)}`;
-    
-    // Open email clients to send notifications
-    setTimeout(() => window.open(patientEmailUrl, '_blank'), 100);
-    setTimeout(() => window.open(doctorEmailUrl, '_blank'), 200);
-    setTimeout(() => window.open(adminEmailUrl, '_blank'), 300);
+const sendEmailNotifications = () => {
+  const templateParams = {
+    first_name: formData.firstName,
+    last_name: formData.lastName,
+    email: formData.email,
+    phone: formData.countryCode + formData.phoneNumber,
+    insurance: formData.insurance || 'غير محدد',
+    date: formatDate(date),           // Arabic date
+    time: formatTime(time),           // Arabic time
+    visit_type: visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية',
+    date_en: formatDateEn(date),      // English date
+    time_en: formatTimeEn(time),      // English time
+    visit_type_en: visitType === 'clinic' ? 'clinic visit' : 'home visit',
   };
+
+  // Email to Doctor
+  emailjs.send(
+    'service_mu7jzcm',
+    'template_nw2maje',  // your doctor template ID in EmailJS
+    templateParams,
+    'p6TA6jdE3qG_7qi25'
+  )
+  .then(() => {
+    console.log('Doctor email sent');
+  })
+  .catch((error) => {
+    console.error('Error sending doctor email:', error);
+  });
+
+  // Email to Patient
+  emailjs.send(
+    'service_mu7jzcm',
+    'template_r8up0oz', // your patient template ID in EmailJS
+    templateParams,
+    'p6TA6jdE3qG_7qi25'
+  )
+  .then(() => {
+    console.log('Patient email sent');
+  })
+  .catch((error) => {
+    console.error('Error sending patient email:', error);
+  });
+};
+
 
   const handleChangeTime = () => {
     navigate('/DrMuhanedAlzoubi/booking');
