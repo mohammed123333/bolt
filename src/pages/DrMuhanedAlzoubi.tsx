@@ -14,11 +14,11 @@ const DrMuhanedAlzoubi = () => {
       <div className="max-w-4xl mx-auto px-4">
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {/* Doctor Image */}
-          <div className="relative h-80 bg-gradient-to-br from-blue-100 to-indigo-200">
+          <div className="relative h-80 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
             <img 
               src="/images/IMG_8538.jpeg" 
               alt="د. مهند الزعبي"
-              className="w-full h-full object-cover"
+              className="w-64 h-64 object-cover rounded-full shadow-lg"
             />
           </div>
 

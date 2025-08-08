@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Star, ArrowRight } from 'lucide-react';
+import { Star, ArrowRight, CheckCircle } from 'lucide-react';
 
 const PersonalInfoPage = () => {
   const location = useLocation();
@@ -10,12 +10,14 @@ const PersonalInfoPage = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    email: '',
     countryCode: '+962',
     phoneNumber: '',
     insurance: ''
   });
   
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const countryCodes = [
     { code: '+962', country: 'الأردن' },
@@ -67,13 +69,17 @@ const PersonalInfoPage = () => {
   };
 
   const handleConfirmBooking = () => {
-    if (formData.firstName && formData.lastName && formData.phoneNumber && acceptedTerms) {
+    if (formData.firstName && formData.lastName && formData.email && formData.phoneNumber && acceptedTerms) {
       // Send email notifications
       sendEmailNotifications();
       
-      // Navigate to confirmation page or show success message
-      alert('تم تأكيد الحجز بنجاح! سيتم إرسال رسالة تأكيد عبر البريد الإلكتروني.');
-      navigate('/');
+      // Show success popup
+      setShowSuccessPopup(true);
+      
+      // Navigate to home after 3 seconds
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
     }
   };
 
@@ -90,33 +96,28 @@ Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointme
 الساعة: ${formatTime(time)},
 التأمين: ${formData.insurance || 'غير محدد'},
 اسم المريض: ${formData.firstName} ${formData.lastName},
+البريد الإلكتروني: ${formData.email},
 رقم المريض: ${fullPhoneNumber}
 
 Tib Jo: Dr. Muhaned Alzoubi has an appointment on ${formatDate(date)},
 Time: ${formatTime(time)},
 Insurance: ${formData.insurance || 'Not specified'},
 Patient Name: ${formData.firstName} ${formData.lastName},
+Patient Email: ${formData.email},
 Patient Phone: ${fullPhoneNumber}`;
 
-    // Open WhatsApp links (in real implementation, you'd use a proper WhatsApp API)
-    // Email to patient
-    const patientEmailUrl = `mailto:${formData.firstName.toLowerCase()}.${formData.lastName.toLowerCase()}@example.com?subject=تأكيد حجز موعد - طب جو&body=${encodeURIComponent(patientEmailContent)}`;
+    // Create mailto links for email notifications
+    const patientEmailUrl = `mailto:${formData.email}?subject=تأكيد حجز موعد - طب جو&body=${encodeURIComponent(patientEmailContent)}`;
     
-    // Email to doctor
     const doctorEmailUrl = `mailto:dr.muhaned@example.com?subject=حجز موعد جديد - طب جو&body=${encodeURIComponent(doctorEmailContent)}`;
     
-    // Email to admin (mohamz88@yahoo.com) with both messages
     const adminEmailContent = `تم حجز موعد جديد في طب جو\n\n--- رسالة المريض ---\n${patientEmailContent}\n\n--- رسالة الطبيب ---\n${doctorEmailContent}`;
     const adminEmailUrl = `mailto:mohamz88@yahoo.com?subject=حجز موعد جديد - طب جو&body=${encodeURIComponent(adminEmailContent)}`;
     
-    // In a real implementation, you would send these emails through a backend service
-    // For now, we'll log the email URLs
-    console.log('Patient Email URL:', patientEmailUrl);
-    console.log('Doctor Email URL:', doctorEmailUrl);
-    console.log('Admin Email URL:', adminEmailUrl);
-    
-    // Open admin email (you can uncomment this line to test)
-    // window.open(adminEmailUrl, '_blank');
+    // Open email clients to send notifications
+    setTimeout(() => window.open(patientEmailUrl, '_blank'), 100);
+    setTimeout(() => window.open(doctorEmailUrl, '_blank'), 200);
+    setTimeout(() => window.open(adminEmailUrl, '_blank'), 300);
   };
 
   const handleChangeTime = () => {
@@ -230,6 +231,18 @@ Patient Phone: ${fullPhoneNumber}`;
                   />
                 </div>
 
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="ahmed@example.com"
+                  />
+                </div>
+
                 {/* Phone Number */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
@@ -295,9 +308,9 @@ Patient Phone: ${fullPhoneNumber}`;
                 {/* Confirm Button */}
                 <button
                   onClick={handleConfirmBooking}
-                  disabled={!formData.firstName || !formData.lastName || !formData.phoneNumber || !acceptedTerms}
+                  disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.phoneNumber || !acceptedTerms}
                   className={`w-full py-4 px-6 rounded-lg font-medium text-lg transition-all ${
-                    formData.firstName && formData.lastName && formData.phoneNumber && acceptedTerms
+                    formData.firstName && formData.lastName && formData.email && formData.phoneNumber && acceptedTerms
                       ? 'bg-blue-600 text-white hover:bg-blue-700'
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
@@ -309,6 +322,17 @@ Patient Phone: ${fullPhoneNumber}`;
           </div>
         </div>
       </div>
+
+      {/* Success Popup */}
+      {showSuccessPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-sm mx-4 text-center">
+            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-gray-900 mb-2">تم تأكيد الحجز</h3>
+            <p className="text-gray-600">سيتم إرسال رسالة تأكيد عبر البريد الإلكتروني</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
