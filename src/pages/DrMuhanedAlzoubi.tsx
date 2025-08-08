@@ -61,7 +61,7 @@ const DrMuhanedAlzoubi = () => {
               
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-gray-600 ml-3" />
-                <span className="text-gray-700">+962 7 9837 6025 - للحجز المباشر</span>
+                <span className="text-gray-700 break-all">+962 7 9837 6025 - للحجز المباشر</span>
               </div>
             </div>
 

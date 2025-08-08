@@ -68,26 +68,25 @@ const PersonalInfoPage = () => {
 
   const handleConfirmBooking = () => {
     if (formData.firstName && formData.lastName && formData.phoneNumber && acceptedTerms) {
-      // Send WhatsApp messages
-      sendWhatsAppMessages();
+      // Send email notifications
+      sendEmailNotifications();
       
       // Navigate to confirmation page or show success message
-      alert('تم تأكيد الحجز بنجاح! سيتم إرسال رسالة تأكيد عبر الواتساب.');
+      alert('تم تأكيد الحجز بنجاح! سيتم إرسال رسالة تأكيد عبر البريد الإلكتروني.');
       navigate('/');
     }
   };
 
-  const sendWhatsAppMessages = () => {
+  const sendEmailNotifications = () => {
     const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
-    const doctorPhone = '+962795025555';
     
-    // Message to patient
-    const patientMessage = `طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'} في ${formatDate(date)} عند ${formatTime(time)} مع دكتور/ة مهند الزعبي، للتواصل مع خدمة العملاء: +962798376025
+    // Email content for patient
+    const patientEmailContent = `طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'} في ${formatDate(date)} عند ${formatTime(time)} مع دكتور/ة مهند الزعبي، للتواصل مع خدمة العملاء: +962798376025
 
 Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed on ${formatDate(date)} at ${formatTime(time)} with Dr. Muhaned Alzoubi. For customer service: +962798376025`;
 
-    // Message to doctor
-    const doctorMessage = `طب جو: لدى الدكتور مهند الزعبي حجز يوم ${formatDate(date)},
+    // Email content for doctor
+    const doctorEmailContent = `طب جو: لدى الدكتور مهند الزعبي حجز يوم ${formatDate(date)},
 الساعة: ${formatTime(time)},
 التأمين: ${formData.insurance || 'غير محدد'},
 اسم المريض: ${formData.firstName} ${formData.lastName},
@@ -100,12 +99,24 @@ Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}`;
 
     // Open WhatsApp links (in real implementation, you'd use a proper WhatsApp API)
-    const patientWhatsAppUrl = `https://wa.me/${fullPhoneNumber.replace('+', '')}?text=${encodeURIComponent(patientMessage)}`;
-    const doctorWhatsAppUrl = `https://wa.me/${doctorPhone.replace('+', '')}?text=${encodeURIComponent(doctorMessage)}`;
+    // Email to patient
+    const patientEmailUrl = `mailto:${formData.firstName.toLowerCase()}.${formData.lastName.toLowerCase()}@example.com?subject=تأكيد حجز موعد - طب جو&body=${encodeURIComponent(patientEmailContent)}`;
     
-    // In a real implementation, you would send these messages through a backend service
-    console.log('Patient WhatsApp URL:', patientWhatsAppUrl);
-    console.log('Doctor WhatsApp URL:', doctorWhatsAppUrl);
+    // Email to doctor
+    const doctorEmailUrl = `mailto:dr.muhaned@example.com?subject=حجز موعد جديد - طب جو&body=${encodeURIComponent(doctorEmailContent)}`;
+    
+    // Email to admin (mohamz88@yahoo.com) with both messages
+    const adminEmailContent = `تم حجز موعد جديد في طب جو\n\n--- رسالة المريض ---\n${patientEmailContent}\n\n--- رسالة الطبيب ---\n${doctorEmailContent}`;
+    const adminEmailUrl = `mailto:mohamz88@yahoo.com?subject=حجز موعد جديد - طب جو&body=${encodeURIComponent(adminEmailContent)}`;
+    
+    // In a real implementation, you would send these emails through a backend service
+    // For now, we'll log the email URLs
+    console.log('Patient Email URL:', patientEmailUrl);
+    console.log('Doctor Email URL:', doctorEmailUrl);
+    console.log('Admin Email URL:', adminEmailUrl);
+    
+    // Open admin email (you can uncomment this line to test)
+    // window.open(adminEmailUrl, '_blank');
   };
 
   const handleChangeTime = () => {
@@ -119,70 +130,70 @@ Patient Phone: ${fullPhoneNumber}`;
   return (
     <div className="min-h-screen bg-gray-50 py-8" dir="rtl">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8">
           {/* Booking Summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">ملخص الحجز</h3>
+          <div className="lg:col-span-1 order-2 lg:order-1">
+            <div className="bg-white rounded-2xl shadow-lg p-4 lg:p-6 lg:sticky lg:top-8">
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-4 lg:mb-6">ملخص الحجز</h3>
               
-              <div className="text-center mb-6">
+              <div className="text-center mb-4 lg:mb-6">
                 <img 
                   src="/images/IMG_8538.jpeg" 
                   alt="د. مهند الزعبي"
-                  className="w-20 h-20 rounded-full mx-auto mb-3 object-cover"
+                  className="w-16 h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-3 object-cover"
                 />
-                <h4 className="font-bold text-gray-900">د. مهند الزعبي</h4>
-                <p className="text-blue-600 text-sm">أخصائي جراحة العظام والمفاصل</p>
+                <h4 className="font-bold text-gray-900 text-sm lg:text-base">د. مهند الزعبي</h4>
+                <p className="text-blue-600 text-xs lg:text-sm">أخصائي جراحة العظام والمفاصل</p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2 lg:space-y-4 text-xs lg:text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">التقييم:</span>
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="w-4 h-4 text-yellow-400 fill-current" />
+                      <Star key={star} className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">الموقع:</span>
-                  <span className="text-gray-900 text-sm">عمّان - الدوار الخامس</span>
+                  <span className="text-gray-900 text-right">عمّان - الدوار الخامس</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">التاريخ:</span>
-                  <span className="text-gray-900 text-sm">{formatDate(date)}</span>
+                  <span className="text-gray-900 text-right">{formatDate(date)}</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">الوقت:</span>
-                  <span className="text-gray-900 text-sm">{formatTime(time)}</span>
+                  <span className="text-gray-900 text-right">{formatTime(time)}</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">نوع الاستشارة:</span>
-                  <span className="text-gray-900 text-sm">
+                  <span className="text-gray-900 text-right">
                     {visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
                   </span>
                 </div>
                 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">السعر:</span>
-                  <span className="text-gray-900 font-bold">
+                  <span className="text-gray-900 font-bold text-right">
                     {visitType === 'clinic' ? '30' : '35'} دينار أردني
                   </span>
                 </div>
                 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">رقم الهاتف:</span>
-                  <span className="text-gray-900 text-sm">+962 7 9837 6025</span>
+                  <span className="text-gray-900 text-right break-all">+962 7 9837 6025</span>
                 </div>
               </div>
 
               <button
                 onClick={handleChangeTime}
-                className="w-full mt-6 bg-gray-100 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-200 transition-colors duration-300 font-medium"
+                className="w-full mt-4 lg:mt-6 bg-gray-100 text-gray-700 py-2 lg:py-3 px-3 lg:px-4 rounded-lg hover:bg-gray-200 transition-colors duration-300 font-medium text-sm lg:text-base"
               >
                 اختر وقت آخر
               </button>
@@ -190,8 +201,8 @@ Patient Phone: ${fullPhoneNumber}`;
           </div>
 
           {/* Personal Information Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="lg:col-span-2 order-1 lg:order-2">
+            <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-8">المعلومات الشخصية</h2>
 
               <div className="space-y-6">
