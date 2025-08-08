@@ -41,3 +41,24 @@ function App() {
 }
 
 export default App;
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PersonalInfoPage from './PersonalInfoPage';
+import BookingPage from './BookingPage';
+import TermsPage from './TermsPage';
+import HomePage from './HomePage';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/personal-info" element={<PersonalInfoPage />} />
+        <Route path="/terms-conditions" element={<TermsPage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
