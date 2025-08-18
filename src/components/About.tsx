@@ -6,7 +6,7 @@ const About = () => {
     { icon: Award, number: '5+', label: 'سنوات من التميز' },
     { icon: Users, number: '500+', label: 'طبيب معتمد' },
     { icon: Clock, number: '24/7', label: 'خدمة العملاء' },
-    { icon: MapPin, number: '12', label: 'محافظة' }
+    { icon: MapPin, number: '12', label: 'sمحافظة' }
   ];
 
   return (
