@@ -57,7 +57,10 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+            <div 
+              key={index} 
+              className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+            >
               <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-xl mb-6 group-hover:bg-blue-600 transition-colors duration-300">
                 <service.icon className="text-blue-600 group-hover:text-white transition-colors duration-300" size={32} />
               </div>
@@ -72,14 +75,13 @@ const Services = () => {
                 ))}
               </ul>
 
-              {/* ✅ Button only shows if link exists */}
+              {/* ✅ Invisible overlay button that covers the whole card */}
               {service.link && (
                 <button
                   onClick={() => (window.location.href = service.link)}
-                  className="mt-4 w-full py-2 px-4 text-white font-semibold rounded-lg transition-colors"
-                >
-                  
-                </button>
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  aria-label={`اذهب إلى صفحة ${service.title}`}
+                />
               )}
             </div>
           ))}
