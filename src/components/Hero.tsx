@@ -36,13 +36,6 @@ const Hero = () => {
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
-                  <Users className="text-blue-600" size={24} />
-                </div>
-                <div className="text-2xl font-bold text-gray-900">50,000+</div>
-                <div className="text-sm text-gray-600">مريض راضٍ</div>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center mb-2">
                   <Clock className="text-blue-600" size={24} />
                 </div>
                 <div className="text-2xl font-bold text-gray-900">24/7</div>
