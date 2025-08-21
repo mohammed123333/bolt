@@ -69,7 +69,7 @@ const About = () => {
 
           <div className="relative">
             <img 
-              src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              src="https://images.pexels.com/photos/7578803/pexels-photo-7578803.jpeg" 
               alt="منصة طب جو" 
               className="rounded-2xl shadow-xl"
             />
