@@ -10,17 +10,14 @@ const Header = () => {
       <div className="bg-blue-600 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center space-x-6 space-x-reverse">
-            <div className="flex items-center space-x-2 space-x-reverse">
-              <Phone size={16} />
-              <span>2027 9794 7 962+</span>
-              <a 
-                href="tel:+96279794027" 
-                className="mr-2 p-1 rounded-full hover:bg-blue-700 transition-colors"
-                title="اتصل الآن"
-              >
-                <Phone size={16} className="text-white hover:text-blue-100" />
-              </a>
-            </div>
+            <a 
+              href="tel:+96279794027" 
+              className="flex items-center space-x-2 space-x-reverse bg-blue-500 hover:bg-blue-400 px-3 py-1 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+              title="اتصل الآن"
+            >
+              <Phone size={18} className="text-white" />
+              <span className="text-white font-semibold">اتصل بنا</span>
+            </a>
             <div className="flex items-center space-x-2 space-x-reverse">
               <Mail size={16} />
               <span>info.tibjo@gmail.com</span>
