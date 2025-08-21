@@ -15,17 +15,13 @@ const Services = () => {
       description: 'أطباء متخصصون في علاج الأمراض العصبية التي تؤثر على الدماغ والحبل الشوكي.',
       features: ['تصوير الدماغ', 'علاج السكتة', 'اضطرابات الذاكرة']
     },
-{
-  icon: Bone,
-  title: 'العظام والمفاصل',
-  description: 'علاج أمراض العظام والمفاصل والعضلات بالطرق الجراحية وغير الجراحية.',
-  features: ['استبدال المفاصل', 'طب الرياضة', 'علاج الكسور'],
-  button: {
-    text: 'اذهب إلى الصفحة',
-    link: '/drmuhanedalzoubi'
-  }
-},
-
+    {
+      icon: Bone,
+      title: 'العظام والمفاصل',
+      description: 'علاج أمراض العظام والمفاصل والعضلات بالطرق الجراحية وغير الجراحية.',
+      features: ['استبدال المفاصل', 'طب الرياضة', 'علاج الكسور'],
+      link: '/drmuhanedalzoubi' // 👈 redirect URL
+    },
     {
       icon: Eye,
       title: 'طب العيون',
@@ -67,7 +63,7 @@ const Services = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-              <ul className="space-y-2">
+              <ul className="space-y-2 mb-6">
                 {service.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-center text-gray-700">
                     <div className="w-2 h-2 bg-blue-600 rounded-full ml-3"></div>
@@ -75,6 +71,16 @@ const Services = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* ✅ Button only shows if link exists */}
+              {service.link && (
+                <button
+                  onClick={() => (window.location.href = service.link)}
+                  className="mt-4 w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  اذهب إلى الصفحة
+                </button>
+              )}
             </div>
           ))}
         </div>
