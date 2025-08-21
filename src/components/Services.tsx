@@ -76,7 +76,7 @@ const Services = () => {
               {service.link && (
                 <button
                   onClick={() => (window.location.href = service.link)}
-                  className="mt-4 w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg transition-colors"
+                  className="mt-4 w-full py-2 px-4 text-white font-semibold rounded-lg transition-colors"
                 >
                   
                 </button>
