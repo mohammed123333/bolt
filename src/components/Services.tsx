@@ -15,55 +15,16 @@ const Services = () => {
       description: 'أطباء متخصصون في علاج الأمراض العصبية التي تؤثر على الدماغ والحبل الشوكي.',
       features: ['تصوير الدماغ', 'علاج السكتة', 'اضطرابات الذاكرة']
     },
-import { Bone } from "lucide-react"; // assuming you're using lucide-react icons
-
-export default function Services() {
-  const items = [
-    {
-      icon: Bone,
-      title: "العظام والمفاصل",
-      description:
-        "علاج أمراض العظام والمفاصل والعضلات بالطرق الجراحية وغير الجراحية.",
-      features: ["استبدال المفاصل", "طب الرياضة", "علاج الكسور"],
-      link: "/drmuhanedalzoubi", // 👈 this is the redirect path
-    },
-  ];
-
-  return (
-    <div className="p-6">
-      {items.map((item, i) => (
-        <div
-          key={i}
-          className="p-6 border rounded-2xl shadow-md flex flex-col gap-3"
-        >
-          {/* Icon */}
-          <item.icon className="w-8 h-8 text-blue-600" />
-
-          {/* Title */}
-          <h2 className="text-xl font-bold">{item.title}</h2>
-
-          {/* Description */}
-          <p className="text-gray-700">{item.description}</p>
-
-          {/* Features */}
-          <ul className="list-disc list-inside text-gray-600">
-            {item.features.map((f, idx) => (
-              <li key={idx}>{f}</li>
-            ))}
-          </ul>
-
-          {/* Button → redirects when clicked */}
-          <button
-            onClick={() => (window.location.href = item.link)}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            اذهب إلى الصفحة
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-}
+{
+  icon: Bone,
+  title: 'العظام والمفاصل',
+  description: 'علاج أمراض العظام والمفاصل والعضلات بالطرق الجراحية وغير الجراحية.',
+  features: ['استبدال المفاصل', 'طب الرياضة', 'علاج الكسور'],
+  button: {
+    text: 'اذهب إلى الصفحة',
+    link: '/drmuhanedalzoubi'
+  }
+},
 
     {
       icon: Eye,
