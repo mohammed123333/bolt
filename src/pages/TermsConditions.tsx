@@ -85,7 +85,7 @@ const TermsConditions = () => {
                 للاستفسارات أو الشكاوى، يمكنكم التواصل معنا على:
               </p>
               <ul className="list-disc list-inside space-y-1 mt-2">
-                <li>الهاتف: +962 7 9837 6025</li>
+                <li>الهاتف: +962 7 9794 2027</li>
                 <li>البريد الإلكتروني: info@tibjo.com</li>
               </ul>
             </section>

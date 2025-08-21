@@ -11,7 +11,7 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center space-x-6 space-x-reverse">
             <a 
-              href="tel:+96279794027" 
+              href="tel:+962797942027" 
               className="flex items-center space-x-2 space-x-reverse bg-blue-500 hover:bg-blue-400 px-3 py-1 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
               title="اتصل الآن"
             >

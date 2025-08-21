@@ -76,7 +76,7 @@ const DrMuhanedAlzoubi = () => {
               
               <div className="flex items-center">
                 <Phone className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700 break-all">+962 7 9837 6025 - {t('directBooking')}</span>
+                <span className="text-gray-700 break-all">+962 7 9794 2027 - {t('directBooking')}</span>
               </div>
             </div>
 

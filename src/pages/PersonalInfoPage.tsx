@@ -273,7 +273,7 @@ For customer service: +962797942027
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('phoneNumber')}:</span>
                   <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'} break-all`}>
-                    +962 7 9837 6025
+                    +962 7 9794 2027
                   </span>
                 </div>
               </div>
