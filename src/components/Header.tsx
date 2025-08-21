@@ -13,6 +13,13 @@ const Header = () => {
             <div className="flex items-center space-x-2 space-x-reverse">
               <Phone size={16} />
               <span>2027 9794 7 962+</span>
+              <a 
+                href="tel:+96279794027" 
+                className="mr-2 p-1 rounded-full hover:bg-blue-700 transition-colors"
+                title="اتصل الآن"
+              >
+                <Phone size={16} className="text-white hover:text-blue-100" />
+              </a>
             </div>
             <div className="flex items-center space-x-2 space-x-reverse">
               <Mail size={16} />
