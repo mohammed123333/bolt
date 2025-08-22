@@ -1,4 +1,4 @@
-export const doctorsData = {
+export const doctorData = {
   drmuhanedalzoubi: {
     ar: {
       name: 'د. مهند الزعبي',
