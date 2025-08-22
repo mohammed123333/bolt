@@ -9,10 +9,10 @@ import Services from './components/Services';
 import Doctors from './components/Doctors';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import DrMuhanedAlzoubi from './pages/DrMuhanedAlzoubi';
-import BookingPage from './pages/BookingPage';
-import PersonalInfoPage from './pages/PersonalInfoPage';
-import TermsConditions from './pages/TermsConditions';
+import DrMuhanedAlzoubi from './pages/drmuhanedalzoubi/DrMuhanedAlzoubi';
+import BookingPage from './pages/drmuhanedalzoubi/BookingPage';
+import PersonalInfoPage from './pages/drmuhanedalzoubi/PersonalInfoPage';
+import TermsConditions from './pages/drmuhanedalzoubi/TermsConditions';
 
 function App() {
   return (
