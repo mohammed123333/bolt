@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Star, ArrowRight, CheckCircle } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { insuranceCompanies } from '../data/doctorData';
-import LanguageToggle from '../components/LanguageToggle';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { insuranceCompanies } from '../../data/doctorData';
+import LanguageToggle from '../../components/LanguageToggle';
 import emailjs from '@emailjs/browser';
 
 function formatDateEn(dateString: string): string {
