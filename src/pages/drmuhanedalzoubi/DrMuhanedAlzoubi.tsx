@@ -1,9 +1,9 @@
 import React from 'react';
 import { Star, DollarSign, Home, Clock, MapPin, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { doctorData } from '@/data/doctorData';
-import LanguageToggle from '@/components/LanguageToggle';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { doctorData } from '../../data/doctorData';
+import LanguageToggle from '../../components/LanguageToggle';
 
 const DrMuhanedAlzoubi = () => {
   const navigate = useNavigate();
