@@ -15,15 +15,6 @@ export const doctors = [
     priceClinic: 30,
     priceHome: 35,
   },
-  {
-    id: 'sara-alhassan',
-    name: { ar: 'د. سارة الحسن', en: 'Dr. Sara Alhassan' },
-    specialty: 'dermatologist',
-    image: '/images/sara.jpeg',
-    location: 'ammanThirdCircle',
-    priceClinic: 25,
-    priceHome: 30,
-  },
   // Add all other doctors here
 ];
 
