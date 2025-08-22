@@ -157,17 +157,22 @@ const DoctorProfile = () => {
             </div>
 
             {/* Services */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('servicesOffered')}</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {data.services.map((service, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className={`w-2 h-2 bg-orange-600 rounded-full ${language === 'ar' ? 'ml-3' : 'mr-3'} flex-shrink-0`}></div>
-                    <span className="text-gray-700 text-sm">{service}</span>
-                  </li>
-                ))}
-              </div>
-            </div>
+<div className="mb-8">
+  <h3 className="text-xl font-bold text-gray-900 mb-4">{t('servicesOffered')}</h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+    {data.services.map((service, index) => (
+      <div key={index} className="flex items-center">
+        <div
+          className={`w-2 h-2 bg-orange-600 rounded-full ${
+            language === 'ar' ? 'ml-3' : 'mr-3'
+          } flex-shrink-0`}
+        ></div>
+        <span className="text-gray-700 text-sm">{service}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
 
             {/* Book Appointment Button */}
             <button
