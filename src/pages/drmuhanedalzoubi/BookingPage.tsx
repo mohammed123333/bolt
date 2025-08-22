@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Star, DollarSign, MapPin, Phone, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useLanguage } from '../contexts/LanguageContext';
-import LanguageToggle from '../components/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageToggle from '@/components/LanguageToggle';
 
 const BookingPage = () => {
   const navigate = useNavigate();
