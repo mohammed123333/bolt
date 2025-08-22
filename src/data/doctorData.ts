@@ -1,5 +1,14 @@
 export const doctorData = {
-  drmuhanedalzoubi: {
+  'drmuhanedalzoubi': {
+    id: 'drmuhanedalzoubi',
+    slug: 'drmuhanedalzoubi',
+    image: '/images/IMG_8538.jpeg',
+    email: 'muhaned.alzoubi@example.com',
+    phone: '+962 7 9794 2027',
+    priceClinic: 30,
+    priceHome: 35,
+    waitingTime: '15',
+    location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
     ar: {
       name: 'د. مهند الزعبي',
       specialty: 'أخصائي جراحة العظام والمفاصل',
@@ -189,9 +198,162 @@ Dr. Muhaned Alzoubi is a specialist in orthopedic and joint surgery, detection o
       ]
     }
   },
+  
+  'drsaraahmed': {
+    id: 'drsaraahmed',
+    slug: 'drsaraahmed',
+    image: 'https://images.pexels.com/photos/8376277/pexels-photo-8376277.jpeg',
+    email: 'sara.ahmed@example.com',
+    phone: '+962 7 9999 1111',
+    priceClinic: 25,
+    priceHome: 30,
+    waitingTime: '20',
+    location: { ar: 'عمّان - الدوار السابع', en: 'Amman - Seventh Circle' },
+    ar: {
+      name: 'د. سارة أحمد',
+      specialty: 'أخصائية أمراض القلب',
+      aboutMe: 'الدكتورة سارة أحمد أخصائية أمراض القلب والأوعية الدموية مع خبرة تزيد عن 15 عاماً في تشخيص وعلاج أمراض القلب.',
+      educationalCertificates: [
+        'دكتوراه في الطب، الجامعة الأردنية',
+        'زمالة أمراض القلب',
+        'عضو الجمعية الأردنية لأمراض القلب'
+      ],
+      treatedConditions: [
+        'أمراض القلب التاجية',
+        'ارتفاع ضغط الدم',
+        'اضطرابات نظم القلب',
+        'قصور القلب'
+      ],
+      treatments: [
+        'تخطيط القلب',
+        'قسطرة القلب التشخيصية',
+        'علاج ارتفاع ضغط الدم',
+        'متابعة أمراض القلب المزمنة'
+      ],
+      services: [
+        'فحص القلب الشامل',
+        'تخطيط القلب',
+        'قسطرة القلب',
+        'متابعة أمراض القلب المزمنة'
+      ],
+      specializations: [
+        'أمراض القلب التاجية',
+        'قسطرة القلب',
+        'علاج ارتفاع ضغط الدم'
+      ]
+    },
+    en: {
+      name: 'Dr. Sara Ahmed',
+      specialty: 'Cardiologist',
+      aboutMe: 'Dr. Sara Ahmed is a cardiologist with over 15 years of experience in diagnosing and treating heart diseases.',
+      educationalCertificates: [
+        'MD, University of Jordan',
+        'Cardiology Fellowship',
+        'Member of Jordanian Heart Association'
+      ],
+      treatedConditions: [
+        'Coronary heart disease',
+        'Hypertension',
+        'Heart rhythm disorders',
+        'Heart failure'
+      ],
+      treatments: [
+        'ECG',
+        'Diagnostic cardiac catheterization',
+        'Hypertension treatment',
+        'Chronic heart disease follow-up'
+      ],
+      services: [
+        'Comprehensive heart examination',
+        'ECG',
+        'Cardiac catheterization',
+        'Chronic heart disease follow-up'
+      ],
+      specializations: [
+        'Coronary heart disease',
+        'Cardiac catheterization',
+        'Hypertension treatment'
+      ]
+    }
+  },
 
-  // Add more doctors here:
-  // drnewdoctor: { ar: { ... }, en: { ... } }
+  'drmohammadkhaled': {
+    id: 'drmohammadkhaled',
+    slug: 'drmohammadkhaled',
+    image: 'https://images.pexels.com/photos/4989165/pexels-photo-4989165.jpeg',
+    email: 'mohammad.khaled@example.com',
+    phone: '+962 7 9999 2222',
+    priceClinic: 40,
+    priceHome: 45,
+    waitingTime: '25',
+    location: { ar: 'عمّان - الشميساني', en: 'Amman - Shmeisani' },
+    ar: {
+      name: 'د. محمد خالد',
+      specialty: 'جراح الأعصاب',
+      aboutMe: 'الدكتور محمد خالد جراح أعصاب متخصص مع خبرة 12 عاماً في جراحة الدماغ والعمود الفقري.',
+      educationalCertificates: [
+        'دكتوراه في جراحة الأعصاب',
+        'زمالة جراحة العمود الفقري',
+        'مستشفى الملك حسين للسرطان'
+      ],
+      treatedConditions: [
+        'أورام الدماغ',
+        'انزلاق الديسك',
+        'إصابات الرأس',
+        'أمراض العمود الفقري'
+      ],
+      treatments: [
+        'جراحة أورام الدماغ',
+        'جراحة العمود الفقري',
+        'علاج إصابات الرأس',
+        'جراحة الأعصاب المجهرية'
+      ],
+      services: [
+        'جراحة الدماغ',
+        'جراحة العمود الفقري',
+        'علاج أورام الأعصاب',
+        'جراحة الأعصاب الطارئة'
+      ],
+      specializations: [
+        'جراحة أورام الدماغ',
+        'جراحة العمود الفقري',
+        'جراحة الأعصاب المجهرية'
+      ]
+    },
+    en: {
+      name: 'Dr. Mohammad Khaled',
+      specialty: 'Neurosurgeon',
+      aboutMe: 'Dr. Mohammad Khaled is a specialized neurosurgeon with 12 years of experience in brain and spine surgery.',
+      educationalCertificates: [
+        'PhD in Neurosurgery',
+        'Spine Surgery Fellowship',
+        'King Hussein Cancer Center'
+      ],
+      treatedConditions: [
+        'Brain tumors',
+        'Disc herniation',
+        'Head injuries',
+        'Spinal diseases'
+      ],
+      treatments: [
+        'Brain tumor surgery',
+        'Spine surgery',
+        'Head injury treatment',
+        'Microsurgical neurosurgery'
+      ],
+      services: [
+        'Brain surgery',
+        'Spine surgery',
+        'Nerve tumor treatment',
+        'Emergency neurosurgery'
+      ],
+      specializations: [
+        'Brain tumor surgery',
+        'Spine surgery',
+        'Microsurgical neurosurgery'
+      ]
+    }
+  }
 };
 
 export const insuranceCompanies = [

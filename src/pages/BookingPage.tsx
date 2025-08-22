@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useLanguage } from '../../contexts/LanguageContext';
-import LanguageToggle from '../../components/LanguageToggle';
-
-// Step 1: Doctor Data Array
-export const doctors = [
-  {
-    id: 'muhaned-alzoubi',
-    name: { ar: 'د. مهند الزعبي', en: 'Dr. Muhaned Alzoubi' },
-    specialty: 'orthopedicSurgeon',
-    image: '/images/IMG_8538.jpeg',
-    location: 'ammanFifthCircle',
-    priceClinic: 30,
-    priceHome: 35,
-  },
-  // Add all other doctors here
-];
+import { useLanguage } from '../contexts/LanguageContext';
+import { doctorData } from '../data/doctorData';
+import LanguageToggle from '../components/LanguageToggle';
 
 const BookingPage = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { doctorId } = useParams<{ doctorId: string }>();
-  const doctor = doctors.find(d => d.id === doctorId);
-
+  
+  const doctor = doctorData[doctorId as keyof typeof doctorData];
+  
   const [selectedVisitType, setSelectedVisitType] = useState<'clinic' | 'home'>('clinic');
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
 
-  if (!doctor) return <p className="text-center mt-20">{t('doctorNotFound')}</p>;
+  if (!doctor) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Doctor not found</h1>
+          <button 
+            onClick={() => navigate('/')}
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            العودة للرئيسية
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const data = doctor[language];
 
   // Generate available dates (next 30 days, skip Fridays)
   const generateAvailableDates = () => {
@@ -82,7 +86,7 @@ const BookingPage = () => {
 
   const handleContinueBooking = () => {
     if (selectedDate && selectedTime) {
-      navigate(`/booking/${doctor.id}/personal-info`, {
+      navigate(`/${doctorId}/personal-info`, {
         state: { visitType: selectedVisitType, date: selectedDate, time: selectedTime }
       });
     }
@@ -107,14 +111,14 @@ const BookingPage = () => {
               <div className="text-center mb-6">
                 <img
                   src={doctor.image}
-                  alt={language === 'ar' ? doctor.name.ar : doctor.name.en}
+                  alt={data.name}
                   className="w-16 h-16 lg:w-24 lg:h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="text-lg lg:text-xl font-bold text-gray-900">
-                  {language === 'ar' ? doctor.name.ar : doctor.name.en}
+                  {data.name}
                 </h3>
                 <p className="text-blue-600 font-medium text-sm lg:text-base">
-                  {t(doctor.specialty)}
+                  {data.specialty}
                 </p>
               </div>
 
@@ -131,7 +135,7 @@ const BookingPage = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('location')}:</span>
                   <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                    {t(doctor.location)}
+                    {doctor.location[language]}
                   </span>
                 </div>
 

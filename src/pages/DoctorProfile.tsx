@@ -1,18 +1,34 @@
 import React from 'react';
 import { Star, DollarSign, Home, Clock, MapPin, Phone } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { doctorData } from '../../data/doctorData';
-import LanguageToggle from '../../components/LanguageToggle';
+import { useLanguage } from '../contexts/LanguageContext';
+import { doctorData } from '../data/doctorData';
+import LanguageToggle from '../components/LanguageToggle';
 
-const DoctorPage = () => {
+const DoctorProfile = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
 
   // Get doctor info dynamically
-  const data = doctorData[language]?.[doctorId];
-  if (!data) return <div className="text-center mt-20">{t('doctorNotFound')}</div>;
+  const doctor = doctorData[doctorId as keyof typeof doctorData];
+  if (!doctor) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Doctor not found</h1>
+          <button 
+            onClick={() => navigate('/')}
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            العودة للرئيسية
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const data = doctor[language];
 
   const handleBookAppointment = () => {
     navigate(`/${doctorId}/booking`);
@@ -31,7 +47,7 @@ const DoctorPage = () => {
           {/* Doctor Image */}
           <div className="relative h-80 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
             <img
-              src={data.image}
+              src={doctor.image}
               alt={data.name}
               className="w-64 h-64 object-cover rounded-full shadow-lg"
             />
@@ -58,27 +74,27 @@ const DoctorPage = () => {
             <div className="space-y-4 mb-8">
               <div className="flex items-center">
                 <DollarSign className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{data.clinicPrice} {t('jordanianDinar')}</span>
+                <span className="text-gray-700">{doctor.priceClinic} {t('jordanianDinar')}</span>
               </div>
 
               <div className="flex items-center">
                 <Home className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{data.homePrice} {t('jordanianDinar')} - {t('homeVisit')}</span>
+                <span className="text-gray-700">{doctor.priceHome} {t('jordanianDinar')} - {t('homeVisit')}</span>
               </div>
 
               <div className="flex items-center">
                 <Clock className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{data.waitingTime} {t('minutes')} - {t('waitingTime')}</span>
+                <span className="text-gray-700">{doctor.waitingTime} {t('minutes')} - {t('waitingTime')}</span>
               </div>
 
               <div className="flex items-center">
                 <MapPin className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{data.location}</span>
+                <span className="text-gray-700">{doctor.location[language]}</span>
               </div>
 
               <div className="flex items-center">
                 <Phone className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700 break-all">{data.phone} - {t('directBooking')}</span>
+                <span className="text-gray-700 break-all">{doctor.phone} - {t('directBooking')}</span>
               </div>
             </div>
 
@@ -148,7 +164,7 @@ const DoctorPage = () => {
                   <div key={index} className="flex items-center">
                     <div className={`w-2 h-2 bg-orange-600 rounded-full ${language === 'ar' ? 'ml-3' : 'mr-3'} flex-shrink-0`}></div>
                     <span className="text-gray-700 text-sm">{service}</span>
-                  </div>
+                  </li>
                 ))}
               </div>
             </div>
@@ -167,4 +183,4 @@ const DoctorPage = () => {
   );
 };
 
-export default DoctorPage;
+export default DoctorProfile;

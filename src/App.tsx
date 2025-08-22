@@ -9,10 +9,10 @@ import Services from './components/Services';
 import Doctors from './components/Doctors';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import DrMuhanedAlzoubi from './pages/drmuhanedalzoubi/DrMuhanedAlzoubi';
-import BookingPage from './pages/drmuhanedalzoubi/BookingPage';
-import PersonalInfoPage from './pages/drmuhanedalzoubi/PersonalInfoPage';
-import TermsConditions from './pages/drmuhanedalzoubi/TermsConditions';
+import DoctorProfile from './pages/DoctorProfile';
+import BookingPage from './pages/BookingPage';
+import PersonalInfoPage from './pages/PersonalInfoPage';
+import TermsConditions from './pages/TermsConditions';
 
 function App() {
   return (
@@ -32,9 +32,9 @@ function App() {
                 <Footer />
               </>
             } />
-            <Route path="/DrMuhanedAlzoubi" element={<DrMuhanedAlzoubi />} />
-            <Route path="/DrMuhanedAlzoubi/booking" element={<BookingPage />} />
-            <Route path="/DrMuhanedAlzoubi/personal-info" element={<PersonalInfoPage />} />
+            <Route path="/:doctorId" element={<DoctorProfile />} />
+            <Route path="/:doctorId/booking" element={<BookingPage />} />
+            <Route path="/:doctorId/personal-info" element={<PersonalInfoPage />} />
             <Route path="/terms-conditions" element={<TermsConditions />} />
           </Routes>
         </div>
