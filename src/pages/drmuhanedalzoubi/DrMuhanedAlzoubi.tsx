@@ -1,50 +1,52 @@
 import React from 'react';
 import { Star, DollarSign, Home, Clock, MapPin, Phone } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { doctorData } from '../../data/doctorData';
 import LanguageToggle from '../../components/LanguageToggle';
 
-const DrMuhanedAlzoubi = () => {
+const DoctorPage = () => {
+  const { doctorId } = useParams<{ doctorId: string }>();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
-  const data = doctorData[language];
+
+  // Get doctor info dynamically
+  const data = doctorData[language]?.[doctorId];
+  if (!data) return <div className="text-center mt-20">{t('doctorNotFound')}</div>;
 
   const handleBookAppointment = () => {
-    navigate('/DrMuhanedAlzoubi/booking');
+    navigate(`/${doctorId}/booking`);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-4xl mx-auto px-4">
-        {/* Header with Logo and Language Toggle */}
+        {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <img 
-            src="/images/logo.png" 
-            alt="طب جو" 
-            className="h-16 w-auto"
-          />
+          <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto" />
           <LanguageToggle />
         </div>
-        
+
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {/* Doctor Image */}
           <div className="relative h-80 bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
-            <img 
-              src="/images/IMG_8538.jpeg" 
-              alt="د. مهند الزعبي"
+            <img
+              src={data.image}
+              alt={data.name}
               className="w-64 h-64 object-cover rounded-full shadow-lg"
             />
           </div>
 
           <div className="p-8">
-            {/* Doctor Name */}
+            {/* Name & Specialty */}
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{data.name}</h1>
             <p className="text-xl text-blue-600 font-semibold mb-6">{data.specialty}</p>
 
             {/* Rating */}
             <div className="flex items-center mb-6">
-              <span className={`text-lg font-medium text-gray-700 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}>{t('rating')}:</span>
+              <span className={`text-lg font-medium text-gray-700 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}>
+                {t('rating')}:
+              </span>
               <div className="flex">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star key={star} className="w-6 h-6 text-yellow-400 fill-current" />
@@ -52,31 +54,31 @@ const DrMuhanedAlzoubi = () => {
               </div>
             </div>
 
-            {/* Pricing and Info */}
+            {/* Pricing & Info */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center">
                 <DollarSign className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">30 {t('jordanianDinar')}</span>
+                <span className="text-gray-700">{data.clinicPrice} {t('jordanianDinar')}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <Home className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">35 {t('jordanianDinar')} - {t('homeVisit')}</span>
+                <span className="text-gray-700">{data.homePrice} {t('jordanianDinar')} - {t('homeVisit')}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <Clock className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">30 {t('minutes')} - {t('waitingTime')}</span>
+                <span className="text-gray-700">{data.waitingTime} {t('minutes')} - {t('waitingTime')}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <MapPin className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{t('ammanFifthCircle')}</span>
+                <span className="text-gray-700">{data.location}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <Phone className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700 break-all">+962 7 9794 2027 - {t('directBooking')}</span>
+                <span className="text-gray-700 break-all">{data.phone} - {t('directBooking')}</span>
               </div>
             </div>
 
@@ -93,12 +95,10 @@ const DrMuhanedAlzoubi = () => {
               </ul>
             </div>
 
-            {/* About Me Section */}
+            {/* About Me */}
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-4">{t('aboutMe')}</h3>
-              <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                {data.aboutMe}
-              </div>
+              <div className="text-gray-700 leading-relaxed whitespace-pre-line">{data.aboutMe}</div>
             </div>
 
             {/* Educational Certificates */}
@@ -167,4 +167,4 @@ const DrMuhanedAlzoubi = () => {
   );
 };
 
-export default DrMuhanedAlzoubi;
+export default DoctorPage;
