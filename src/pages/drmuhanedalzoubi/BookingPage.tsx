@@ -1,39 +1,60 @@
 import React, { useState } from 'react';
-import { Star, DollarSign, MapPin, Phone, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Star } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import LanguageToggle from '../../components/LanguageToggle';
+
+// Step 1: Doctor Data Array
+export const doctors = [
+  {
+    id: 'muhaned-alzoubi',
+    name: { ar: 'د. مهند الزعبي', en: 'Dr. Muhaned Alzoubi' },
+    specialty: 'orthopedicSurgeon',
+    image: '/images/IMG_8538.jpeg',
+    location: 'ammanFifthCircle',
+    priceClinic: 30,
+    priceHome: 35,
+  },
+  {
+    id: 'sara-alhassan',
+    name: { ar: 'د. سارة الحسن', en: 'Dr. Sara Alhassan' },
+    specialty: 'dermatologist',
+    image: '/images/sara.jpeg',
+    location: 'ammanThirdCircle',
+    priceClinic: 25,
+    priceHome: 30,
+  },
+  // Add all other doctors here
+];
 
 const BookingPage = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
+  const { doctorId } = useParams<{ doctorId: string }>();
+  const doctor = doctors.find(d => d.id === doctorId);
+
   const [selectedVisitType, setSelectedVisitType] = useState<'clinic' | 'home'>('clinic');
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
 
-  // Generate available dates (next 30 days, excluding Fridays)
+  if (!doctor) return <p className="text-center mt-20">{t('doctorNotFound')}</p>;
+
+  // Generate available dates (next 30 days, skip Fridays)
   const generateAvailableDates = () => {
     const dates = [];
     const today = new Date();
-    
+
     for (let i = 1; i <= 30; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      
-      // Skip Fridays (day 5)
+
       if (date.getDay() !== 5) {
         dates.push({
           date: date.toISOString().split('T')[0],
-          display: date.toLocaleDateString('ar-JO', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })
+          display: date.toLocaleDateString('ar-JO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
         });
       }
     }
-    
     return dates;
   };
 
@@ -42,47 +63,36 @@ const BookingPage = () => {
     const slots = [];
     const date = new Date(selectedDate);
     const dayOfWeek = date.getDay();
-    
-    // Thursday (4) has different hours: 12:30 PM - 2:45 PM
-    // Other days: 12:30 PM - 6:45 PM
+
     const startHour = 12;
     const startMinute = 30;
-    const endHour = dayOfWeek === 4 ? 14 : 18; // 2 PM or 6 PM
+    const endHour = dayOfWeek === 4 ? 14 : 18; // Thursday has 2 PM, others 6 PM
     const endMinute = 45;
-    
+
     let currentHour = startHour;
     let currentMinute = startMinute;
-    
+
     while (currentHour < endHour || (currentHour === endHour && currentMinute <= endMinute)) {
       const timeString = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
-      const displayTime = currentHour >= 12 
+      const displayTime = currentHour >= 12
         ? `${currentHour === 12 ? 12 : currentHour - 12}:${currentMinute.toString().padStart(2, '0')} م`
         : `${currentHour}:${currentMinute.toString().padStart(2, '0')} ص`;
-      
-      slots.push({
-        time: timeString,
-        display: displayTime
-      });
-      
-      // Add 15 minutes
+
+      slots.push({ time: timeString, display: displayTime });
+
       currentMinute += 15;
       if (currentMinute >= 60) {
         currentMinute = 0;
         currentHour += 1;
       }
     }
-    
     return slots;
   };
 
   const handleContinueBooking = () => {
     if (selectedDate && selectedTime) {
-      navigate('/DrMuhanedAlzoubi/personal-info', {
-        state: {
-          visitType: selectedVisitType,
-          date: selectedDate,
-          time: selectedTime
-        }
+      navigate(`/booking/${doctor.id}/personal-info`, {
+        state: { visitType: selectedVisitType, date: selectedDate, time: selectedTime }
       });
     }
   };
@@ -93,31 +103,27 @@ const BookingPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-6xl mx-auto px-4">
-        {/* Header with Logo and Language Toggle */}
+        {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <img 
-            src="/images/logo.png" 
-            alt="طب جو" 
-            className="h-16 w-auto"
-          />
+          <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto" />
           <LanguageToggle />
         </div>
-        
+
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8">
           {/* Doctor Card */}
           <div className="lg:col-span-1 order-2 lg:order-1">
             <div className="bg-white rounded-2xl shadow-lg p-4 lg:p-6 lg:sticky lg:top-8">
               <div className="text-center mb-6">
-                <img 
-                  src="/images/IMG_8538.jpeg" 
-                  alt={language === 'ar' ? 'د. مهند الزعبي' : 'Dr. Muhaned Alzoubi'}
+                <img
+                  src={doctor.image}
+                  alt={language === 'ar' ? doctor.name.ar : doctor.name.en}
                   className="w-16 h-16 lg:w-24 lg:h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="text-lg lg:text-xl font-bold text-gray-900">
-                  {language === 'ar' ? 'د. مهند الزعبي' : 'Dr. Muhaned Alzoubi'}
+                  {language === 'ar' ? doctor.name.ar : doctor.name.en}
                 </h3>
                 <p className="text-blue-600 font-medium text-sm lg:text-base">
-                  {t('orthopedicSurgeon')}
+                  {t(doctor.specialty)}
                 </p>
               </div>
 
@@ -125,23 +131,23 @@ const BookingPage = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('rating')}:</span>
                   <div className="flex">
-                    {[1, 2, 3, 4, 5].map((star) => (
+                    {[1, 2, 3, 4, 5].map(star => (
                       <Star key={star} className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('location')}:</span>
                   <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                    {t('ammanFifthCircle')}
+                    {t(doctor.location)}
                   </span>
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('price')}:</span>
                   <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                    {selectedVisitType === 'clinic' ? '30' : '35'} {t('jordanianDinar')}
+                    {selectedVisitType === 'clinic' ? doctor.priceClinic : doctor.priceHome} {t('jordanianDinar')}
                   </span>
                 </div>
               </div>
@@ -153,7 +159,7 @@ const BookingPage = () => {
             <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
               <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8">{t('bookingTitle')}</h2>
 
-              {/* Visit Type Selection */}
+              {/* Visit Type */}
               <div className="mb-6 lg:mb-8">
                 <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('visitType')}</h3>
                 <div className={`flex ${language === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'}`}>
@@ -180,11 +186,11 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              {/* Date Selection */}
+              {/* Date */}
               <div className="mb-6 lg:mb-8">
                 <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('selectDate')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-3 max-h-60 overflow-y-auto">
-                  {availableDates.map((dateOption) => (
+                  {availableDates.map(dateOption => (
                     <button
                       key={dateOption.date}
                       onClick={() => setSelectedDate(dateOption.date)}
@@ -194,23 +200,20 @@ const BookingPage = () => {
                           : 'border-gray-300 text-gray-700 hover:border-blue-300'
                       }`}
                     >
-                      {language === 'ar' ? dateOption.display : new Date(dateOption.date).toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
+                      {language === 'ar' ? dateOption.display : new Date(dateOption.date).toLocaleDateString('en-US', {
+                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
                       })}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Time Selection */}
+              {/* Time */}
               {selectedDate && (
                 <div className="mb-6 lg:mb-8">
                   <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('selectTime')}</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-3 max-h-60 overflow-y-auto">
-                    {timeSlots.map((timeOption) => (
+                    {timeSlots.map(timeOption => (
                       <button
                         key={timeOption.time}
                         onClick={() => setSelectedTime(timeOption.time)}
@@ -227,7 +230,7 @@ const BookingPage = () => {
                 </div>
               )}
 
-              {/* Continue Button */}
+              {/* Continue */}
               <button
                 onClick={handleContinueBooking}
                 disabled={!selectedDate || !selectedTime}
