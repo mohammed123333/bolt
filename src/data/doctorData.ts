@@ -1,192 +1,197 @@
-export const doctorData = {
-  ar: {
-    name: 'د. مهند الزعبي',
-    specialty: 'أخصائي جراحة العظام والمفاصل',
-    aboutMe: `الدكتور مهند الزعبي اخصائي جراحة العظام والمفاصل في عمان
+export const doctorsData = {
+  drmuhanedalzoubi: {
+    ar: {
+      name: 'د. مهند الزعبي',
+      specialty: 'أخصائي جراحة العظام والمفاصل',
+      aboutMe: `الدكتور مهند الزعبي اخصائي جراحة العظام والمفاصل في عمان
 يعالج الدكتور مهند الزعبي العديد من الحالات منها علاج الكسور وتبديل المفاصل وتشخيص وعلاج خلع الولادة ويستخدم الالتراساوند لتشخيص الخلع مبكراً ويُعالج احتكاك وخشونة المفاصل باستخدام الابر الزيتية و البلازما يقوم الدكتور بعلاج الاصابات الرياضيه والآم العمود الفقري وغيرها من الحالات.
 
 حصل الدكتور مهند الزعبي على شهادة البكالوريوس من جامعة مؤتة في الطب والجراحة، وحصل على شهادة البورد الاردني والعربي والاوروبي في جراحة العظام والمفاصل. وهو عضو فعال في العديد من الجمعيات الطبية، مثل، الجمعية العالمية للكسور في سويسرا، الجمعية الأمريكية لجراحة العظام، الجمعية الأردنية لجراحة العظام، الجمعية الأردنية للوقاية من ترقق العظام، الجمعية الوطنية لخلع الورك التطوري.
 
 الدكنور مهند الزعبي اختصاصي جراحة العظام و المفاصل كشف خلع الولادة بواسطة الالتراساوند متخصص في عظام كبار,عظام اطفال,جراحة عظام كبار,تشوهات عظام,عظام اليد والكتف,عظام القدم والكاحل,تغيير المفاصل,تقويم عظام,اصابات ملاعب وتنظير مفاصل`,
+      
+      educationalCertificates: [
+        'شهادة البكالوريوس من جامعة مؤتة في الطب والجراحة',
+        'البورد العربي في جراحة العظام والمفاصل',
+        'البورد الاردني في جراحة العظام والمفاصل',
+        'البورد الاوروبي في جراحة العظام والمفاصل',
+        'عضو الجمعية العالمية للكسور في سويسرا',
+        'عضو الجمعية الأمريكية لجراحة العظام',
+        'عضو الجمعية الأردنية لجراحة العظام',
+        'عضو الجمعية الأردنية للوقاية من ترقق العظام',
+        'عضو الجمعية الوطنية لخلع الورك التطوري'
+      ],
+      
+      treatedConditions: [
+        'مرض القدم الرياضي',
+        'ألم عضلات الظهر',
+        'ألم الركبة من الخلف',
+        'الام العظام',
+        'سرطان العظام',
+        'الم الأرداف',
+        'متلازمة النفق الرسغي',
+        'الام الرقبة المزمنة',
+        'الام الكتف المزمنة',
+        'خلع الكتف',
+        'انزلاق غضروفي',
+        'الم الركبة',
+        'ألم الحوض',
+        'تمزق الرباط الصليبي الخلفي',
+        'التهاب العمود الفقري',
+        'تشوه العمود الفقري',
+        'كسور العمود الفقري',
+        'عرق النسا'
+      ],
+      
+      treatments: [
+        'عملية تغيير مفصل الركبة',
+        'عملية استبدال مفصل الورك',
+        'جراحة الإصبع الزنادية',
+        'علاج كسور العظام بالجراحة',
+        'تنظير مفصل الكوع تنظير المعصم (الرسغ)',
+        'عملية تجديد سطح مفصل الورك',
+        'عملية استبدال مفصل الكتف',
+        'علاج متلازمة النفق الرسغي',
+        'عمليات الديسك (الإنزلاق الغضروفي) بالمنظار',
+        'علاج خشونة الركبة',
+        'علاج تمزق الرباط الصليبي الأمامي',
+        'حقنة هشاشة العظام',
+        'علاج مسمار العظم و التهاب اللفافة الاخمصية بواسطة احدث الطرق العلاجية والمنظار الجراحي'
+      ],
+      
+      services: [
+        'استبدال مفصل الورك',
+        'عملية إستبدال مفصل الركبة',
+        'تجديد مفصل الورك',
+        'عملية إستبدال الكتف',
+        'تبديل مفصل ركبة كامل',
+        'استبدال مفصل الحوض بالكامل',
+        'عملية جراحة الركبة من خلال المنظار',
+        'عملية تشنج اصبع الإبهام',
+        'عملية بانكارت لإصلاح الكتف بالمنظار',
+        'اصلاح الرباط الصليبي الأمامي',
+        'اندماج مفصل الورك',
+        'جراحة الإنزلاق الغضروفي',
+        'علاج الم الظهر',
+        'علاج الديسك',
+        'علاج آلالام الأطراف',
+        'مشاكل الكوع',
+        'خلع الولادة',
+        'علاج تآكل المفاصل بالبلازما',
+        'تنظير مفصل الكوع',
+        'عملية تجديد مفصل الركبة',
+        'عملية إصلاح تمزق اوتار وعضلات الكتف',
+        'تدريبات لتطوير مفصل الورك',
+        'تأهيل مفصل الركبة',
+        'تجبير عظام لحديثي الولادة والأطفال',
+        'تحريك الجسم والمفاصل بعد الجراحة',
+        'علاج الاصابات الرياضية'
+      ],
+      
+      specializations: [
+        'استبدال مفصل الورك',
+        'عملية إستبدال مفصل الركبة',
+        'تجديد مفصل الورك'
+      ]
+    },
     
-    educationalCertificates: [
-      'شهادة البكالوريوس من جامعة مؤتة في الطب والجراحة',
-      'البورد العربي في جراحة العظام والمفاصل',
-      'البورد الاردني في جراحة العظام والمفاصل',
-      'البورد الاوروبي في جراحة العظام والمفاصل',
-      'عضو الجمعية العالمية للكسور في سويسرا',
-      'عضو الجمعية الأمريكية لجراحة العظام',
-      'عضو الجمعية الأردنية لجراحة العظام',
-      'عضو الجمعية الأردنية للوقاية من ترقق العظام',
-      'عضو الجمعية الوطنية لخلع الورك التطوري'
-    ],
-    
-    treatedConditions: [
-      'مرض القدم الرياضي',
-      'ألم عضلات الظهر',
-      'ألم الركبة من الخلف',
-      'الام العظام',
-      'سرطان العظام',
-      'الم الأرداف',
-      'متلازمة النفق الرسغي',
-      'الام الرقبة المزمنة',
-      'الام الكتف المزمنة',
-      'خلع الكتف',
-      'انزلاق غضروفي',
-      'الم الركبة',
-      'ألم الحوض',
-      'تمزق الرباط الصليبي الخلفي',
-      'التهاب العمود الفقري',
-      'تشوه العمود الفقري',
-      'كسور العمود الفقري',
-      'عرق النسا'
-    ],
-    
-    treatments: [
-      'عملية تغيير مفصل الركبة',
-      'عملية استبدال مفصل الورك',
-      'جراحة الإصبع الزنادية',
-      'علاج كسور العظام بالجراحة',
-      'تنظير مفصل الكوع تنظير المعصم (الرسغ)',
-      'عملية تجديد سطح مفصل الورك',
-      'عملية استبدال مفصل الكتف',
-      'علاج متلازمة النفق الرسغي',
-      'عمليات الديسك (الإنزلاق الغضروفي) بالمنظار',
-      'علاج خشونة الركبة',
-      'علاج تمزق الرباط الصليبي الأمامي',
-      'حقنة هشاشة العظام',
-      'علاج مسمار العظم و التهاب اللفافة الاخمصية بواسطة احدث الطرق العلاجية والمنظار الجراحي'
-    ],
-    
-    services: [
-      'استبدال مفصل الورك',
-      'عملية إستبدال مفصل الركبة',
-      'تجديد مفصل الورك',
-      'عملية إستبدال الكتف',
-      'تبديل مفصل ركبة كامل',
-      'استبدال مفصل الحوض بالكامل',
-      'عملية جراحة الركبة من خلال المنظار',
-      'عملية تشنج اصبع الإبهام',
-      'عملية بانكارت لإصلاح الكتف بالمنظار',
-      'اصلاح الرباط الصليبي الأمامي',
-      'اندماج مفصل الورك',
-      'جراحة الإنزلاق الغضروفي',
-      'علاج الم الظهر',
-      'علاج الديسك',
-      'علاج آلالام الأطراف',
-      'مشاكل الكوع',
-      'خلع الولادة',
-      'علاج تآكل المفاصل بالبلازما',
-      'تنظير مفصل الكوع',
-      'عملية تجديد مفصل الركبة',
-      'عملية إصلاح تمزق اوتار وعضلات الكتف',
-      'تدريبات لتطوير مفصل الورك',
-      'تأهيل مفصل الركبة',
-      'تجبير عظام لحديثي الولادة والأطفال',
-      'تحريك الجسم والمفاصل بعد الجراحة',
-      'علاج الاصابات الرياضية'
-    ],
-    
-    specializations: [
-      'استبدال مفصل الورك',
-      'عملية إستبدال مفصل الركبة',
-      'تجديد مفصل الورك'
-    ]
-  },
-  
-  en: {
-    name: 'Dr. Muhaned Alzoubi',
-    specialty: 'Orthopedic and Joint Surgery Specialist',
-    aboutMe: `Dr. Muhaned Alzoubi is an orthopedic and joint surgery specialist in Amman. Dr. Muhaned Alzoubi treats many conditions including fracture treatment, joint replacement, diagnosis and treatment of congenital hip dislocation. He uses ultrasound for early diagnosis of dislocation and treats joint friction and roughness using oil injections and plasma. The doctor treats sports injuries, spinal pain, and other conditions.
+    en: {
+      name: 'Dr. Muhaned Alzoubi',
+      specialty: 'Orthopedic and Joint Surgery Specialist',
+      aboutMe: `Dr. Muhaned Alzoubi is an orthopedic and joint surgery specialist in Amman. Dr. Muhaned Alzoubi treats many conditions including fracture treatment, joint replacement, diagnosis and treatment of congenital hip dislocation. He uses ultrasound for early diagnosis of dislocation and treats joint friction and roughness using oil injections and plasma. The doctor treats sports injuries, spinal pain, and other conditions.
 
 Dr. Muhaned Alzoubi obtained his Bachelor's degree from Mutah University in Medicine and Surgery, and obtained Jordanian, Arab, and European Board certifications in orthopedic and joint surgery. He is an active member of many medical societies, such as the International Fracture Society in Switzerland, the American Association of Orthopedic Surgery, the Jordanian Association of Orthopedic Surgery, the Jordanian Association for Osteoporosis Prevention, and the National Association for Developmental Hip Dislocation.
 
 Dr. Muhaned Alzoubi is a specialist in orthopedic and joint surgery, detection of congenital dislocation by ultrasound, specializing in adult bones, pediatric bones, adult bone surgery, bone deformities, hand and shoulder bones, foot and ankle bones, joint replacement, orthopedics, sports injuries, and joint arthroscopy.`,
-    
-    educationalCertificates: [
-      'Bachelor\'s degree from Mutah University in Medicine and Surgery',
-      'Arab Board in Orthopedic and Joint Surgery',
-      'Jordanian Board in Orthopedic and Joint Surgery',
-      'European Board in Orthopedic and Joint Surgery',
-      'Member of the International Fracture Society in Switzerland',
-      'Member of the American Association of Orthopedic Surgery',
-      'Member of the Jordanian Association of Orthopedic Surgery',
-      'Member of the Jordanian Association for Osteoporosis Prevention',
-      'Member of the National Association for Developmental Hip Dislocation'
-    ],
-    
-    treatedConditions: [
-      'Athlete\'s foot disease',
-      'Back muscle pain',
-      'Knee pain from behind',
-      'Bone pain',
-      'Bone cancer',
-      'Hip pain',
-      'Carpal tunnel syndrome',
-      'Chronic neck pain',
-      'Chronic shoulder pain',
-      'Shoulder dislocation',
-      'Disc herniation',
-      'Knee pain',
-      'Pelvic pain',
-      'Posterior cruciate ligament tear',
-      'Spinal inflammation',
-      'Spinal deformity',
-      'Spinal fractures',
-      'Sciatica'
-    ],
-    
-    treatments: [
-      'Knee joint replacement surgery',
-      'Hip joint replacement surgery',
-      'Trigger finger surgery',
-      'Surgical treatment of bone fractures',
-      'Elbow arthroscopy and wrist arthroscopy',
-      'Hip joint resurfacing surgery',
-      'Shoulder joint replacement surgery',
-      'Carpal tunnel syndrome treatment',
-      'Arthroscopic disc surgery',
-      'Knee osteoarthritis treatment',
-      'Anterior cruciate ligament tear treatment',
-      'Osteoporosis injection',
-      'Treatment of bone spurs and plantar fasciitis using the latest therapeutic methods and surgical arthroscopy'
-    ],
-    
-    services: [
-      'Hip joint replacement',
-      'Knee joint replacement surgery',
-      'Hip joint resurfacing',
-      'Shoulder replacement surgery',
-      'Complete knee joint replacement',
-      'Complete hip joint replacement',
-      'Arthroscopic knee surgery',
-      'Thumb spasm surgery',
-      'Bankart surgery for arthroscopic shoulder repair',
-      'Anterior cruciate ligament repair',
-      'Hip joint fusion',
-      'Disc herniation surgery',
-      'Back pain treatment',
-      'Disc treatment',
-      'Limb pain treatment',
-      'Elbow problems',
-      'Congenital dislocation',
-      'Joint erosion treatment with plasma',
-      'Elbow arthroscopy',
-      'Knee joint resurfacing surgery',
-      'Shoulder tendon and muscle tear repair surgery',
-      'Hip joint development exercises',
-      'Knee joint rehabilitation',
-      'Bone splinting for newborns and children',
-      'Body and joint movement after surgery',
-      'Sports injury treatment'
-    ],
-    
-    specializations: [
-      'Hip joint replacement',
-      'Knee joint replacement surgery',
-      'Hip joint resurfacing'
-    ]
-  }
+      
+      educationalCertificates: [
+        'Bachelor\'s degree from Mutah University in Medicine and Surgery',
+        'Arab Board in Orthopedic and Joint Surgery',
+        'Jordanian Board in Orthopedic and Joint Surgery',
+        'European Board in Orthopedic and Joint Surgery',
+        'Member of the International Fracture Society in Switzerland',
+        'Member of the American Association of Orthopedic Surgery',
+        'Member of the Jordanian Association of Orthopedic Surgery',
+        'Member of the Jordanian Association for Osteoporosis Prevention',
+        'Member of the National Association for Developmental Hip Dislocation'
+      ],
+      
+      treatedConditions: [
+        'Athlete\'s foot disease',
+        'Back muscle pain',
+        'Knee pain from behind',
+        'Bone pain',
+        'Bone cancer',
+        'Hip pain',
+        'Carpal tunnel syndrome',
+        'Chronic neck pain',
+        'Chronic shoulder pain',
+        'Shoulder dislocation',
+        'Disc herniation',
+        'Knee pain',
+        'Pelvic pain',
+        'Posterior cruciate ligament tear',
+        'Spinal inflammation',
+        'Spinal deformity',
+        'Spinal fractures',
+        'Sciatica'
+      ],
+      
+      treatments: [
+        'Knee joint replacement surgery',
+        'Hip joint replacement surgery',
+        'Trigger finger surgery',
+        'Surgical treatment of bone fractures',
+        'Elbow arthroscopy and wrist arthroscopy',
+        'Hip joint resurfacing surgery',
+        'Shoulder joint replacement surgery',
+        'Carpal tunnel syndrome treatment',
+        'Arthroscopic disc surgery',
+        'Knee osteoarthritis treatment',
+        'Anterior cruciate ligament tear treatment',
+        'Osteoporosis injection',
+        'Treatment of bone spurs and plantar fasciitis using the latest therapeutic methods and surgical arthroscopy'
+      ],
+      
+      services: [
+        'Hip joint replacement',
+        'Knee joint replacement surgery',
+        'Hip joint resurfacing',
+        'Shoulder replacement surgery',
+        'Complete knee joint replacement',
+        'Complete hip joint replacement',
+        'Arthroscopic knee surgery',
+        'Thumb spasm surgery',
+        'Bankart surgery for arthroscopic shoulder repair',
+        'Anterior cruciate ligament repair',
+        'Hip joint fusion',
+        'Disc herniation surgery',
+        'Back pain treatment',
+        'Disc treatment',
+        'Limb pain treatment',
+        'Elbow problems',
+        'Congenital dislocation',
+        'Joint erosion treatment with plasma',
+        'Elbow arthroscopy',
+        'Knee joint resurfacing surgery',
+        'Shoulder tendon and muscle tear repair surgery',
+        'Hip joint development exercises',
+        'Knee joint rehabilitation',
+        'Bone splinting for newborns and children',
+        'Body and joint movement after surgery',
+        'Sports injury treatment'
+      ],
+      
+      specializations: [
+        'Hip joint replacement',
+        'Knee joint replacement surgery',
+        'Hip joint resurfacing'
+      ]
+    }
+  },
+
+  // Add more doctors here:
+  // drnewdoctor: { ar: { ... }, en: { ... } }
 };
 
 export const insuranceCompanies = [
