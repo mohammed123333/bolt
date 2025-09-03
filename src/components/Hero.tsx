@@ -28,8 +28,7 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="flex items-center justify-center mb-2">
-                  <Shield className="text-blue-600" size={24} />
+
                 </div>
               </div>
               <div className="text-center">
