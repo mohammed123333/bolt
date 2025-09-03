@@ -13,20 +13,20 @@ const Doctors = () => {
       name: 'د. نزيه الجلاد',
       specialty: 'جراح الأعصاب',
       experience: '20+ سنة خبرة',
-      image: '/images/dr.nazih al-jalad.jpeg',
+      image: '/images/dr.nazih al-jalad.jpg',
       qualifications: ['اضطراب الحركة' ,'الصرع', 'التصلب اللويحي', 'الزهايمر']
     },
     {
-      name: 'د. فاطمة علي',
-      specialty: 'أخصائية العظام',
-      experience: '10+ سنوات خبرة',
-      image: 'https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg',
-      qualifications: ['دكتوراه في جراحة العظام', 'أخصائية طب الرياضة', 'المستشفى التخصصي']
+      name: 'د. أمجد الزويري',
+      specialty: 'أخصائي جراحة الفم و الفكين ',
+      experience: '15+ سنوات خبرة',
+      image: '/images/dr.amjad alzwairy.jpg',
+      qualifications: ['تجميل و ترميم الوجه' ,'كسور الفكين', 'أورام الفم']
     },
     {
-      name: 'د. أحمد حسن',
-      specialty: 'طب الطوارئ',
-      experience: '18+ سنة خبرة',
+      name: 'د. معتصم حلّوش',
+      specialty: 'إستشاري جراحة الشبكية',
+      experience: '10+ سنة خبرة',
       image: 'https://images.pexels.com/photos/13060625/pexels-photo-13060625.jpeg',
       qualifications: ['دكتوراه في طب الطوارئ', 'أخصائي رعاية الصدمات', 'مستشفى الجامعة الأردنية']
     }
