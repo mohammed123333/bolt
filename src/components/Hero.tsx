@@ -27,8 +27,6 @@ const Hero = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
-              <div className="text-center">
-
                 </div>
               </div>
               <div className="text-center">
