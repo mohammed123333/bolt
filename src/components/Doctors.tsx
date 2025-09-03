@@ -11,7 +11,7 @@ const Doctors = () => {
     },
     {
       name: 'د. نزيه الجلاد',
-      specialty: 'جراح الأعصاب',
+      specialty: 'إستشاري أمراض الدماغ و الأعصاب',
       experience: '20+ سنة خبرة',
       image: '/images/dr.nazih al-jalad.jpg',
       qualifications: ['اضطراب الحركة' ,'الصرع', 'التصلب اللويحي', 'الزهايمر']
