@@ -3,11 +3,11 @@ import React from 'react';
 const Doctors = () => {
   const doctors = [
     {
-      name: 'د. ',
-      specialty: 'أخصائية أمراض القلب',
-      experience: '15+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/8376277/pexels-photo-8376277.jpeg',
-      qualifications: ['دكتوراه في الطب، الجامعة الأردنية', 'زمالة أمراض القلب', 'عضو الجمعية الأردنية لأمراض القلب']
+      name: 'د. مهند الزعبي',
+      specialty: 'إستشاري جراحة العظام و المفاصل',
+      experience: '10+ سنة خبرة',
+      image: '/images/IMG_8538.jpeg',
+      qualifications: ['البورد العربي', 'البورد الأوروبي', 'البورد الأردني']
     },
     {
       name: 'د. نزيه الجلاد',
