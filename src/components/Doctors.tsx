@@ -3,16 +3,16 @@ import React from 'react';
 const Doctors = () => {
   const doctors = [
     {
-      name: 'د. سارة أحمد',
+      name: 'د. ',
       specialty: 'أخصائية أمراض القلب',
       experience: '15+ سنة خبرة',
       image: 'https://images.pexels.com/photos/8376277/pexels-photo-8376277.jpeg',
       qualifications: ['دكتوراه في الطب، الجامعة الأردنية', 'زمالة أمراض القلب', 'عضو الجمعية الأردنية لأمراض القلب']
     },
     {
-      name: 'د. محمد خالد',
+      name: 'د. نزيه الجلاد',
       specialty: 'جراح الأعصاب',
-      experience: '12+ سنة خبرة',
+      experience: '20+ سنة خبرة',
       image: 'https://images.pexels.com/photos/4989165/pexels-photo-4989165.jpeg',
       qualifications: ['دكتوراه في جراحة الأعصاب', 'زمالة جراحة العمود الفقري', 'مستشفى الملك حسين للسرطان']
     },
