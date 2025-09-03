@@ -13,8 +13,8 @@ const Doctors = () => {
       name: 'د. نزيه الجلاد',
       specialty: 'جراح الأعصاب',
       experience: '20+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/4989165/pexels-photo-4989165.jpeg',
-      qualifications: ['دكتوراه في جراحة الأعصاب', 'زمالة جراحة العمود الفقري', 'مستشفى الملك حسين للسرطان']
+      image: '/images/dr.nazih al-jalad.jpeg',
+      qualifications: ['اضطراب الحركة' ,'الصرع', 'التصلب اللويحي', 'الزهايمر']
     },
     {
       name: 'د. فاطمة علي',
