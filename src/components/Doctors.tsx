@@ -27,8 +27,8 @@ const Doctors = () => {
       name: 'د. معتصم حلّوش',
       specialty: 'إستشاري جراحة الشبكية',
       experience: '10+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/13060625/pexels-photo-13060625.jpeg',
-      qualifications: ['دكتوراه في طب الطوارئ', 'أخصائي رعاية الصدمات', 'مستشفى الجامعة الأردنية']
+      image: '/images/dr.mutasem haloush.jpg',
+      qualifications: ['جراحة الساد', 'تصحيح البصر', 'السائل الزجاجي']
     }
   ];
 
