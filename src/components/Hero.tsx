@@ -28,9 +28,6 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
-                </div>
-              </div>
-              <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
                   <Clock className="text-blue-600" size={24} />
                 </div>
