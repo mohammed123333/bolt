@@ -93,7 +93,7 @@ const Doctors = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 320; // Width of one card plus gap
+      const scrollAmount = 326; // Width of one card (320px) plus gap (6px)
       const currentScroll = scrollContainerRef.current.scrollLeft;
       const newScroll = direction === 'left' 
         ? currentScroll - scrollAmount 
