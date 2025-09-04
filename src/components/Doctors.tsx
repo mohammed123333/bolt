@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -93,12 +93,13 @@ const Doctors = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 326; // Width of one card (320px) plus gap (6px)
+      const scrollAmount = 326; // card width + gap
       const currentScroll = scrollContainerRef.current.scrollLeft;
-      const newScroll = direction === 'left' 
-        ? currentScroll - scrollAmount 
-        : currentScroll + scrollAmount;
-      
+      const newScroll =
+        direction === 'left'
+          ? currentScroll - scrollAmount
+          : currentScroll + scrollAmount;
+
       scrollContainerRef.current.scrollTo({
         left: newScroll,
         behavior: 'smooth'
@@ -113,6 +114,11 @@ const Doctors = () => {
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
   };
+
+  // run once to initialize button states
+  useEffect(() => {
+    handleScroll();
+  }, []);
 
   const handleDoctorClick = (doctorId: string) => {
     navigate(`/${doctorId}`);
@@ -132,25 +138,26 @@ const Doctors = () => {
         </div>
 
         <div className="relative">
-          {/* Navigation Buttons */}
+          {/* Left Button */}
           <button
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}
             className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-              canScrollRight 
-                ? 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-xl' 
+              canScrollLeft
+                ? 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-xl'
                 : 'bg-gray-100 text-gray-400 cursor-not-allowed'
             }`}
           >
             <ChevronLeft size={24} />
           </button>
 
+          {/* Right Button */}
           <button
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}
             className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-              canScrollLeft 
-                ? 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-xl' 
+              canScrollRight
+                ? 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-xl'
                 : 'bg-gray-100 text-gray-400 cursor-not-allowed'
             }`}
           >
@@ -158,25 +165,25 @@ const Doctors = () => {
           </button>
 
           {/* Doctors Carousel */}
-          <div 
+          <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
             className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-12"
-            style={{ 
+            style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               WebkitScrollbar: { display: 'none' }
             }}
           >
             {doctors.map((doctor, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 onClick={() => handleDoctorClick(doctor.id)}
                 className="flex-shrink-0 w-80 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer transform hover:scale-105"
               >
                 <div className="relative overflow-hidden">
-                  <img 
-                    src={doctor.image} 
+                  <img
+                    src={doctor.image}
                     alt={doctor.name}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -185,14 +192,14 @@ const Doctors = () => {
                     <p className="text-sm font-medium">انقر للمزيد من التفاصيل</p>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {doctor.name}
                   </h3>
                   <p className="text-blue-600 font-semibold mb-2">{doctor.specialty}</p>
                   <p className="text-gray-600 text-sm mb-4">{doctor.experience}</p>
-                  
+
                   <div className="space-y-1 mb-6">
                     {doctor.qualifications.slice(0, 3).map((qual, qualIndex) => (
                       <p key={qualIndex} className="text-xs text-gray-600 flex items-center">
@@ -206,7 +213,7 @@ const Doctors = () => {
                       </p>
                     )}
                   </div>
-                  
+
                   <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm font-medium group-hover:shadow-lg">
                     عرض الملف الشخصي
                   </button>
