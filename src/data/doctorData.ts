@@ -354,8 +354,8 @@ drmutassemhaloush: {
   }
 },
 dramjadzwairy: {
-  id: 'dramjalzwairy',
-  slug: 'dramjalzwairy',
+  id: 'dramjadallzwairy',
+  slug: 'dramjadalzwairy',
   image: '/images/dr.amjad alzwairy',
   email: 'dramjadzwairy@example.com',
   phone: '+962 7 9794 2027',
