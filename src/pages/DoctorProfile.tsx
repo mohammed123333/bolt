@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Star, DollarSign, Home, Clock, MapPin, Phone } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -10,9 +10,28 @@ const DoctorProfile = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
 
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const buttonWrapperRef = useRef<HTMLDivElement>(null);
+
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Detect if button reached original place
+  const handleScroll = () => {
+    if (!buttonWrapperRef.current) return;
+
+    const rect = buttonWrapperRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    // If bottom of button wrapper is visible, stop fixing
+    setIsAtBottom(rect.bottom <= windowHeight);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // initial check
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Get doctor info dynamically
@@ -185,21 +204,23 @@ const DoctorProfile = () => {
               </div>
             </div>
 
-        {/* Button wrapper */}
-        <div ref={buttonRef} className="mt-8">
-          <div
-            className={`${
-              isAtBottom ? 'relative' : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 md:px-8 lg:px-10'
-            }`}
-          >
-            <button
-              onClick={handleBookAppointment}
-              className="w-full max-w-md bg-blue-600 text-white py-3 sm:py-4 md:py-4 lg:py-4 px-4 sm:px-6 md:px-8 lg:px-10 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg md:text-lg lg:text-lg shadow-lg"
-            >
-              Book Appointment
-            </button>
-          </div>
-        </div>
+            {/* Button wrapper */}
+            <div ref={buttonWrapperRef} className="mt-8">
+              <div
+                className={`${
+                  isAtBottom
+                    ? 'relative'
+                    : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 md:px-8 lg:px-10'
+                }`}
+              >
+                <button
+                  onClick={handleBookAppointment}
+                  className="w-full max-w-md bg-blue-600 text-white py-3 sm:py-4 md:py-4 lg:py-4 px-4 sm:px-6 md:px-8 lg:px-10 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg md:text-lg lg:text-lg shadow-lg"
+                >
+                  {t('bookAppointment')}
+                </button>
+              </div>
+            </div>
 
           </div>
         </div>
