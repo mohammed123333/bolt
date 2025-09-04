@@ -77,10 +77,13 @@ const DoctorProfile = () => {
                 <span className="text-gray-700">{doctor.priceClinic} {t('jordanianDinar')}</span>
               </div>
 
-              <div className="flex items-center">
-                <Home className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{doctor.priceHome} {t('jordanianDinar')} - {t('homeVisit')}</span>
-              </div>
+{doctor.priceHome !== '_' && doctor.priceHome && (
+  <div className="flex items-center">
+    <Home className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
+    <span className="text-gray-700">{doctor.priceHome} {t('jordanianDinar')} - {t('homeVisit')}</span>
+  </div>
+)}
+
 
               <div className="flex items-center">
                 <Clock className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
