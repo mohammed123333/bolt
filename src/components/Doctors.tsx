@@ -91,29 +91,73 @@ const Doctors = () => {
     }
   ];
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 326; // card width + gap
-      const currentScroll = scrollContainerRef.current.scrollLeft;
-      const newScroll =
-        direction === 'left'
-          ? currentScroll - scrollAmount
-          : currentScroll + scrollAmount;
+const scroll = (direction: 'left' | 'right') => {
+  if (scrollContainerRef.current) {
+    const scrollAmount = 326; // card width + gap
+    const container = scrollContainerRef.current;
 
-      scrollContainerRef.current.scrollTo({
-        left: newScroll,
-        behavior: 'smooth'
-      });
-    }
-  };
+    // RTL handling
+    const isRTL = container.dir === 'rtl' || document.dir === 'rtl';
+    let currentScroll = container.scrollLeft;
 
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    // Normalize for RTL inconsistencies
+    if (isRTL) {
+      // In Chrome/Edge scrollLeft goes negative, in Firefox it starts positive
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (currentScroll < 0) {
+        currentScroll = -currentScroll; // Chrome/Edge
+      } else {
+        currentScroll = maxScroll - currentScroll; // Firefox
+      }
     }
-  };
+
+    let newScroll =
+      direction === 'left'
+        ? currentScroll - scrollAmount
+        : currentScroll + scrollAmount;
+
+    // Clamp
+    newScroll = Math.max(0, Math.min(newScroll, container.scrollWidth - container.clientWidth));
+
+    if (isRTL) {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      // Convert back
+      if (container.scrollLeft < 0) {
+        // Chrome/Edge
+        newScroll = -newScroll;
+      } else {
+        // Firefox
+        newScroll = maxScroll - newScroll;
+      }
+    }
+
+    container.scrollTo({
+      left: newScroll,
+      behavior: 'smooth'
+    });
+  }
+};
+
+const handleScroll = () => {
+  if (scrollContainerRef.current) {
+    const container = scrollContainerRef.current;
+    const isRTL = container.dir === 'rtl' || document.dir === 'rtl';
+    let scrollLeft = container.scrollLeft;
+    const { scrollWidth, clientWidth } = container;
+
+    if (isRTL) {
+      const maxScroll = scrollWidth - clientWidth;
+      if (scrollLeft < 0) {
+        scrollLeft = -scrollLeft; // Chrome/Edge
+      } else {
+        scrollLeft = maxScroll - scrollLeft; // Firefox
+      }
+    }
+
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  }
+};
 
   // run once to initialize button states
   useEffect(() => {
@@ -166,14 +210,13 @@ const Doctors = () => {
 
           {/* Doctors Carousel */}
           <div
-  ref={scrollContainerRef}
-  onScroll={handleScroll}
-  dir="ltr"   // 👈 force normal scroll logic
-  className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-12"
-  style={{ 
-    scrollbarWidth: 'none',
-    msOverflowStyle: 'none',
-    WebkitScrollbar: { display: 'none' }
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-12"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitScrollbar: { display: 'none' }
             }}
           >
             {doctors.map((doctor, index) => (
