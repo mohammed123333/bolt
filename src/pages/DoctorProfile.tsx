@@ -185,15 +185,15 @@ const DoctorProfile = () => {
               </div>
             </div>
 
-            {/* Sticky Book Appointment Button */}
-            <div className="sticky bottom-4 z-50">
-              <button
-                onClick={handleBookAppointment}
-                className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium text-lg"
-              >
-                {t('bookAppointment')}
-              </button>
-            </div>
+{/* Fixed Book Appointment Button */}
+<div className="fixed bottom-4 left-0 right-0 z-50 px-4">
+  <button
+    onClick={handleBookAppointment}
+    className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-lg shadow-lg"
+  >
+    {t('bookAppointment')}
+  </button>
+</div>
 
           </div>
         </div>
