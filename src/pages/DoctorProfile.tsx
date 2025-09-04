@@ -9,29 +9,31 @@ const DoctorProfile = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
-
-  const [isAtBottom, setIsAtBottom] = useState(false);
   const buttonWrapperRef = useRef<HTMLDivElement>(null);
+  const originalButtonRef = useRef<HTMLDivElement>(null);
+  const [isFixed, setIsFixed] = useState(false);
 
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Detect if button reached original place
-  const handleScroll = () => {
-    if (!buttonWrapperRef.current) return;
-
-    const rect = buttonWrapperRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    // If bottom of button wrapper is visible, stop fixing
-    setIsAtBottom(rect.bottom <= windowHeight);
-  };
-
+  // Track scroll to handle sticky/fixed button
   useEffect(() => {
+    const handleScroll = () => {
+      if (!originalButtonRef.current) return;
+      const rect = originalButtonRef.current.getBoundingClientRect();
+      // If the original button's bottom is above the viewport bottom → fix it
+      setIsFixed(rect.bottom > window.innerHeight ? true : false);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // initial check
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll); // handle resize too
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   // Get doctor info dynamically
@@ -204,28 +206,29 @@ const DoctorProfile = () => {
               </div>
             </div>
 
-{/* Book Appointment Button */}
-<div ref={buttonWrapperRef} className="mt-8 flex justify-center">
-  <div
-    className={`${
-      isAtBottom
-        ? 'relative flex justify-center w-full'
-        : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4'
-    }`}
-  >
-    <button
-      onClick={handleBookAppointment}
-      className="w-full max-w-[400px] bg-blue-600 text-white py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
-    >
-      {t('bookAppointment')}
-    </button>
-  </div>
-</div>
-
-
+            {/* Original Button Placeholder */}
+            <div ref={originalButtonRef} className="mt-8"></div>
           </div>
         </div>
       </div>
+
+      {/* Fixed/Sticky Book Appointment Button */}
+      {originalButtonRef.current && (
+        <div
+          className={`${
+            isFixed
+              ? 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4'
+              : 'relative flex justify-center w-full'
+          } transition-all duration-300`}
+        >
+          <button
+            onClick={handleBookAppointment}
+            className="w-full max-w-[360px] bg-blue-600 text-white py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
+          >
+            {t('bookAppointment')}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
