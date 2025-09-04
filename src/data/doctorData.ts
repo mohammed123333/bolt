@@ -280,7 +280,7 @@ Dr. Muhaned Alzoubi is a specialist in orthopedic and joint surgery, detection o
       "Muscle Disorders"
     ]
   }
-}
+},
 
   'drmohammadkhaled': {
     id: 'drmohammadkhaled',
