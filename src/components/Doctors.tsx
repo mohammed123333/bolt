@@ -261,10 +261,10 @@ const scroll = (direction: 'left' | 'right') => {
 
           {/* Scroll Indicators */}
           <div className="flex justify-center mt-8 space-x-2 space-x-reverse">
-            {Array.from({ length: Math.ceil(doctors.length / 3) }).map((_, index) => (
+            {Array.from({ length: Math.ceil(doctors.length / 1) }).map((_, index) => (
               <div
                 key={index}
-                className="w-4 h-2 rounded-full bg-gray-300 transition-colors duration-300"
+                className="w-2 h-2 rounded-full bg-gray-300 transition-colors duration-300"
               ></div>
             ))}
           </div>
