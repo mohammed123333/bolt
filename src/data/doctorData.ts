@@ -353,7 +353,7 @@ drmutasemhaloush: {
     ]
   }
 },
-dramjadzwairy: {
+dramjadalzwairy: {
   id: 'dramjadalzwairy',
   slug: 'dramjadalzwairy',
   image: '/images/dr.amjad alzwairy',
