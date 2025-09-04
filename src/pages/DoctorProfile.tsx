@@ -205,7 +205,7 @@ const DoctorProfile = () => {
             </div>
 
 {/* Book Appointment Button */}
-<div ref={buttonWrapperRef} className="mt-8 flex justify-center">
+<div ref={buttonWrapperRef} className="mt-3 flex justify-center">
   <div
     className={`${
       isAtBottom
