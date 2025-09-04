@@ -281,12 +281,12 @@ drnazihjallad: {
     ]
   }
 },
-drmutassemhalloush: {
-  id: 'drmutassemhalloush',
-  slug: 'drmutassemhalloush',
-  image: 'https://drmutassemhalloush.com/',
+drmutassemhaloush: {
+  id: 'drmutassemhaloush',
+  slug: 'drmutassemhaloush',
+  image: '/images/dr.mutasem haloush',
   email: 'drmutassemhalloush@example.com',
-  phone: '+962 6 592 7070',
+  phone: '+962 7 9794 2027',
   priceClinic: 50,
   waitingTime: '30',
   location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
@@ -354,11 +354,11 @@ drmutassemhalloush: {
   }
 },
 dramjadzwairy: {
-  id: 'dramjadzwairy',
-  slug: 'dramjadzwairy',
-  image: 'https://dramjadzwairy.com/',
+  id: 'dramjalzwairy',
+  slug: 'dramjalzwairy',
+  image: '/images/dr.amjad alzwairy',
   email: 'dramjadzwairy@example.com',
-  phone: '+962 7 9119 0901',
+  phone: '+962 7 9794 2027',
   priceClinic: 70,
   waitingTime: '45',
   location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
