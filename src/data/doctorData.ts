@@ -424,7 +424,7 @@ dramjadzwairy: {
       'Dental implants'
     ]
   }
-};
+},
 
 
 export const insuranceCompanies = [
