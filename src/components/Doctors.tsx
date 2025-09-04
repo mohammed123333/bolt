@@ -111,21 +111,44 @@ const handleScroll = () => {
   if (!scrollContainerRef.current) return;
   const el = scrollContainerRef.current;
   const maxScroll = el.scrollWidth - el.clientWidth;
-  const scrollPos = getNormalizedScroll(el);
+  const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-  setCanScrollLeft(scrollPos > 0);
-  setCanScrollRight(scrollPos < maxScroll);
+  let pos = el.scrollLeft;
+
+  if (el.dir === 'rtl') {
+    pos = isFirefox ? maxScroll - el.scrollLeft : -el.scrollLeft;
+  }
+
+  setCanScrollLeft(pos > 0);
+  setCanScrollRight(pos < maxScroll);
 };
+
 
 
 const scroll = (direction: 'left' | 'right') => {
   if (!scrollContainerRef.current) return;
   const el = scrollContainerRef.current;
   const amount = 300; // width of one card + gap
+  const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-  const scrollAmount = direction === 'left' ? -amount : amount;
-  el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  let delta = 0;
+
+  if (el.dir === 'rtl') {
+    if (isFirefox) {
+      // Firefox: scrollLeft increases to the left
+      delta = direction === 'left' ? -amount : amount;
+    } else {
+      // Chrome/Safari: scrollLeft goes negative when scrolling left
+      delta = direction === 'left' ? amount : -amount;
+    }
+  } else {
+    // LTR normal behavior
+    delta = direction === 'left' ? -amount : amount;
+  }
+
+  el.scrollBy({ left: delta, behavior: 'smooth' });
 };
+
 
 
   useEffect(() => {
