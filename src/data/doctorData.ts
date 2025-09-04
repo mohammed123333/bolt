@@ -356,7 +356,7 @@ drmutasemhaloush: {
 dramjadalzwairy: {
   id: 'dramjadalzwairy',
   slug: 'dramjadalzwairy',
-  image: '/images/dr.amjad alzwairy',
+  image: '/images/dr.amjad alzwairy.jpg',
   email: 'dramjadzwairy@example.com',
   phone: '+962 7 9794 2027',
   priceClinic: 70,
