@@ -18,7 +18,7 @@ const Doctors = () => {
       qualifications: ['البورد العربي', 'البورد الأوروبي', 'البورد الأردني']
     },
     {
-      id: 'drnazihjalad',
+      id: 'drnazihjallad',
       name: 'د. نزيه الجلاد',
       specialty: 'إستشاري أمراض الدماغ و الأعصاب',
       experience: '20+ سنة خبرة',
