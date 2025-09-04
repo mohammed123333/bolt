@@ -198,7 +198,6 @@ const DoctorProfile = () => {
 </div>
 
 
-
           </div>
         </div>
       </div>
