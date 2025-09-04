@@ -173,31 +173,32 @@ const scroll = (direction: 'left' | 'right') => {
         </div>
 
         <div className="relative">
-          {/* Left Button */}
-          <button
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-              canScrollLeft
-                ? 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-xl'
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            <ChevronLeft size={24} />
-          </button>
+ {/* Left button: goes to NEXT card */}
+<button
+  onClick={() => scroll('right')} // note: now left arrow scrolls "right"
+  disabled={!canScrollRight}
+  className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center ${
+    canScrollRight
+      ? 'bg-white hover:bg-gray-50 text-gray-700'
+      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+  }`}
+>
+  <ChevronRight size={24} /> {/* icon flipped */}
+</button>
 
-          {/* Right Button */}
-          <button
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-              canScrollRight
-                ? 'bg-white hover:bg-gray-50 text-gray-700 hover:shadow-xl'
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            <ChevronRight size={24} />
-          </button>
+{/* Right button: goes to PREVIOUS card */}
+<button
+  onClick={() => scroll('left')} // now right arrow scrolls "left"
+  disabled={!canScrollLeft}
+  className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center ${
+    canScrollLeft
+      ? 'bg-white hover:bg-gray-50 text-gray-700'
+      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+  }`}
+>
+  <ChevronLeft size={24} /> {/* icon flipped */}
+</button>
+
 
           {/* Doctors Carousel */}
           <div
