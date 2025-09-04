@@ -173,9 +173,9 @@ const scroll = (direction: 'left' | 'right') => {
         </div>
 
         <div className="relative">
- {/* Left button: goes to NEXT card */}
+{/* Left button */}
 <button
-  onClick={() => scroll('right')} // note: now left arrow scrolls "right"
+  onClick={() => scroll('right')} // scrolls to next card
   disabled={!canScrollRight}
   className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center ${
     canScrollRight
@@ -183,12 +183,12 @@ const scroll = (direction: 'left' | 'right') => {
       : 'bg-gray-100 text-gray-400 cursor-not-allowed'
   }`}
 >
-  <ChevronRight size={24} /> {/* icon flipped */}
+  <ChevronLeft size={24} /> {/* flip icon */}
 </button>
 
-{/* Right button: goes to PREVIOUS card */}
+{/* Right button */}
 <button
-  onClick={() => scroll('left')} // now right arrow scrolls "left"
+  onClick={() => scroll('left')} // scrolls to previous card
   disabled={!canScrollLeft}
   className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full shadow-lg flex items-center justify-center ${
     canScrollLeft
@@ -196,8 +196,9 @@ const scroll = (direction: 'left' | 'right') => {
       : 'bg-gray-100 text-gray-400 cursor-not-allowed'
   }`}
 >
-  <ChevronLeft size={24} /> {/* icon flipped */}
+  <ChevronRight size={24} /> {/* flip icon */}
 </button>
+
 
 
           {/* Doctors Carousel */}
