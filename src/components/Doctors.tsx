@@ -94,57 +94,27 @@ const Doctors = () => {
 const scroll = (direction: "left" | "right") => {
   if (!scrollContainerRef.current) return;
   const container = scrollContainerRef.current;
-  const maxScroll = container.scrollWidth - container.clientWidth;
-
-  const current = getNormalizedScrollLeft(container);
   const amount = 300;
 
-  let target =
-    direction === "left"
-      ? Math.max(0, current - amount)
-      : Math.min(maxScroll, current + amount);
-
-  // Convert normalized back into real scrollLeft
-  if (container.dir === "rtl") {
-    if (container.scrollLeft < 0) {
-      // Chrome/Safari
-      container.scrollTo({ left: target - maxScroll, behavior: "smooth" });
-    } else {
-      // Firefox
-      container.scrollTo({ left: maxScroll - target, behavior: "smooth" });
-    }
-  } else {
-    container.scrollTo({ left: target, behavior: "smooth" });
-  }
+  let delta = direction === "left" ? -amount : amount;
+  container.scrollBy({ left: delta, behavior: "smooth" });
 };
+
 
 const handleScroll = () => {
   if (!scrollContainerRef.current) return;
   const container = scrollContainerRef.current;
 
-  const scrollLeft = getNormalizedScrollLeft(container);
   const maxScroll = container.scrollWidth - container.clientWidth;
 
-  setCanScrollLeft(scrollLeft > 0);
-  setCanScrollRight(scrollLeft < maxScroll);
-};
-// Normalize scrollLeft for RTL
-const getNormalizedScrollLeft = (element: HTMLElement) => {
-  const { scrollLeft, scrollWidth, clientWidth, dir } = element;
-  const maxScroll = scrollWidth - clientWidth;
+  // In RTL, "scrollLeft" behaves weird, so just check extremes
+  const atStart = Math.abs(container.scrollLeft) === 0 || container.scrollLeft === maxScroll;
+  const atEnd = Math.abs(container.scrollLeft) >= maxScroll;
 
-  if (dir === "rtl") {
-    // Chrome/Safari (negative values)
-    if (scrollLeft < 0) {
-      return maxScroll + scrollLeft; // scrollLeft is negative
-    }
-    // Firefox (positive reversed)
-    return maxScroll - scrollLeft;
-  }
-
-  // Default LTR
-  return scrollLeft;
+  setCanScrollLeft(!atStart);
+  setCanScrollRight(!atEnd);
 };
+
 
   // run once to initialize button states
   useEffect(() => {
