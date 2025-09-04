@@ -424,6 +424,7 @@ dramjadzwairy: {
       'Dental implants'
     ]
   }
+}
 };
 
 
