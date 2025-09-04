@@ -209,18 +209,19 @@ const DoctorProfile = () => {
   <div
     className={`${
       isAtBottom
-        ? 'relative flex justify-center w-full'
-        : 'fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4'
+        ? 'relative flex justify-center' // original place
+        : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4' // fixed while scrolling
     }`}
   >
     <button
       onClick={handleBookAppointment}
-      className="w-full max-w-[400px] bg-blue-600 text-white py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
+      className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
     >
       {t('bookAppointment')}
     </button>
   </div>
 </div>
+
 
 
           </div>
