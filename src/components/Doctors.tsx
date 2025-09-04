@@ -166,15 +166,17 @@ const Doctors = () => {
 
           {/* Doctors Carousel */}
           <div
-            ref={scrollContainerRef}
-            onScroll={handleScroll}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-12"
-            style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-              WebkitScrollbar: { display: 'none' }
+  ref={scrollContainerRef}
+  onScroll={handleScroll}
+  dir="ltr"   // 👈 force normal scroll logic
+  className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-12"
+  style={{ 
+    scrollbarWidth: 'none',
+    msOverflowStyle: 'none',
+    WebkitScrollbar: { display: 'none' }
             }}
           >
+          <div className="flex flex-row-reverse gap-6"> {/* 👈 keep cards right-to-left */}
             {doctors.map((doctor, index) => (
               <div
                 key={index}
