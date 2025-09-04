@@ -1,5 +1,5 @@
 export const doctorData = {
-  'drmuhanedalzoubi': {
+  drmuhanedalzoubi: {
     id: 'drmuhanedalzoubi',
     slug: 'drmuhanedalzoubi',
     image: '/images/IMG_8538.jpeg',
@@ -281,84 +281,151 @@ drnazihjallad: {
     ]
   }
 },
-  'drmohammadkhaled': {
-    id: 'drmohammadkhaled',
-    slug: 'drmohammadkhaled',
-    image: 'https://images.pexels.com/photos/4989165/pexels-photo-4989165.jpeg',
-    email: 'mohammad.khaled@example.com',
-    phone: '+962 7 9999 2222',
-    priceClinic: 40,
-    priceHome: 45,
-    waitingTime: '25',
-    location: { ar: 'عمّان - الشميساني', en: 'Amman - Shmeisani' },
-    ar: {
-      name: 'د. محمد خالد',
-      specialty: 'جراح الأعصاب',
-      aboutMe: 'الدكتور محمد خالد جراح أعصاب متخصص مع خبرة 12 عاماً في جراحة الدماغ والعمود الفقري.',
-      educationalCertificates: [
-        'دكتوراه في جراحة الأعصاب',
-        'زمالة جراحة العمود الفقري',
-        'مستشفى الملك حسين للسرطان'
-      ],
-      treatedConditions: [
-        'أورام الدماغ',
-        'انزلاق الديسك',
-        'إصابات الرأس',
-        'أمراض العمود الفقري'
-      ],
-      treatments: [
-        'جراحة أورام الدماغ',
-        'جراحة العمود الفقري',
-        'علاج إصابات الرأس',
-        'جراحة الأعصاب المجهرية'
-      ],
-      services: [
-        'جراحة الدماغ',
-        'جراحة العمود الفقري',
-        'علاج أورام الأعصاب',
-        'جراحة الأعصاب الطارئة'
-      ],
-      specializations: [
-        'جراحة أورام الدماغ',
-        'جراحة العمود الفقري',
-        'جراحة الأعصاب المجهرية'
-      ]
-    },
-    en: {
-      name: 'Dr. Mohammad Khaled',
-      specialty: 'Neurosurgeon',
-      aboutMe: 'Dr. Mohammad Khaled is a specialized neurosurgeon with 12 years of experience in brain and spine surgery.',
-      educationalCertificates: [
-        'PhD in Neurosurgery',
-        'Spine Surgery Fellowship',
-        'King Hussein Cancer Center'
-      ],
-      treatedConditions: [
-        'Brain tumors',
-        'Disc herniation',
-        'Head injuries',
-        'Spinal diseases'
-      ],
-      treatments: [
-        'Brain tumor surgery',
-        'Spine surgery',
-        'Head injury treatment',
-        'Microsurgical neurosurgery'
-      ],
-      services: [
-        'Brain surgery',
-        'Spine surgery',
-        'Nerve tumor treatment',
-        'Emergency neurosurgery'
-      ],
-      specializations: [
-        'Brain tumor surgery',
-        'Spine surgery',
-        'Microsurgical neurosurgery'
-      ]
-    }
+drmutassemhalloush: {
+  id: 'drmutassemhalloush',
+  slug: 'drmutassemhalloush',
+  image: 'https://drmutassemhalloush.com/',
+  email: 'drmutassemhalloush@example.com',
+  phone: '+962 6 592 7070',
+  priceClinic: 50,
+  waitingTime: '30',
+  location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
+  ar: {
+    name: 'د. معتصم حلوش',
+    specialty: 'استشاري طب وجراحة العيون',
+    aboutMe: 'د. معتصم حلوش هو استشاري طب وجراحة العيون متخصص في جراحة الشبكية والسائل الزجاجي، جراحة الساد وتصحيح البصر. حاصل على البورد الأردني في طب وجراحة العيون وزمالة أمريكية وبريطانية.',
+    educationalCertificates: [
+      'بكالوريوس الطب والجراحة، الجامعة الأردنية',
+      'البورد الأردني في طب وجراحة العيون',
+      'زمالة في طب وجراحة العيون، الولايات المتحدة الأمريكية',
+      'زمالة في طب وجراحة العيون، المملكة المتحدة'
+    ],
+    treatedConditions: [
+      'جراحة الشبكية والسائل الزجاجي',
+      'جراحة الساد وتصحيح البصر',
+      'أمراض العيون العامة'
+    ],
+    treatments: [
+      'جراحة الشبكية والسائل الزجاجي',
+      'جراحة الساد وتصحيح البصر',
+      'فحص قاع العين'
+    ],
+    services: [
+      'فحص شامل للعيون',
+      'تصحيح البصر بالليزر',
+      'زراعة العدسات',
+      'متابعة ما بعد الجراحة'
+    ],
+    specializations: [
+      'جراحة الشبكية والسائل الزجاجي',
+      'جراحة الساد وتصحيح البصر'
+    ]
+  },
+  en: {
+    name: 'Dr. Mutassem Halloush',
+    specialty: 'Consultant Ophthalmologist',
+    aboutMe: 'Dr. Mutassem Halloush is a consultant ophthalmologist specializing in retinal and vitreous surgery, cataract surgery, and refractive surgery. He holds the Jordanian Board in Ophthalmology and has American and British fellowships.',
+    educationalCertificates: [
+      'Bachelor of Medicine and Surgery, University of Jordan',
+      'Jordanian Board in Ophthalmology',
+      'Fellowship in Ophthalmology, USA',
+      'Fellowship in Ophthalmology, UK'
+    ],
+    treatedConditions: [
+      'Retinal and vitreous surgery',
+      'Cataract surgery and refractive surgery',
+      'General eye diseases'
+    ],
+    treatments: [
+      'Retinal and vitreous surgery',
+      'Cataract surgery and refractive surgery',
+      'Fundus examination'
+    ],
+    services: [
+      'Comprehensive eye examination',
+      'Laser vision correction',
+      'Lens implantation',
+      'Post-operative follow-up'
+    ],
+    specializations: [
+      'Retinal and vitreous surgery',
+      'Cataract surgery and refractive surgery'
+    ]
+  }
+},
+dramjadzwairy: {
+  id: 'dramjadzwairy',
+  slug: 'dramjadzwairy',
+  image: 'https://dramjadzwairy.com/',
+  email: 'dramjadzwairy@example.com',
+  phone: '+962 7 9119 0901',
+  priceClinic: 70,
+  waitingTime: '45',
+  location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
+  ar: {
+    name: 'د. أمجد الزويري',
+    specialty: 'استشاري جراحة الوجه والفكين',
+    aboutMe: 'د. أمجد الزويري هو استشاري جراحة الوجه والفكين، حاصل على البورد الأردني والزمالة البريطانية والإيرلندية. متخصص في جراحة تجميل وترميم الوجه والفكين، جراحة أورام الفم والفكين، وزراعة الأسنان.',
+    educationalCertificates: [
+      'بكالوريوس طب أسنان، الجامعة الأردنية',
+      'البورد الأردني في جراحة الوجه والفكين',
+      'زمالة في جراحة الوجه والفكين، المملكة المتحدة',
+      'زمالة في جراحة الوجه والفكين، أيرلندا'
+    ],
+    treatedConditions: [
+      'كسور الوجه والفكين',
+      'أورام الفم والفكين',
+      'تشوهات الوجه الخلقية',
+      'زراعة الأسنان'
+    ],
+    treatments: [
+      'جراحة تجميل وترميم الوجه والفكين',
+      'جراحة أورام الفم والفكين',
+      'زراعة الأسنان'
+    ],
+    services: [
+      'استشارات طبية في جراحة الوجه والفكين',
+      'جراحة تجميلية وترميمية للوجه والفكين',
+      'زراعة الأسنان'
+    ],
+    specializations: [
+      'جراحة تجميل وترميم الوجه والفكين',
+      'زراعة الأسنان'
+    ]
+  },
+  en: {
+    name: 'Dr. Amjad Zwairy',
+    specialty: 'Consultant Oral and Maxillofacial Surgeon',
+    aboutMe: 'Dr. Amjad Zwairy is a consultant oral and maxillofacial surgeon holding the Jordanian Board and British and Irish fellowships. He specializes in reconstructive and aesthetic facial surgery, oral and maxillofacial oncology, and dental implants.',
+    educationalCertificates: [
+      'Bachelor of Dental Surgery, University of Jordan',
+      'Jordanian Board in Oral and Maxillofacial Surgery',
+      'Fellowship in Oral and Maxillofacial Surgery, UK',
+      'Fellowship in Oral and Maxillofacial Surgery, Ireland'
+    ],
+    treatedConditions: [
+      'Facial and jaw fractures',
+      'Oral and maxillofacial tumors',
+      'Congenital facial deformities',
+      'Dental implants'
+    ],
+    treatments: [
+      'Reconstructive and aesthetic facial surgery',
+      'Oral and maxillofacial oncology',
+      'Dental implants'
+    ],
+    services: [
+      'Consultations in oral and maxillofacial surgery',
+      'Reconstructive and aesthetic facial surgery',
+      'Dental implants'
+    ],
+    specializations: [
+      'Reconstructive and aesthetic facial surgery',
+      'Dental implants'
+    ]
   }
 };
+
 
 export const insuranceCompanies = [
   'نات هيلث', 'نقابة الفنانين الأردنيين', 'العرب للتأمين', 'الوطنية للتامين', 'الضامنون العرب',
