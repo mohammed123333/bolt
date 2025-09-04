@@ -90,26 +90,43 @@ const Doctors = () => {
       qualifications: ['علاج الأكزيما', 'جراحة الجلد', 'التجميل الطبي']
     }
   ];
+  
+  const getNormalizedScroll = (el: HTMLElement) => {
+  const maxScroll = el.scrollWidth - el.clientWidth;
+  const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-  const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const el = scrollContainerRef.current;
-    const { scrollLeft, scrollWidth, clientWidth } = el;
+  if (el.dir === 'rtl') {
+    if (isFirefox) {
+      // Firefox: scrollLeft starts at maxScroll
+      return maxScroll - el.scrollLeft;
+    } else {
+      // Chrome/Safari: scrollLeft starts at 0 and goes negative
+      return -el.scrollLeft;
+    }
+  }
 
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-  };
+  return el.scrollLeft; // LTR
+};
+const handleScroll = () => {
+  if (!scrollContainerRef.current) return;
+  const el = scrollContainerRef.current;
+  const maxScroll = el.scrollWidth - el.clientWidth;
+  const scrollPos = getNormalizedScroll(el);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (!scrollContainerRef.current) return;
-    const el = scrollContainerRef.current;
-    const amount = 300;
+  setCanScrollLeft(scrollPos > 0);
+  setCanScrollRight(scrollPos < maxScroll);
+};
 
-    el.scrollBy({
-      left: direction === 'left' ? -amount : amount,
-      behavior: 'smooth'
-    });
-  };
+
+const scroll = (direction: 'left' | 'right') => {
+  if (!scrollContainerRef.current) return;
+  const el = scrollContainerRef.current;
+  const amount = 300; // width of one card + gap
+
+  const scrollAmount = direction === 'left' ? -amount : amount;
+  el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+};
+
 
   useEffect(() => {
     handleScroll();
