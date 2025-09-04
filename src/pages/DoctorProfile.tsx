@@ -210,7 +210,7 @@ const DoctorProfile = () => {
     className={`${
       isAtBottom
         ? 'relative flex justify-center w-full'
-        : 'fixed bottom-3 left-0 right-0 z-50 flex justify-center px-4'
+        : 'fixed bottom- left-0 right-0 z-50 flex justify-center px-4'
     }`}
   >
     <button
