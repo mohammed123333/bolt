@@ -91,66 +91,26 @@ const Doctors = () => {
     }
   ];
 
-const getScrollInfo = (el: HTMLElement) => {
-  const maxScroll = el.scrollWidth - el.clientWidth;
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const el = scrollContainerRef.current;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
 
-  if (el.dir === "rtl") {
-    // Chrome / Safari (negative values)
-    if (el.scrollLeft < 0) {
-      return {
-        position: maxScroll + el.scrollLeft, // normalize
-        maxScroll,
-      };
-    }
-    // Firefox (positive reversed)
-    return {
-      position: maxScroll - el.scrollLeft,
-      maxScroll,
-    };
-  }
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+  };
 
-  // LTR
-  return { position: el.scrollLeft, maxScroll };
-};
-  
-const scroll = (direction: "left" | "right") => {
-  if (!scrollContainerRef.current) return;
-  const el = scrollContainerRef.current;
-  const { position, maxScroll } = getScrollInfo(el);
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollContainerRef.current) return;
+    const el = scrollContainerRef.current;
+    const amount = 300;
 
-  const amount = 300;
-  let target =
-    direction === "left"
-      ? Math.max(0, position - amount)
-      : Math.min(maxScroll, position + amount);
+    el.scrollBy({
+      left: direction === 'left' ? -amount : amount,
+      behavior: 'smooth'
+    });
+  };
 
-  // Convert normalized target back to real scrollLeft
-  if (el.dir === "rtl") {
-    if (el.scrollLeft < 0) {
-      // Chrome / Safari
-      el.scrollTo({ left: target - maxScroll, behavior: "smooth" });
-    } else {
-      // Firefox
-      el.scrollTo({ left: maxScroll - target, behavior: "smooth" });
-    }
-  } else {
-    el.scrollTo({ left: target, behavior: "smooth" });
-  }
-};
-
-
-
-const handleScroll = () => {
-  if (!scrollContainerRef.current) return;
-  const { position, maxScroll } = getScrollInfo(scrollContainerRef.current);
-
-  setCanScrollLeft(position > 0);
-  setCanScrollRight(position < maxScroll);
-};
-
-
-
-  // run once to initialize button states
   useEffect(() => {
     handleScroll();
   }, []);
@@ -160,7 +120,7 @@ const handleScroll = () => {
   };
 
   return (
-    <section id="doctors" className="py-20 bg-white" dir="rtl">
+    <section id="doctors" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -203,11 +163,11 @@ const handleScroll = () => {
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
+            dir="rtl"  // FIX: apply RTL directly to the scroll container
             className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 px-12"
             style={{
               scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-              WebkitScrollbar: { display: 'none' }
+              msOverflowStyle: 'none'
             }}
           >
             {doctors.map((doctor, index) => (
