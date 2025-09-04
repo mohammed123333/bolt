@@ -215,7 +215,7 @@ const DoctorProfile = () => {
   >
     <button
       onClick={handleBookAppointment}
-      className="w-100 max-w-[400px] bg-blue-600 text-white py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
+      className="w-200 max-w-[400px] bg-blue-600 text-white py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
     >
       {t('bookAppointment')}
     </button>
