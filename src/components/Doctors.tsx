@@ -26,7 +26,7 @@ const Doctors = () => {
       qualifications: ['اضطراب الحركة', 'التصلب اللويحي', 'الزهايمر']
     },
     {
-      id: 'dramjadzwairy',
+      id: 'dramjalzwairy',
       name: 'د. أمجد الزويري',
       specialty: 'أخصائي جراحة الفم و الفكين',
       experience: '15+ سنوات خبرة',
