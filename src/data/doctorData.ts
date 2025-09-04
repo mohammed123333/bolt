@@ -354,7 +354,7 @@ drmutassemhaloush: {
   }
 },
 dramjadzwairy: {
-  id: 'dramjadallzwairy',
+  id: 'dramjadalzwairy',
   slug: 'dramjadalzwairy',
   image: '/images/dr.amjad alzwairy',
   email: 'dramjadzwairy@example.com',
