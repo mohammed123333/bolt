@@ -284,7 +284,7 @@ drnazihjallad: {
 drmutasemhaloush: {
   id: 'drmutasemhaloush',
   slug: 'drmutasemhaloush',
-  image: '/images/dr.mutasem haloush',
+  image: '/images/dr.mutasem haloush.jpg',
   email: 'drmutassemhalloush@example.com',
   phone: '+962 7 9794 2027',
   priceClinic: 50,
