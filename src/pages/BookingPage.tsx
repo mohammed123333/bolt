@@ -139,13 +139,12 @@ const BookingPage = () => {
                   </span>
                 </div>
 
-<div className="flex items-center justify-between">
-  <span className="text-gray-600">{t('price')}:</span>
-  <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-    {selectedVisitType === 'clinic' || doctor.priceHome === '_' ? doctor.priceClinic : doctor.priceHome} {t('jordanianDinar')}
-  </span>
-</div>
-
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">{t('price')}:</span>
+                  <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                    {selectedVisitType === 'clinic' ? doctor.priceClinic : doctor.priceHome} {t('jordanianDinar')}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -159,6 +158,16 @@ const BookingPage = () => {
               <div className="mb-6 lg:mb-8">
                 <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('visitType')}</h3>
                 <div className={`flex ${language === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'}`}>
+                  <button
+                    onClick={() => setSelectedVisitType('clinic')}
+                    className={`flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 transition-all text-sm lg:text-base ${
+                      selectedVisitType === 'clinic'
+                        ? 'border-blue-600 bg-blue-50 text-blue-600'
+                        : 'border-gray-300 text-gray-700 hover:border-blue-300'
+                    }`}
+                  >
+                    {t('clinicVisit')}
+                  </button>
 {doctor.priceHome !== '_' && doctor.priceHome ? (
   <button
     onClick={() => setSelectedVisitType('home')}
@@ -179,16 +188,6 @@ const BookingPage = () => {
   </button>
 )}
 
-                  <button
-                    onClick={() => setSelectedVisitType('home')}
-                    className={`flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 transition-all text-sm lg:text-base ${
-                      selectedVisitType === 'home'
-                        ? 'border-blue-600 bg-blue-50 text-blue-600'
-                        : 'border-gray-300 text-gray-700 hover:border-blue-300'
-                    }`}
-                  >
-                    {t('homeVisit')}
-                  </button>
                 </div>
               </div>
 
