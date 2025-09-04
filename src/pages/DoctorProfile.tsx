@@ -4,6 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
+import React, { useEffect } from 'react';
+...
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}, []);
 
 const DoctorProfile = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
