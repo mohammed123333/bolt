@@ -139,12 +139,13 @@ const BookingPage = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-600">{t('price')}:</span>
-                  <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                    {selectedVisitType === 'clinic' ? doctor.priceClinic : doctor.priceHome} {t('jordanianDinar')}
-                  </span>
-                </div>
+<div className="flex items-center justify-between">
+  <span className="text-gray-600">{t('price')}:</span>
+  <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+    {selectedVisitType === 'clinic' || doctor.priceHome === '_' ? doctor.priceClinic : doctor.priceHome} {t('jordanianDinar')}
+  </span>
+</div>
+
               </div>
             </div>
           </div>
