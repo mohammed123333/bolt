@@ -176,7 +176,6 @@ const Doctors = () => {
     WebkitScrollbar: { display: 'none' }
             }}
           >
-            <div className="flex flex-row-reverse gap-6"> {/* 👈 keep cards right-to-left */}
             {doctors.map((doctor, index) => (
               <div
                 key={index}
