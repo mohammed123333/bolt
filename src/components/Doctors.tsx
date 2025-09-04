@@ -91,29 +91,63 @@ const Doctors = () => {
     }
   ];
 
+const getScrollInfo = (el: HTMLElement) => {
+  const maxScroll = el.scrollWidth - el.clientWidth;
+
+  if (el.dir === "rtl") {
+    // Chrome / Safari (negative values)
+    if (el.scrollLeft < 0) {
+      return {
+        position: maxScroll + el.scrollLeft, // normalize
+        maxScroll,
+      };
+    }
+    // Firefox (positive reversed)
+    return {
+      position: maxScroll - el.scrollLeft,
+      maxScroll,
+    };
+  }
+
+  // LTR
+  return { position: el.scrollLeft, maxScroll };
+};
+  
 const scroll = (direction: "left" | "right") => {
   if (!scrollContainerRef.current) return;
-  const container = scrollContainerRef.current;
-  const amount = 300;
+  const el = scrollContainerRef.current;
+  const { position, maxScroll } = getScrollInfo(el);
 
-  let delta = direction === "left" ? -amount : amount;
-  container.scrollBy({ left: delta, behavior: "smooth" });
+  const amount = 300;
+  let target =
+    direction === "left"
+      ? Math.max(0, position - amount)
+      : Math.min(maxScroll, position + amount);
+
+  // Convert normalized target back to real scrollLeft
+  if (el.dir === "rtl") {
+    if (el.scrollLeft < 0) {
+      // Chrome / Safari
+      el.scrollTo({ left: target - maxScroll, behavior: "smooth" });
+    } else {
+      // Firefox
+      el.scrollTo({ left: maxScroll - target, behavior: "smooth" });
+    }
+  } else {
+    el.scrollTo({ left: target, behavior: "smooth" });
+  }
 };
+
 
 
 const handleScroll = () => {
   if (!scrollContainerRef.current) return;
-  const container = scrollContainerRef.current;
+  const { position, maxScroll } = getScrollInfo(scrollContainerRef.current);
 
-  const maxScroll = container.scrollWidth - container.clientWidth;
-
-  // In RTL, "scrollLeft" behaves weird, so just check extremes
-  const atStart = Math.abs(container.scrollLeft) === 0 || container.scrollLeft === maxScroll;
-  const atEnd = Math.abs(container.scrollLeft) >= maxScroll;
-
-  setCanScrollLeft(!atStart);
-  setCanScrollRight(!atEnd);
+  setCanScrollLeft(position > 0);
+  setCanScrollRight(position < maxScroll);
 };
+
 
 
   // run once to initialize button states
