@@ -359,7 +359,7 @@ dramjadalzwairy: {
   image: '/images/dr.amjad alzwairy.jpg',
   email: 'dramjadzwairy@example.com',
   phone: '+962 7 9794 2027',
-  priceClinic: 25,
+  priceClinic: 30,
   waitingTime: '30',
   location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
   ar: {
