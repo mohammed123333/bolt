@@ -199,6 +199,7 @@ const DoctorProfile = () => {
               Book Appointment
             </button>
           </div>
+        </div>
 
           </div>
         </div>
