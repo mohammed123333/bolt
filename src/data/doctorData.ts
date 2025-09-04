@@ -202,7 +202,7 @@ Dr. Muhaned Alzoubi is a specialist in orthopedic and joint surgery, detection o
 "drnazihjallad": {
   "id": "drnazihjallad",
   "slug": "drnazihjallad",
-  "image": "https://www.medxjordan.com/ar/doctor/nazih-aljallad/",
+  "image": "/images/dr.nazih al-jalad.jpg",
   "email": "drnazihjallad@example.com",
   "phone": "+962 7 9794 2027",
   "priceClinic": 30,
@@ -281,7 +281,6 @@ Dr. Muhaned Alzoubi is a specialist in orthopedic and joint surgery, detection o
     ]
   }
 },
-
   'drmohammadkhaled': {
     id: 'drmohammadkhaled',
     slug: 'drmohammadkhaled',
