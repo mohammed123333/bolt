@@ -185,9 +185,9 @@ const DoctorProfile = () => {
               </div>
             </div>
 
-{/* Book Appointment Button Container */}
-<div className="mt-8">
-  <div className="w-full max-w-4xl mx-auto">
+{/* Sticky Book Appointment Button */}
+<div className="relative">
+  <div className="sticky bottom-4">
     <button
       onClick={handleBookAppointment}
       className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium text-lg"
@@ -196,6 +196,7 @@ const DoctorProfile = () => {
     </button>
   </div>
 </div>
+
 
 
           </div>
