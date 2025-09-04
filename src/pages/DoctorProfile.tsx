@@ -209,14 +209,14 @@ const DoctorProfile = () => {
   <div
     className={`${
       isAtBottom
-        ? 'relative flex justify-center' // original place
-        : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4' // fixed while scrolling
+        ? 'relative flex justify-center'
+        : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4'
     }`}
   >
     <button
       onClick={handleBookAppointment}
-      className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg"
-      style={{ minWidth: 'calc(4 * 6rem)' }} // 4 times current width (adjust 6rem to match original)
+      className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg
+                 w-64 sm:w-80 md:w-96" // responsive widths
     >
       {t('bookAppointment')}
     </button>
