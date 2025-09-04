@@ -41,54 +41,6 @@ const Doctors = () => {
       image: '/images/dr.mutasem haloush.jpg',
       qualifications: ['جراحة الساد', 'تصحيح البصر', 'السائل الزجاجي']
     },
-    {
-      id: 'drsaraahmed',
-      name: 'د. سارة أحمد',
-      specialty: 'أخصائية أمراض القلب',
-      experience: '15+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/8376277/pexels-photo-8376277.jpeg',
-      qualifications: ['قسطرة القلب', 'تخطيط القلب', 'ارتفاع ضغط الدم']
-    },
-    {
-      id: 'drmohammadkhaled',
-      name: 'د. محمد خالد',
-      specialty: 'جراح الأعصاب',
-      experience: '12+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/4989165/pexels-photo-4989165.jpeg',
-      qualifications: ['جراحة الدماغ', 'جراحة العمود الفقري', 'الأورام العصبية']
-    },
-    {
-      id: 'dralihassan',
-      name: 'د. علي حسان',
-      specialty: 'أخصائي طب الأطفال',
-      experience: '8+ سنوات خبرة',
-      image: 'https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg',
-      qualifications: ['طب الأطفال حديثي الولادة', 'التطعيمات', 'نمو الأطفال']
-    },
-    {
-      id: 'drfatimaomar',
-      name: 'د. فاطمة عمر',
-      specialty: 'أخصائية أمراض النساء والتوليد',
-      experience: '12+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg',
-      qualifications: ['الولادة الطبيعية', 'العمليات النسائية', 'متابعة الحمل']
-    },
-    {
-      id: 'drahmedyoussef',
-      name: 'د. أحمد يوسف',
-      specialty: 'أخصائي طب العيون',
-      experience: '14+ سنة خبرة',
-      image: 'https://images.pexels.com/photos/6749778/pexels-photo-6749778.jpeg',
-      qualifications: ['جراحة الساد', 'علاج الشبكية', 'تصحيح البصر']
-    },
-    {
-      id: 'drlaithsalim',
-      name: 'د. ليث سليم',
-      specialty: 'أخصائي الأمراض الجلدية',
-      experience: '9+ سنوات خبرة',
-      image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg',
-      qualifications: ['علاج الأكزيما', 'جراحة الجلد', 'التجميل الطبي']
-    }
   ];
   
   const getNormalizedScroll = (el: HTMLElement) => {
