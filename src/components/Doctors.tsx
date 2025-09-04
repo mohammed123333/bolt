@@ -91,72 +91,59 @@ const Doctors = () => {
     }
   ];
 
-const scroll = (direction: 'left' | 'right') => {
-  if (scrollContainerRef.current) {
-    const scrollAmount = 326; // card width + gap
-    const container = scrollContainerRef.current;
+const scroll = (direction: "left" | "right") => {
+  if (!scrollContainerRef.current) return;
+  const container = scrollContainerRef.current;
+  const maxScroll = container.scrollWidth - container.clientWidth;
 
-    // RTL handling
-    const isRTL = container.dir === 'rtl' || document.dir === 'rtl';
-    let currentScroll = container.scrollLeft;
+  const current = getNormalizedScrollLeft(container);
+  const amount = 300;
 
-    // Normalize for RTL inconsistencies
-    if (isRTL) {
-      // In Chrome/Edge scrollLeft goes negative, in Firefox it starts positive
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      if (currentScroll < 0) {
-        currentScroll = -currentScroll; // Chrome/Edge
-      } else {
-        currentScroll = maxScroll - currentScroll; // Firefox
-      }
+  let target =
+    direction === "left"
+      ? Math.max(0, current - amount)
+      : Math.min(maxScroll, current + amount);
+
+  // Convert normalized back into real scrollLeft
+  if (container.dir === "rtl") {
+    if (container.scrollLeft < 0) {
+      // Chrome/Safari
+      container.scrollTo({ left: target - maxScroll, behavior: "smooth" });
+    } else {
+      // Firefox
+      container.scrollTo({ left: maxScroll - target, behavior: "smooth" });
     }
-
-    let newScroll =
-      direction === 'left'
-        ? currentScroll - scrollAmount
-        : currentScroll + scrollAmount;
-
-    // Clamp
-    newScroll = Math.max(0, Math.min(newScroll, container.scrollWidth - container.clientWidth));
-
-    if (isRTL) {
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      // Convert back
-      if (container.scrollLeft < 0) {
-        // Chrome/Edge
-        newScroll = -newScroll;
-      } else {
-        // Firefox
-        newScroll = maxScroll - newScroll;
-      }
-    }
-
-    container.scrollTo({
-      left: newScroll,
-      behavior: 'smooth'
-    });
+  } else {
+    container.scrollTo({ left: target, behavior: "smooth" });
   }
 };
 
 const handleScroll = () => {
-  if (scrollContainerRef.current) {
-    const container = scrollContainerRef.current;
-    const isRTL = container.dir === 'rtl' || document.dir === 'rtl';
-    let scrollLeft = container.scrollLeft;
-    const { scrollWidth, clientWidth } = container;
+  if (!scrollContainerRef.current) return;
+  const container = scrollContainerRef.current;
 
-    if (isRTL) {
-      const maxScroll = scrollWidth - clientWidth;
-      if (scrollLeft < 0) {
-        scrollLeft = -scrollLeft; // Chrome/Edge
-      } else {
-        scrollLeft = maxScroll - scrollLeft; // Firefox
-      }
+  const scrollLeft = getNormalizedScrollLeft(container);
+  const maxScroll = container.scrollWidth - container.clientWidth;
+
+  setCanScrollLeft(scrollLeft > 0);
+  setCanScrollRight(scrollLeft < maxScroll);
+};
+// Normalize scrollLeft for RTL
+const getNormalizedScrollLeft = (element: HTMLElement) => {
+  const { scrollLeft, scrollWidth, clientWidth, dir } = element;
+  const maxScroll = scrollWidth - clientWidth;
+
+  if (dir === "rtl") {
+    // Chrome/Safari (negative values)
+    if (scrollLeft < 0) {
+      return maxScroll + scrollLeft; // scrollLeft is negative
     }
-
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    // Firefox (positive reversed)
+    return maxScroll - scrollLeft;
   }
+
+  // Default LTR
+  return scrollLeft;
 };
 
   // run once to initialize button states
