@@ -287,7 +287,7 @@ drmutasemhaloush: {
   image: '/images/dr.mutasem haloush.jpg',
   email: 'drmutassemhalloush@example.com',
   phone: '+962 7 9794 2027',
-  priceClinic: 50,
+  priceClinic: 30,
   waitingTime: '30',
   location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
   ar: {
