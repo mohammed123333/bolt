@@ -186,10 +186,10 @@ const DoctorProfile = () => {
             </div>
 
 {/* Fixed Book Appointment Button */}
-<div className="fixed bottom-4 left-0 right-0 z-50 px-4">
+<div className="fixed bottom-4 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-10">
   <button
     onClick={handleBookAppointment}
-    className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-lg shadow-lg"
+    className="w-full bg-blue-600 text-white py-3 sm:py-4 md:py-4 lg:py-4 px-4 sm:px-6 md:px-8 lg:px-10 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg md:text-lg lg:text-lg shadow-lg"
   >
     {t('bookAppointment')}
   </button>
