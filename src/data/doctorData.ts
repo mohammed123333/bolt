@@ -199,85 +199,85 @@ Dr. Muhaned Alzoubi is a specialist in orthopedic and joint surgery, detection o
     }
   },
   
-"drnazihjallad": {
-  "id": "drnazihjallad",
-  "slug": "drnazihjallad",
-  "image": "/images/dr.nazih al-jalad.jpg",
-  "email": "drnazihjallad@example.com",
-  "phone": "+962 7 9794 2027",
-  "priceClinic": 30,
-  "waitingTime": "30",
-  "location": { "ar": "عمّان - الدوار الخامس", "en": "Amman - Fifth Circle" },
-  "ar": {
-    "name": "د. نزيه الجلاد",
-    "specialty": "استشاري أمراض الدماغ والأعصاب",
-    "aboutMe": "د. نزيه الجلاد هو استشاري أمراض الدماغ والأعصاب والعضلات، حاصل على البورد الأردني في أمراض الدماغ والأعصاب، بالإضافة إلى دبلوم في أمراض الأعصاب السريرية من معهد الأعصاب - جامعة لندن. عمل سابقًا كرئيس قسم الأعصاب في مستشفى المركز التخصصي الطبي بالرياض.",
-    "educationalCertificates": [
-      "البورد الأردني في أمراض الدماغ والأعصاب",
-      "دبلوم أمراض الأعصاب السريرية من معهد الأعصاب - جامعة لندن",
-      "البورد الأردني في أمراض الداخلية العامة"
+drnazihjallad: {
+  id: 'drnazihjallad',
+  slug: 'drnazihjallad',
+  image: 'https://www.medxjordan.com/ar/doctor/nazih-aljallad/',
+  email: 'drnazihjallad@example.com',
+  phone: '+962 7 9794 2027',
+  priceClinic: 30,
+  waitingTime: '30',
+  location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
+  ar: {
+    name: 'د. نزيه الجلاد',
+    specialty: 'استشاري أمراض الدماغ والأعصاب',
+    aboutMe: 'د. نزيه الجلاد هو استشاري أمراض الدماغ والأعصاب والعضلات، حاصل على البورد الأردني في أمراض الدماغ والأعصاب، بالإضافة إلى دبلوم في أمراض الأعصاب السريرية من معهد الأعصاب - جامعة لندن. عمل سابقًا كرئيس قسم الأعصاب في مستشفى المركز التخصصي الطبي بالرياض.',
+    educationalCertificates: [
+      'البورد الأردني في أمراض الدماغ والأعصاب',
+      'دبلوم أمراض الأعصاب السريرية من معهد الأعصاب - جامعة لندن',
+      'البورد الأردني في أمراض الداخلية العامة'
     ],
-    "treatedConditions": [
-      "الصداع بأنواعه",
-      "الصرع بأنواعه",
-      "الجلطات الدماغية",
-      "التصلب اللويحي",
-      "اعتلال الأعصاب والعضلات",
-      "اضطرابات الحركة",
-      "الخرف"
+    treatedConditions: [
+      'الصداع بأنواعه',
+      'الصرع بأنواعه',
+      'الجلطات الدماغية',
+      'التصلب اللويحي',
+      'اعتلال الأعصاب والعضلات',
+      'اضطرابات الحركة',
+      'الخرف'
     ],
-    "treatments": [
-      "تخطيط الدماغ",
-      "تشخيص وعلاج أمراض الأعصاب والعضلات",
-      "إدارة حالات الصرع",
-      "إعادة تأهيل مرضى الجلطات الدماغية"
+    treatments: [
+      'تخطيط الدماغ',
+      'تشخيص وعلاج أمراض الأعصاب والعضلات',
+      'إدارة حالات الصرع',
+      'إعادة تأهيل مرضى الجلطات الدماغية'
     ],
-    "services": [
-      "استشارات طبية في أمراض الدماغ والأعصاب",
-      "تشخيص وعلاج اضطرابات الحركة",
-      "إجراء تخطيط الدماغ",
-      "متابعة حالات التصلب اللويحي"
+    services: [
+      'استشارات طبية في أمراض الدماغ والأعصاب',
+      'تشخيص وعلاج اضطرابات الحركة',
+      'إجراء تخطيط الدماغ',
+      'متابعة حالات التصلب اللويحي'
     ],
-    "specializations": [
-      "أمراض الدماغ والأعصاب",
-      "تخطيط الدماغ",
-      "أمراض العضلات"
+    specializations: [
+      'أمراض الدماغ والأعصاب',
+      'تخطيط الدماغ',
+      'أمراض العضلات'
     ]
   },
-  "en": {
-    "name": "Dr. Nazih Al-Jallad",
-    "specialty": "Consultant Neurologist",
-    "aboutMe": "Dr. Nazih Al-Jallad is a consultant in neurology and neuromuscular disorders, holding the Jordanian Board in Neurology and a Clinical Neurology Diploma from the Institute of Neurology - University of London. He previously served as the Head of the Neurology Department at the Specialized Medical Center Hospital in Riyadh.",
-    "educationalCertificates": [
-      "Jordanian Board in Neurology",
-      "Clinical Neurology Diploma from the Institute of Neurology - University of London",
-      "Jordanian Board in Internal Medicine"
+  en: {
+    name: 'Dr. Nazih Al-Jallad',
+    specialty: 'Consultant Neurologist',
+    aboutMe: 'Dr. Nazih Al-Jallad is a consultant in neurology and neuromuscular disorders, holding the Jordanian Board in Neurology and a Clinical Neurology Diploma from the Institute of Neurology - University of London. He previously served as the Head of the Neurology Department at the Specialized Medical Center Hospital in Riyadh.',
+    educationalCertificates: [
+      'Jordanian Board in Neurology',
+      'Clinical Neurology Diploma from the Institute of Neurology - University of London',
+      'Jordanian Board in Internal Medicine'
     ],
-    "treatedConditions": [
-      "Headaches of various types",
-      "Epilepsy",
-      "Stroke",
-      "Multiple Sclerosis",
-      "Neuromuscular Disorders",
-      "Movement Disorders",
-      "Dementia"
+    treatedConditions: [
+      'Headaches of various types',
+      'Epilepsy',
+      'Stroke',
+      'Multiple Sclerosis',
+      'Neuromuscular Disorders',
+      'Movement Disorders',
+      'Dementia'
     ],
-    "treatments": [
-      "EEG (Electroencephalogram)",
-      "Diagnosis and treatment of neurological and neuromuscular disorders",
-      "Epilepsy management",
-      "Stroke rehabilitation"
+    treatments: [
+      'EEG (Electroencephalogram)',
+      'Diagnosis and treatment of neurological and neuromuscular disorders',
+      'Epilepsy management',
+      'Stroke rehabilitation'
     ],
-    "services": [
-      "Neurology consultations",
-      "Movement disorder management",
-      "EEG procedures",
-      "Multiple sclerosis follow-up"
+    services: [
+      'Neurology consultations',
+      'Movement disorder management',
+      'EEG procedures',
+      'Multiple sclerosis follow-up'
     ],
-    "specializations": [
-      "Neurology",
-      "EEG",
-      "Muscle Disorders"
+    specializations: [
+      'Neurology',
+      'EEG',
+      'Muscle Disorders'
     ]
   }
 },
