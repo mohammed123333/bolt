@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Star, DollarSign, Home, Clock, MapPin, Phone } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
-import React, { useEffect } from 'react';
-...
-useEffect(() => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}, []);
 
 const DoctorProfile = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
+
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   // Get doctor info dynamically
   const doctor = doctorData[doctorId as keyof typeof doctorData];
@@ -44,7 +44,12 @@ const DoctorProfile = () => {
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto" />
+          <img
+            src="/images/logo.png"
+            alt="طب جو"
+            className="h-16 w-auto cursor-pointer"
+            onClick={() => navigate('/')}
+          />
           <LanguageToggle />
         </div>
 
@@ -82,13 +87,12 @@ const DoctorProfile = () => {
                 <span className="text-gray-700">{doctor.priceClinic} {t('jordanianDinar')}</span>
               </div>
 
-{doctor.priceHome !== '_' && doctor.priceHome && (
-  <div className="flex items-center">
-    <Home className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-    <span className="text-gray-700">{doctor.priceHome} {t('jordanianDinar')} - {t('homeVisit')}</span>
-  </div>
-)}
-
+              {doctor.priceHome !== '_' && doctor.priceHome && (
+                <div className="flex items-center">
+                  <Home className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
+                  <span className="text-gray-700">{doctor.priceHome} {t('jordanianDinar')} - {t('homeVisit')}</span>
+                </div>
+              )}
 
               <div className="flex items-center">
                 <Clock className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
@@ -165,30 +169,32 @@ const DoctorProfile = () => {
             </div>
 
             {/* Services */}
-<div className="mb-8">
-  <h3 className="text-xl font-bold text-gray-900 mb-4">{t('servicesOffered')}</h3>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-    {data.services.map((service, index) => (
-      <div key={index} className="flex items-center">
-        <div
-          className={`w-2 h-2 bg-orange-600 rounded-full ${
-            language === 'ar' ? 'ml-3' : 'mr-3'
-          } flex-shrink-0`}
-        ></div>
-        <span className="text-gray-700 text-sm">{service}</span>
-      </div>
-    ))}
-  </div>
-</div>
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('servicesOffered')}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {data.services.map((service, index) => (
+                  <div key={index} className="flex items-center">
+                    <div
+                      className={`w-2 h-2 bg-orange-600 rounded-full ${
+                        language === 'ar' ? 'ml-3' : 'mr-3'
+                      } flex-shrink-0`}
+                    ></div>
+                    <span className="text-gray-700 text-sm">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
+            {/* Sticky Book Appointment Button */}
+            <div className="sticky bottom-4 z-50">
+              <button
+                onClick={handleBookAppointment}
+                className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium text-lg"
+              >
+                {t('bookAppointment')}
+              </button>
+            </div>
 
-            {/* Book Appointment Button */}
-            <button
-              onClick={handleBookAppointment}
-              className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium text-lg"
-            >
-              {t('bookAppointment')}
-            </button>
           </div>
         </div>
       </div>
