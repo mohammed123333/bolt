@@ -303,7 +303,7 @@ For customer service: +962 7 9794 2027
                       onChange={(e) => handleInputChange('insurance', e.target.value)}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     >
-                      <option value="">اختر شركة التأمين</option>
+                      <option value="">{t('Select Insurance')}</option>
                       {insuranceCompanies.map((company, index) => (
                         <option key={index} value={company}>{company}</option>
                       ))}
