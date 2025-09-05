@@ -57,6 +57,8 @@ const translations = {
     termsConditions: 'الأحكام والشروط',
     acceptTerms: 'لقد قرأت وأقبل',
     confirmBooking: 'تأكيد الحجز',
+    insurance: 'تأمين',
+    cash: 'نقداً',
     
     // Booking Summary
     bookingSummary: 'ملخص الحجز',
