@@ -27,9 +27,6 @@ const PersonalInfoPage = () => {
   
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  useEffect(() => {
-  window.scrollTo(0, 0);
-}, []);
 
 
   if (!doctor) {
