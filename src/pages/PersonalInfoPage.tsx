@@ -311,19 +311,19 @@ For customer service: +962 7 9794 2027
                   </div>
                 )}
 
-                {/* Terms and Conditions */}
-                <div className="flex items-start">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    checked={acceptedTerms}
-                    onChange={(e) => setAcceptedTerms(e.target.checked)}
-                    className="mt-1 ml-3 text-blue-600 focus:ring-blue-500"
-                  />
-                  <label htmlFor="terms" className="text-sm text-gray-700">
-                    {t('acceptTerms')} <a href="/terms-conditions" className="text-blue-600 hover:underline">{t('termsConditions')}</a>
-                  </label>
-                </div>
+{/* Terms and Conditions */}
+<div className="flex items-start">
+  <input
+    type="checkbox"
+    id="terms"
+    checked={acceptedTerms}
+    onChange={(e) => setAcceptedTerms(e.target.checked)}
+    className={`mt-1 text-blue-600 focus:ring-blue-500 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}
+  />
+  <label htmlFor="terms" className="text-sm text-gray-700">
+    {t('acceptTerms')} <a href="/terms-conditions" className="text-blue-600 hover:underline">{t('termsConditions')}</a>
+  </label>
+</div>
 
                 {/* Confirm Button */}
                 <button
