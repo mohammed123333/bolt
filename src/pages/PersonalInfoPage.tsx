@@ -244,10 +244,11 @@ For customer service: +962 7 9794 2027
       value={formData.phoneNumber}
       onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
       className="flex-1 px-4 py-3 rounded-r-lg border border-gray-300 border-l-0 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-      placeholder={t('phoneNumberPlaceholder')}
+      placeholder="7 9999 9999"
     />
   </div>
 </div>
+
 
 
                 </div>
