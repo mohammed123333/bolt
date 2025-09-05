@@ -123,9 +123,9 @@ const DoctorProfile = () => {
                 <span className="text-gray-700">{doctor.location[language]}</span>
               </div>
 
-              <div className="flex items-center" dir="ltr">
+              <div className="flex items-center" >
                 <Phone className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700 break-all">{doctor.phone} - {t('directBooking')}</span>
+                <span className="text-gray-700 break-all" dir="ltr"'>{doctor.phone} - {t('directBooking')}</span>
               </div>
             </div>
 
