@@ -77,7 +77,7 @@ const translations = {
       parent: 'والدي/والدتي',
       sibling: 'أخي/أختي',
       relative: 'قريب',
-      friend: 'صديق',
+      friend: 'صديق'
     }
       
     //Insurance Companies
@@ -286,8 +286,9 @@ const translations = {
       parent: 'Parent',
       sibling: 'Sibling',
       relative: 'Relative',
-      friend: 'Friend',
+      friend: 'Friend'
     }
+    
     // Insurance Companies
 
     insuranceCompanies: {
