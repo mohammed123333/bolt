@@ -237,7 +237,7 @@ For customer service: +962 7 9794 2027
                       type="tel"
                       value={formData.phoneNumber}
                       onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
-                      className="w-full flex-1 px-4 py-3 rounded-l-lg border border-r-0 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-20 flex-1 px-4 py-3 rounded-l-lg border border-r-0 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       placeholder="7 9999 9999"
                     />
                   </div>
@@ -249,7 +249,7 @@ For customer service: +962 7 9794 2027
                   <select
                     value={formData.relationship}
                     onChange={(e) => handleInputChange('relationship', e.target.value)}
-                    className="w-4 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   >
                     <option value="">اختر صلة القرابة</option>
                     <option value="نفسي">نفسي</option>
