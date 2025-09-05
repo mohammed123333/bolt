@@ -233,7 +233,7 @@ For customer service: +962 7 9794 2027
     >
       {countryCodes.map(country => (
         <option key={country.code} value={country.code}>
-          {country.code} {country.country}
+          {country.code} {t(country.country)}
         </option>
       ))}
     </select>
