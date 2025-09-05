@@ -4,17 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
-import React, { useState, useEffect } from 'react';  // add useEffect
-
-
 
 
 
 const BookingPage = () => {
-  // inside BookingPage
-useEffect(() => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}, []);
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { doctorId } = useParams<{ doctorId: string }>();
