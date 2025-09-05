@@ -137,7 +137,10 @@ For customer service: +962 7 9794 2027
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto" />
+<button onClick={() => navigate('/')}>
+  <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto cursor-pointer" />
+</button>
+
           <LanguageToggle />
         </div>
 
