@@ -60,6 +60,7 @@ const translations = {
     insurance: 'تأمين',
     cash: 'نقداً',
     selectInsurance: 'اختر شركة التأمين',
+    chooseRelationship: 'اختر صلة القرابة',
     
     // Booking Summary
     bookingSummary: 'ملخص الحجز',
@@ -257,6 +258,7 @@ const translations = {
     insurance: 'Insurance',
     cash: 'Cash',
     selectInsurance: 'Select Insurance',
+    chooseRelationship: 'Choose The Relationship',
     
     // Booking Summary
     bookingSummary: 'Booking Summary',
