@@ -218,7 +218,10 @@ For customer service: +962 7 9794 2027
                   </div>
                 </div>
 
-<div className="flex">
+                {/* Phone Number */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
+<div className="flex" dir="ltr">
   <select
     value={formData.countryCode}
     onChange={(e) => handleInputChange('countryCode', e.target.value)}
