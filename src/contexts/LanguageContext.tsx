@@ -215,8 +215,23 @@ const translations = {
       unitedInsurance: 'تأمين المتحدون',
       alAwlaSpecialized: 'الاولى المتخصصه',
       internationalClub: 'النادي الدولي',
-      metLife: 'ميتلايف'
-    }
+      metLife: 'ميتلايف',
+    },
+        countries: {
+      JO: 'الأردن',
+      SA: 'السعودية',
+      AE: 'الإمارات',
+      KW: 'الكويت',
+      BH: 'البحرين',
+      QA: 'قطر',
+      OM: 'عمان',
+      LB: 'لبنان',
+      SY: 'سوريا',
+      IQ: 'العراق',
+      EG: 'مصر',
+      US: 'الولايات المتحدة',
+      UK: 'المملكة المتحدة',
+    },
   },
   en: {
     // Navigation
@@ -425,8 +440,23 @@ const translations = {
       unitedInsurance: 'United Insurance',
       alAwlaSpecialized: 'Al-Awla Specialized',
       internationalClub: 'International Club',
-      metLife: 'MetLife'
-    }
+      metLife: 'MetLife',
+    },
+        countries: {
+      JO: 'JO',
+      SA: 'SA',
+      AE: 'UAE',
+      KW: 'KU',
+      BH: 'BA',
+      QA: 'QA',
+      OM: 'OM',
+      LB: 'LE',
+      SY: 'SY',
+      IQ: 'IR',
+      EG: 'EG',
+      US: 'US',
+      UK: 'UK',
+    },
   }
 }
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
