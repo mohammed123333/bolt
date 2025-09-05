@@ -255,14 +255,14 @@ For customer service: +962 7 9794 2027
                     onChange={(e) => handleInputChange('relationship', e.target.value)}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   >
-                    <option value="">اختر صلة القرابة</option>
-                    <option value="نفسي">نفسي</option>
-                    <option value="ابني/ابنتي">ابني/ابنتي</option>
-                    <option value="زوجي/زوجتي">زوجي/زوجتي</option>
-                    <option value="والدي/والدتي">والدي/والدتي</option>
-                    <option value="أخي/أختي">أخي/أختي</option>
-                    <option value="قريب">قريب</option>
-                    <option value="صديق">صديق</option>
+                    <option value="">{t(chooseRelationship)}</option>
+                    <option value="">أنا</option>
+                    <option value="">ابني/ابنتي</option>
+                    <option value="">زوجي/زوجتي</option>
+                    <option value="">والدي/والدتي</option>
+                    <option value="">أخي/أختي</option>
+                    <option value="">قريب</option>
+                    <option value="">صديق</option>
                   </select>
                 </div>
 
