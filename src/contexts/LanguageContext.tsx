@@ -67,8 +67,10 @@ const translations = {
     time: 'الوقت',
     consultationType: 'نوع الاستشارة',
     changeTime: 'اختر وقت آخر'
+      
     //Insurance Companies
-    natHealth: 'نات هيلث',
+    insuranceCompanies: {
+      natHealth: 'نات هيلث',
       jordanActorsSyndicate: 'نقابة الفنانين الأردنيين',
       arabInsurance: 'العرب للتأمين',
       wataniyaInsurance: 'الوطنية للتامين',
@@ -203,6 +205,7 @@ const translations = {
       internationalClub: 'النادي الدولي',
       metLife: 'ميتلايف',
       noInsurance: 'بدون تأمين'
+    }
   },
   en: {
     // Navigation
