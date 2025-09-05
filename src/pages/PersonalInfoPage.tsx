@@ -50,15 +50,22 @@ const PersonalInfoPage = () => {
 
   const data = doctor[language];
 
-  const countryCodes = [
-    { code: '+962', country: 'الأردن' }, { code: '+966', country: 'السعودية' },
-    { code: '+971', country: 'الإمارات' }, { code: '+965', country: 'الكويت' },
-    { code: '+973', country: 'البحرين' }, { code: '+974', country: 'قطر' },
-    { code: '+968', country: 'عمان' }, { code: '+961', country: 'لبنان' },
-    { code: '+963', country: 'سوريا' }, { code: '+964', country: 'العراق' },
-    { code: '+20', country: 'مصر' }, { code: '+1', country: 'الولايات المتحدة' },
-    { code: '+44', country: 'المملكة المتحدة' }
-  ];
+const countryCodes = [
+  { code: '+962', country: t('countries.JO') },
+  { code: '+966', country: t('countries.SA') },
+  { code: '+971', country: t('countries.AE') },
+  { code: '+965', country: t('countries.KW') },
+  { code: '+973', country: t('countries.BH') },
+  { code: '+974', country: t('countries.QA') },
+  { code: '+968', country: t('countries.OM') },
+  { code: '+961', country: t('countries.LB') },
+  { code: '+963', country: t('countries.SY') },
+  { code: '+964', country: t('countries.IQ') },
+  { code: '+20', country: t('countries.EG') },
+  { code: '+1', country: t('countries.US') },
+  { code: '+44', country: t('countries.UK') }
+];
+
 
   const formatDate = (dateString: string) => {
     const dateObj = new Date(dateString);
