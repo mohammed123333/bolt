@@ -210,30 +210,31 @@ For customer service: +962 7 9794 2027
                   </div>
                 </div>
 
-                {/* Phone Number */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
-                  <div className="flex" dir="ltr">
-<select
-  value={formData.countryCode}
-  onChange={(e) => handleInputChange('countryCode', e.target.value)}
-  className="min-w-[110px] max-w-[125px] px-3 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50"
->
-  {countryCodes.map(country => (
-    <option key={country.code} value={country.code}>
-      {country.code} {country.country}
-    </option>
-  ))}
-</select>
-                    <input
-                      type="tel"
-                      value={formData.phoneNumber}
-                      onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-l-lg border border-r-0 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="7 9999 9999"
-                    />
-                  </div>
-                </div>
+{/* Phone Number */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
+  <div className="flex" dir="ltr">
+    <select
+      value={formData.countryCode}
+      onChange={(e) => handleInputChange('countryCode', e.target.value)}
+      className="min-w-[110px] max-w-[140px] px-3 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50"
+    >
+      {countryCodes.map(country => (
+        <option key={country.code} value={country.code}>
+          {country.code} {country.country}
+        </option>
+      ))}
+    </select>
+    <input
+      type="tel"
+      value={formData.phoneNumber}
+      onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
+      className="flex-1 px-4 py-3 rounded-lg border border-l-0 border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+      placeholder="7 9999 9999"
+    />
+  </div>
+</div>
+
 
                 {/* Relationship */}
                 <div>
