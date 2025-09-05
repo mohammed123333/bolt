@@ -266,35 +266,34 @@ For customer service: +962 7 9794 2027
                   </select>
                 </div>
 
-                {/* Payment Method */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('paymentMethod')}</label>
-                  <div className="space-y-3">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="cash"
-                        checked={formData.paymentMethod === 'cash'}
-                        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                        className="ml-3 text-blue-600 focus:ring-blue-500"
-                      />
-                      <span>{t('cash')}</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="insurance"
-                        checked={formData.paymentMethod === 'insurance'}
-                        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                        className="ml-3 text-blue-600 focus:ring-blue-500"
-                      />
-                      <span>{t('insurance')}</span>
-                    </label>
-                  </div>
-                </div>
-
+{/* Payment Method */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{t('paymentMethod')}</label>
+  <div className="space-y-3">
+    <label className="flex items-center">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="cash"
+        checked={formData.paymentMethod === 'cash'}
+        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+        className={`text-blue-600 focus:ring-blue-500 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}
+      />
+      <span>{t('cash')}</span>
+    </label>
+    <label className="flex items-center">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="insurance"
+        checked={formData.paymentMethod === 'insurance'}
+        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+        className={`text-blue-600 focus:ring-blue-500 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}
+      />
+      <span>{t('insurance')}</span>
+    </label>
+  </div>
+</div>
                 {/* Insurance Selection */}
                 {formData.paymentMethod === 'insurance' && (
                   <div>
@@ -312,19 +311,19 @@ For customer service: +962 7 9794 2027
                   </div>
                 )}
 
-                {/* Terms and Conditions */}
-                <div className="flex items-start">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    checked={acceptedTerms}
-                    onChange={(e) => setAcceptedTerms(e.target.checked)}
-                    className="mt-1 ml-3 text-blue-600 focus:ring-blue-500"
-                  />
-                  <label htmlFor="terms" className="text-sm text-gray-700">
-                    {t('acceptTerms')} <a href="/terms-conditions" className="text-blue-600 hover:underline">{t('termsConditions')}</a>
-                  </label>
-                </div>
+{/* Terms and Conditions */}
+<div className="flex items-start">
+  <input
+    type="checkbox"
+    id="terms"
+    checked={acceptedTerms}
+    onChange={(e) => setAcceptedTerms(e.target.checked)}
+    className={`mt-1 text-blue-600 focus:ring-blue-500 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}
+  />
+  <label htmlFor="terms" className="text-sm text-gray-700">
+    {t('acceptTerms')} <a href="/terms-conditions" className="text-blue-600 hover:underline">{t('termsConditions')}</a>
+  </label>
+</div>
 
                 {/* Confirm Button */}
                 <button
