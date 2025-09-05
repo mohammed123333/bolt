@@ -268,7 +268,7 @@ For customer service: +962 7 9794 2027
                 {/* Payment Method */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">{t('paymentMethod')}</label>
-                  <div className="space-y-3-x-3">
+                  <div className="space-y-3">
                     <label className="flex items-center">
                       <input
                         type="radio"
