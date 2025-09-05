@@ -204,7 +204,7 @@ const translations = {
       alAwlaSpecialized: 'الاولى المتخصصه',
       internationalClub: 'النادي الدولي',
       metLife: 'ميتلايف',
-      noInsurance: 'بدون تأمين'
+      noInsurance: 'بدون تأمين',
     }
   },
   en: {
