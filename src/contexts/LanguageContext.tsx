@@ -115,6 +115,9 @@ const translations = {
     termsConditions: 'Terms & Conditions',
     acceptTerms: 'I have read and accept',
     confirmBooking: 'Confirm Booking',
+    insurance: 'Insurance',
+    cash: 'Cash',
+    selectInsurance
     
     // Booking Summary
     bookingSummary: 'Booking Summary',
