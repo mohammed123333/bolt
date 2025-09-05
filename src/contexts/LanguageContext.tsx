@@ -71,15 +71,16 @@ const translations = {
 
     //Relationships
 
-          relationships: {
-    self: 'أنا',
-    child: 'ابني/ابنتي',
-    spouse: 'زوجي/زوجتي',
-    parent: 'والدي/والدتي',
-    sibling: 'أخي/أختي',
-    relative: 'قريب',
-    friend: 'صديق'
-  }
+    relationships: {
+      
+      self: 'أنا',
+      child: 'ابني/ابنتي',
+      spouse: 'زوجي/زوجتي',
+      parent: 'والدي/والدتي',
+      sibling: 'أخي/أختي',
+      relative: 'قريب',
+      friend: 'صديق',
+    }
       
     //Insurance Companies
     insuranceCompanies: {
@@ -281,15 +282,16 @@ const translations = {
 
     //Relationships
 
-          relationships: {
-    self: 'Self',
-    child: 'Child',
-    spouse: 'Spouse',
-    parent: 'Parent',
-    sibling: 'Sibling',
-    relative: 'Relative',
-    friend: 'Friend'
-  }
+    relationships: {
+      self: 'Self',
+      child: 'Child',
+      spouse: 'Spouse',
+      parent: 'Parent',
+      sibling: 'Sibling',
+      relative: 'Relative',
+      friend: 'Friend',
+    }
+
     // Insurance Companies
 
     insuranceCompanies: {
