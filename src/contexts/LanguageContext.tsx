@@ -139,6 +139,15 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['ar']] || key;
   };
+  const t = (key: string): string => {
+  const keys = key.split('.');
+  let value: any = translations[language];
+  for (const k of keys) {
+    value = value?.[k];
+  }
+  return value || key;
+};
+
 
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
