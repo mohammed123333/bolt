@@ -404,8 +404,7 @@ const translations = {
       metLife: 'MetLife'
     }
   }
-};
-
+}
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<'ar' | 'en'>('ar');
 
