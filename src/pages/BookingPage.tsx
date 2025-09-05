@@ -235,20 +235,35 @@ const BookingPage = () => {
                 </div>
               )}
 
-              {/* Continue */}
-              <button
-                onClick={handleContinueBooking}
-                disabled={!selectedDate || !selectedTime}
-                className={`w-full py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-medium text-base lg:text-lg transition-all ${
-                  selectedDate && selectedTime
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                {t('bookAppointment')}
-              </button>
-            </div>
-          </div>
+// Replace the "Continue" button section with this
+
+{/* Continue */}
+<div className="mt-8 flex justify-center">
+  <div
+    className={`${
+      // Fix the button when not at the bottom
+      !selectedDate || !selectedTime
+        ? 'relative w-full flex justify-center'
+        : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4'
+    }`}
+  >
+    <button
+      onClick={handleContinueBooking}
+      disabled={!selectedDate || !selectedTime}
+      className={`w-[85%] sm:w-[70%] md:w-[50%] lg:w-[40%] 
+        py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-medium 
+        text-base lg:text-lg shadow-lg transition-all duration-300
+        ${
+          selectedDate && selectedTime
+            ? 'bg-blue-600 text-white hover:bg-blue-700'
+            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+        }`}
+    >
+      {t('bookAppointment')}
+    </button>
+  </div>
+</div>
+
         </div>
       </div>
     </div>
