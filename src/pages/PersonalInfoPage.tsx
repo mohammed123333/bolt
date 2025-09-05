@@ -225,7 +225,7 @@ For customer service: +962 7 9794 2027
                     <select
                       value={formData.countryCode}
                       onChange={(e) => handleInputChange('countryCode', e.target.value)}
-                      className="w-24 px-3 py-3 rounded-r-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50"
+                      className="w-40 px-3 py-3 rounded-r-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50"
                     >
                       {countryCodes.map(country => (
                         <option key={country.code} value={country.code}>
