@@ -566,7 +566,5 @@ export const insuranceCompanies = [
   'metlife'
 ];
 
-];
-
 
 
