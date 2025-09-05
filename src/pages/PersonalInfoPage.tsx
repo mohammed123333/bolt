@@ -212,7 +212,7 @@ For customer service: +962 7 9794 2027
 
 {/* Phone Number */}
 <div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{t('phoneNumber')}</label>
   <div className="flex" dir="ltr">
 <select
   value={formData.countryCode}
