@@ -221,26 +221,34 @@ For customer service: +962 7 9794 2027
                 {/* Phone Number */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
-<div className="flex flex-col sm:flex-row gap-2">
-  <select
-    value={formData.countryCode}
-    onChange={(e) => handleInputChange('countryCode', e.target.value)}
-    className="px-3 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 w-full sm:w-1/3"
-  >
-    {countryCodes.map(country => (
-      <option key={country.code} value={country.code}>
-        {country.code} {country.country}
-      </option>
-    ))}
-  </select>
-  <input
-    type="tel"
-    value={formData.phoneNumber}
-    onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
-    className="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all w-full sm:w-2/3"
-    placeholder="7 9999 9999"
-  />
+{/* Phone Number */}
+<div className="text-sm">
+  <label className="block font-medium text-gray-700 mb-2">{t('phoneNumber')}</label>
+  <div className="flex flex-row gap-2" dir="ltr">
+    {/* Country Code */}
+    <select
+      value={formData.countryCode}
+      onChange={(e) => handleInputChange('countryCode', e.target.value)}
+      className="px-3 py-3 rounded-l-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 w-28 shrink-0"
+    >
+      {countryCodes.map(country => (
+        <option key={country.code} value={country.code}>
+          {country.code} {country.country}
+        </option>
+      ))}
+    </select>
+
+    {/* Phone Number */}
+    <input
+      type="tel"
+      value={formData.phoneNumber}
+      onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
+      className="flex-1 px-4 py-3 rounded-r-lg border border-gray-300 border-l-0 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+      placeholder={t('phoneNumberPlaceholder')}
+    />
+  </div>
 </div>
+
 
                 </div>
 
