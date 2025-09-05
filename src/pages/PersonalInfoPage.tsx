@@ -5,7 +5,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData, insuranceCompanies } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
 import emailjs from '@emailjs/browser';
-import React, { useState, useEffect } from 'react';
 
 
 const PersonalInfoPage = () => {
@@ -28,6 +27,10 @@ const PersonalInfoPage = () => {
   
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
+
 
   if (!doctor) {
     return (
