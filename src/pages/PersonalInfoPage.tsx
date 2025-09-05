@@ -294,22 +294,23 @@ For customer service: +962 7 9794 2027
     </label>
   </div>
 </div>
-                {/* Insurance Selection */}
-                {formData.paymentMethod === 'insurance' && (
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('selectInsurance')}</label>
-                    <select
-                      value={formData.insurance}
-                      onChange={(e) => handleInputChange('insurance', e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    >
-                      <option value="">{t('selectInsurance')}</option>
-                      {insuranceCompanies.map((company, index) => (
-                        <option key={index} value={company}>{company}</option>
-                      ))}
-                    </select>
-                  </div>
-                )}
+{/* Insurance Selection */}
+{formData.paymentMethod === 'insurance' && (
+  <div>
+    <label className="block text-sm font-medium text-gray-700 mb-2">{t('selectInsurance')}</label>
+    <select
+      value={formData.insurance}
+      onChange={(e) => handleInputChange('insurance', e.target.value)}
+      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+    >
+      <option value="">{t('selectInsurance')}</option>
+      {insuranceCompanies.map((key) => (
+        <option key={key} value={key}>{t(`insuranceCompanies.${key}`)}</option>
+      ))}
+    </select>
+  </div>
+)}
+
 
 {/* Terms and Conditions */}
 <div className="flex items-start">
