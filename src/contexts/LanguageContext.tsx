@@ -59,6 +59,7 @@ const translations = {
     confirmBooking: 'تأكيد الحجز',
     insurance: 'تأمين',
     cash: 'نقداً',
+    selectInsurance: 'اختر شركة التأمين',
     
     // Booking Summary
     bookingSummary: 'ملخص الحجز',
@@ -117,7 +118,7 @@ const translations = {
     confirmBooking: 'Confirm Booking',
     insurance: 'Insurance',
     cash: 'Cash',
-    selectInsurance
+    selectInsurance: 'Select Insurance',
     
     // Booking Summary
     bookingSummary: 'Booking Summary',
