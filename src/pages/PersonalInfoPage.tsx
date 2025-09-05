@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Star, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -26,6 +26,11 @@ const PersonalInfoPage = () => {
   
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+    // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   if (!doctor) {
     return (
