@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Star } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
 
-
-
 const BookingPage = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { doctorId } = useParams<{ doctorId: string }>();
-  
+
   const doctor = doctorData[doctorId as keyof typeof doctorData];
-  
+
   const [selectedVisitType, setSelectedVisitType] = useState<'clinic' | 'home'>('clinic');
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
+
+  // ✅ Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!doctor) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Doctor not found</h1>
-          <button 
+          <button
             onClick={() => navigate('/')}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
@@ -48,7 +51,12 @@ const BookingPage = () => {
       if (date.getDay() !== 5) {
         dates.push({
           date: date.toISOString().split('T')[0],
-          display: date.toLocaleDateString('ar-JO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+          display: date.toLocaleDateString('ar-JO', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }),
         });
       }
     }
@@ -70,10 +78,15 @@ const BookingPage = () => {
     let currentMinute = startMinute;
 
     while (currentHour < endHour || (currentHour === endHour && currentMinute <= endMinute)) {
-      const timeString = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
-      const displayTime = currentHour >= 12
-        ? `${currentHour === 12 ? 12 : currentHour - 12}:${currentMinute.toString().padStart(2, '0')} م`
-        : `${currentHour}:${currentMinute.toString().padStart(2, '0')} ص`;
+      const timeString = `${currentHour.toString().padStart(2, '0')}:${currentMinute
+        .toString()
+        .padStart(2, '0')}`;
+      const displayTime =
+        currentHour >= 12
+          ? `${currentHour === 12 ? 12 : currentHour - 12}:${currentMinute
+              .toString()
+              .padStart(2, '0')} م`
+          : `${currentHour}:${currentMinute.toString().padStart(2, '0')} ص`;
 
       slots.push({ time: timeString, display: displayTime });
 
@@ -89,7 +102,7 @@ const BookingPage = () => {
   const handleContinueBooking = () => {
     if (selectedDate && selectedTime) {
       navigate(`/${doctorId}/personal-info`, {
-        state: { visitType: selectedVisitType, date: selectedDate, time: selectedTime }
+        state: { visitType: selectedVisitType, date: selectedDate, time: selectedTime },
       });
     }
   };
@@ -98,11 +111,20 @@ const BookingPage = () => {
   const timeSlots = selectedDate ? generateTimeSlots(selectedDate) : [];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <div
+      className="min-h-screen bg-gray-50 py-8"
+      dir={language === 'ar' ? 'rtl' : 'ltr'}
+    >
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto" />
+          {/* ✅ Clickable logo */}
+          <img
+            src="/images/logo.png"
+            alt="طب جو"
+            className="h-16 w-auto cursor-pointer"
+            onClick={() => navigate('/')}
+          />
           <LanguageToggle />
         </div>
 
@@ -116,9 +138,7 @@ const BookingPage = () => {
                   alt={data.name}
                   className="w-16 h-16 lg:w-24 lg:h-24 rounded-full mx-auto mb-4 object-cover"
                 />
-                <h3 className="text-lg lg:text-xl font-bold text-gray-900">
-                  {data.name}
-                </h3>
+                <h3 className="text-lg lg:text-xl font-bold text-gray-900">{data.name}</h3>
                 <p className="text-blue-600 font-medium text-sm lg:text-base">
                   {data.specialty}
                 </p>
@@ -128,23 +148,37 @@ const BookingPage = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('rating')}:</span>
                   <div className="flex">
-                    {[1, 2, 3, 4, 5].map(star => (
-                      <Star key={star} className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-400 fill-current" />
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('location')}:</span>
-                  <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                  <span
+                    className={`text-gray-900 ${
+                      language === 'ar' ? 'text-right' : 'text-left'
+                    }`}
+                  >
                     {doctor.location[language]}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">{t('price')}:</span>
-                  <span className={`text-gray-900 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                    {selectedVisitType === 'clinic' ? doctor.priceClinic : doctor.priceHome} {t('jordanianDinar')}
+                  <span
+                    className={`text-gray-900 ${
+                      language === 'ar' ? 'text-right' : 'text-left'
+                    }`}
+                  >
+                    {selectedVisitType === 'clinic'
+                      ? doctor.priceClinic
+                      : doctor.priceHome}{' '}
+                    {t('jordanianDinar')}
                   </span>
                 </div>
               </div>
@@ -154,12 +188,20 @@ const BookingPage = () => {
           {/* Booking Form */}
           <div className="lg:col-span-2 order-1 lg:order-2">
             <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
-              <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8">{t('bookingTitle')}</h2>
+              <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8">
+                {t('bookingTitle')}
+              </h2>
 
               {/* Visit Type */}
               <div className="mb-6 lg:mb-8">
-                <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('visitType')}</h3>
-                <div className={`flex ${language === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'}`}>
+                <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
+                  {t('visitType')}
+                </h3>
+                <div
+                  className={`flex ${
+                    language === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'
+                  }`}
+                >
                   <button
                     onClick={() => setSelectedVisitType('clinic')}
                     className={`flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 transition-all text-sm lg:text-base ${
@@ -170,34 +212,35 @@ const BookingPage = () => {
                   >
                     {t('clinicVisit')}
                   </button>
-{doctor.priceHome !== '_' && doctor.priceHome ? (
-  <button
-    onClick={() => setSelectedVisitType('home')}
-    className={`flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 transition-all text-sm lg:text-base ${
-      selectedVisitType === 'home'
-        ? 'border-blue-600 bg-blue-50 text-blue-600'
-        : 'border-gray-300 text-gray-700 hover:border-blue-300'
-    }`}
-  >
-    {t('homeVisit')}
-  </button>
-) : (
-  <button
-    disabled
-    className="flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 border-gray-300 text-gray-400 cursor-not-allowed text-sm lg:text-base"
-  >
-    {t('homeVisit')}
-  </button>
-)}
-
+                  {doctor.priceHome !== '_' && doctor.priceHome ? (
+                    <button
+                      onClick={() => setSelectedVisitType('home')}
+                      className={`flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 transition-all text-sm lg:text-base ${
+                        selectedVisitType === 'home'
+                          ? 'border-blue-600 bg-blue-50 text-blue-600'
+                          : 'border-gray-300 text-gray-700 hover:border-blue-300'
+                      }`}
+                    >
+                      {t('homeVisit')}
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="flex-1 py-2 lg:py-3 px-3 lg:px-4 rounded-lg border-2 border-gray-300 text-gray-400 cursor-not-allowed text-sm lg:text-base"
+                    >
+                      {t('homeVisit')}
+                    </button>
+                  )}
                 </div>
               </div>
 
               {/* Date */}
               <div className="mb-6 lg:mb-8">
-                <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('selectDate')}</h3>
+                <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
+                  {t('selectDate')}
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-3 max-h-60 overflow-y-auto">
-                  {availableDates.map(dateOption => (
+                  {availableDates.map((dateOption) => (
                     <button
                       key={dateOption.date}
                       onClick={() => setSelectedDate(dateOption.date)}
@@ -207,9 +250,14 @@ const BookingPage = () => {
                           : 'border-gray-300 text-gray-700 hover:border-blue-300'
                       }`}
                     >
-                      {language === 'ar' ? dateOption.display : new Date(dateOption.date).toLocaleDateString('en-US', {
-                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                      })}
+                      {language === 'ar'
+                        ? dateOption.display
+                        : new Date(dateOption.date).toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
                     </button>
                   ))}
                 </div>
@@ -218,9 +266,11 @@ const BookingPage = () => {
               {/* Time */}
               {selectedDate && (
                 <div className="mb-6 lg:mb-8">
-                  <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">{t('selectTime')}</h3>
+                  <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
+                    {t('selectTime')}
+                  </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-3 max-h-60 overflow-y-auto">
-                    {timeSlots.map(timeOption => (
+                    {timeSlots.map((timeOption) => (
                       <button
                         key={timeOption.time}
                         onClick={() => setSelectedTime(timeOption.time)}
