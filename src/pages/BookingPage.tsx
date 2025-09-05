@@ -234,7 +234,7 @@ const BookingPage = () => {
                   </div>
                 </div>
               )}
-
+              
 // Replace the "Continue" button section with this
 
 {/* Continue */}
@@ -264,6 +264,8 @@ const BookingPage = () => {
   </div>
 </div>
 
+            </div>
+          </div>
         </div>
       </div>
     </div>
