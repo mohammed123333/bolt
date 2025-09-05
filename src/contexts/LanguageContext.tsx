@@ -205,6 +205,7 @@ const translations = {
       internationalClub: 'النادي الدولي',
       metLife: 'ميتلايف'
     }
+  };
   en: {
     // Navigation
     home: 'Home',
