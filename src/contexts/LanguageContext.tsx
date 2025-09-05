@@ -53,7 +53,6 @@ const translations = {
     lastName: 'اسم العائلة',
     relationship: 'صلة قرابة المريض بك',
     paymentMethod: 'طريقة الدفع',
-    selectInsurance: 'اختر التأمين',
     termsConditions: 'الأحكام والشروط',
     acceptTerms: 'لقد قرأت وأقبل',
     confirmBooking: 'تأكيد الحجز',
@@ -72,7 +71,6 @@ const translations = {
     //Relationships
 
     relationships: {
-      
       self: 'أنا',
       child: 'ابني/ابنتي',
       spouse: 'زوجي/زوجتي',
@@ -270,7 +268,6 @@ const translations = {
     confirmBooking: 'Confirm Booking',
     insurance: 'Insurance',
     cash: 'Cash',
-    selectInsurance: 'Select Insurance',
     chooseRelationship: 'Choose The Relationship',
     
     // Booking Summary
