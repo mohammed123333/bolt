@@ -69,7 +69,6 @@ const translations = {
     changeTime: 'اختر وقت آخر'
       
     //Insurance Companies
-    insuranceCompanies: {
       natHealth: 'نات هيلث',
       jordanActorsSyndicate: 'نقابة الفنانين الأردنيين',
       arabInsurance: 'العرب للتأمين',
@@ -204,7 +203,6 @@ const translations = {
       alAwlaSpecialized: 'الاولى المتخصصه',
       internationalClub: 'النادي الدولي',
       metLife: 'ميتلايف',
-    }
   },
   en: {
     // Navigation
