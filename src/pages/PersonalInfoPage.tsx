@@ -221,11 +221,11 @@ For customer service: +962 7 9794 2027
                 {/* Phone Number */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
-                  <div className="flex">
+                  <div className="flex" dir="ltr">
                     <select
                       value={formData.countryCode}
                       onChange={(e) => handleInputChange('countryCode', e.target.value)}
-                      className="px-3 py-3 rounded-r-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50"
+                      className="w-full px-3 py-3 rounded-r-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50"
                     >
                       {countryCodes.map(country => (
                         <option key={country.code} value={country.code}>
