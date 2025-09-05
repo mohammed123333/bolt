@@ -247,24 +247,25 @@ For customer service: +962 7 9794 2027
 </div>
 
 
-                {/* Relationship */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('relationship')}</label>
-                  <select
-                    value={formData.relationship}
-                    onChange={(e) => handleInputChange('relationship', e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  >
-                    <option value="">اختر صلة القرابة</option>
-                    <option value="نفسي">نفسي</option>
-                    <option value="ابني/ابنتي">ابني/ابنتي</option>
-                    <option value="زوجي/زوجتي">زوجي/زوجتي</option>
-                    <option value="والدي/والدتي">والدي/والدتي</option>
-                    <option value="أخي/أختي">أخي/أختي</option>
-                    <option value="قريب">قريب</option>
-                    <option value="صديق">صديق</option>
-                  </select>
-                </div>
+{/* Relationship */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{t('relationship')}</label>
+  <select
+    value={formData.relationship}
+    onChange={(e) => handleInputChange('relationship', e.target.value)}
+    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+  >
+    <option value="">{t('selectRelationship')}</option>
+    <option value="self">{t('relationships.self')}</option>
+    <option value="child">{t('relationships.child')}</option>
+    <option value="spouse">{t('relationships.spouse')}</option>
+    <option value="parent">{t('relationships.parent')}</option>
+    <option value="sibling">{t('relationships.sibling')}</option>
+    <option value="relative">{t('relationships.relative')}</option>
+    <option value="friend">{t('relationships.friend')}</option>
+  </select>
+</div>
+
 
 {/* Payment Method */}
 <div>
