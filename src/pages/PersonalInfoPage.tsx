@@ -303,9 +303,14 @@ For customer service: +962 7 9794 2027
       onChange={(e) => handleInputChange('insurance', e.target.value)}
       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
     >
+    <select>
       <option value="">{t('selectInsurance')}</option>
-      {insuranceCompanies.map((key) => (
-        <option key={key} value={key}>{t(`insuranceCompanies.${key}`)}</option>
+      {insuranceCompanies.map((company) => (
+        <option key={company} value={company}>
+          {t(company)}
+        </option>
+      ))}
+    </select>
       ))}
     </select>
   </div>
