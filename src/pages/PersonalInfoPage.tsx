@@ -304,7 +304,7 @@ For customer service: +962 7 9794 2027
       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
     >
       <option value="">{t('selectInsurance')}</option>
-      {Object.keys(translations[language].insuranceCompanies).map((key) => (
+      {['natHealth', 'jordanActorsSyndicate', 'arabInsurance', 'wataniyaInsurance'].map((key) => (
         <option key={key} value={key}>
           {t(`insuranceCompanies.${key}`)}
         </option>
@@ -312,6 +312,7 @@ For customer service: +962 7 9794 2027
     </select>
   </div>
 )}
+
 
 
 {/* Terms and Conditions */}
