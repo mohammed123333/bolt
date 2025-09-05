@@ -291,7 +291,6 @@ const translations = {
       relative: 'Relative',
       friend: 'Friend',
     }
-
     // Insurance Companies
 
     insuranceCompanies: {
