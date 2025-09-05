@@ -70,7 +70,7 @@ const translations = {
 
     //Insurance Companies
 
-          natHealth: 'نات هيلث',
+      natHealth: 'نات هيلث',
       jordanActorsSyndicate: 'نقابة الفنانين الأردنيين',
       arabInsurance: 'العرب للتأمين',
       wataniyaInsurance: 'الوطنية للتامين',
