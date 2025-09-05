@@ -265,34 +265,34 @@ For customer service: +962 7 9794 2027
                   </select>
                 </div>
 
-                {/* Payment Method */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('paymentMethod')}</label>
-                  <div className="space-y-3">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="cash"
-                        checked={formData.paymentMethod === 'cash'}
-                        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                        className="ml-3 text-blue-600 focus:ring-blue-500"
-                      />
-                      <span>{t('cash')}</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="insurance"
-                        checked={formData.paymentMethod === 'insurance'}
-                        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
-                        className="ml-3 text-blue-600 focus:ring-blue-500"
-                      />
-                      <span>{t('insurance')}</span>
-                    </label>
-                  </div>
-                </div>
+{/* Payment Method */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{t('paymentMethod')}</label>
+  <div className="space-y-3">
+    <label className="flex items-center">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="cash"
+        checked={formData.paymentMethod === 'cash'}
+        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+        className={`text-blue-600 focus:ring-blue-500 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}
+      />
+      <span>{t('cash')}</span>
+    </label>
+    <label className="flex items-center">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="insurance"
+        checked={formData.paymentMethod === 'insurance'}
+        onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
+        className={`text-blue-600 focus:ring-blue-500 ${language === 'ar' ? 'ml-3' : 'mr-3'}`}
+      />
+      <span>{t('insurance')}</span>
+    </label>
+  </div>
+</div>
 
                 {/* Insurance Selection */}
                 {formData.paymentMethod === 'insurance' && (
