@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Star, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -28,6 +28,9 @@ const PersonalInfoPage = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+  useEffect(() => {
+  window.scrollTo(0, 0);
+  }, []);
 
   if (!doctor) {
     return (
