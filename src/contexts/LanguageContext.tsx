@@ -69,6 +69,7 @@ const translations = {
     changeTime: 'اختر وقت آخر',
       
     //Insurance Companies
+    insuranceCompanies: {
       natHealth: 'نات هيلث',
       jordanActorsSyndicate: 'نقابة الفنانين الأردنيين',
       arabInsurance: 'العرب للتأمين',
@@ -203,7 +204,7 @@ const translations = {
       alAwlaSpecialized: 'الاولى المتخصصه',
       internationalClub: 'النادي الدولي',
       metLife: 'ميتلايف'
-  },
+    }
   en: {
     // Navigation
     home: 'Home',
@@ -265,7 +266,8 @@ const translations = {
 
     // Insurance Companies
 
-          natHealth: 'Nat Health',
+    insuranceCompanies: {
+      natHealth: 'Nat Health',
       jordanActorsSyndicate: 'Jordan Actors Syndicate',
       arabInsurance: 'Arab Insurance',
       wataniyaInsurance: 'Wataniya Insurance',
@@ -399,6 +401,7 @@ const translations = {
       alAwlaSpecialized: 'Al-Awla Specialized',
       internationalClub: 'International Club',
       metLife: 'MetLife'
+    }
   }
 };
 
