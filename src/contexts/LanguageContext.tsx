@@ -280,7 +280,7 @@ const translations = {
     //Relationships
 
     relationships: {
-      self: 'Self',
+      self: 'Me',
       child: 'Child',
       spouse: 'Spouse',
       parent: 'Parent',
