@@ -131,7 +131,7 @@ For customer service: +962 7 9794 2027
     emailjs.send(
       'service_mu7jzcm',
       'template_nw2maje',
-      { to_email: doctor.email || 'appointments.tibjo@gmail.com', message: combinedEmailContent },
+      { to_email: doctor.email || 'default@example.com', message: combinedEmailContent },
       'p6TA6jdE3qG_7qi25'
     ).then(() => console.log('Email sent to doctor'))
      .catch((error) => console.error('Error sending email:', error));
