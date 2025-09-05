@@ -279,7 +279,7 @@ For customer service: +962 7 9794 2027
                         onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
                         className="ml-3 text-blue-600 focus:ring-blue-500"
                       />
-                      <span>نقداً</span>
+                      <span>{t('cash')}</span>
                     </label>
                     <label className="flex items-center">
                       <input
@@ -290,7 +290,7 @@ For customer service: +962 7 9794 2027
                         onChange={(e) => handleInputChange('paymentMethod', e.target.value)}
                         className="ml-3 text-blue-600 focus:ring-blue-500"
                       />
-                      <span>تأمين</span>
+                      <span>{t('insurance')}</span>
                     </label>
                   </div>
                 </div>
