@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Star, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData, insuranceCompanies } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
 import emailjs from '@emailjs/browser';
 
 const PersonalInfoPage = () => {
-  const { doctorId } = useParams<{ doctorId: string }>();
-  const doctor = doctorData[doctorId as keyof typeof doctorData];
+  const { doctorId } = useParams();
+  const doctor = doctorData[doctorId]; // ✅ fixed
   const location = useLocation();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
@@ -23,11 +23,11 @@ const PersonalInfoPage = () => {
     phoneNumber: '',
     insurance: ''
   });
-  
+
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  // ✅ Scroll to top on page load
+  // ✅ Always scroll to top when page loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -50,35 +50,33 @@ const PersonalInfoPage = () => {
 
   const data = doctor[language];
 
-  const countryCodes = [
-    { code: '+962', country: 'الأردن' }, { code: '+966', country: 'السعودية' },
-    { code: '+971', country: 'الإمارات' }, { code: '+965', country: 'الكويت' },
-    { code: '+973', country: 'البحرين' }, { code: '+974', country: 'قطر' },
-    { code: '+968', country: 'عمان' }, { code: '+961', country: 'لبنان' },
-    { code: '+963', country: 'سوريا' }, { code: '+964', country: 'العراق' },
-    { code: '+20', country: 'مصر' }, { code: '+1', country: 'الولايات المتحدة' },
-    { code: '+44', country: 'المملكة المتحدة' }
-  ];
-
-  const formatDate = (dateString: string) => {
+  // 📅 Format date
+  const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     return dateObj.toLocaleDateString(language === 'ar' ? 'ar-JO' : 'en-US', {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
   };
 
-  const formatTime = (timeString: string) => {
+  // ⏰ Format time
+  const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(':').map(Number);
     if (language === 'ar') {
-      return hours >= 12 ? `${hours === 12 ? 12 : hours - 12}:${minutes.toString().padStart(2, '0')} م` : `${hours}:${minutes.toString().padStart(2, '0')} ص`;
+      return hours >= 12
+        ? `${hours === 12 ? 12 : hours - 12}:${minutes.toString().padStart(2, '0')} م`
+        : `${hours}:${minutes.toString().padStart(2, '0')} ص`;
     }
-    return hours >= 12 ? `${hours === 12 ? 12 : hours - 12}:${minutes.toString().padStart(2, '0')} PM` : `${hours}:${minutes.toString().padStart(2, '0')} AM`;
+    return hours >= 12
+      ? `${hours === 12 ? 12 : hours - 12}:${minutes.toString().padStart(2, '0')} PM`
+      : `${hours}:${minutes.toString().padStart(2, '0')} AM`;
   };
 
-  const handleInputChange = (field: string, value: string) => {
+  // 📝 Input handler
+  const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // ✅ Booking confirmation
   const handleConfirmBooking = () => {
     if (formData.firstName && formData.lastName && formData.phoneNumber && formData.paymentMethod && acceptedTerms) {
       sendEmailNotifications();
@@ -87,6 +85,7 @@ const PersonalInfoPage = () => {
     }
   };
 
+  // 📧 Send email via EmailJS
   const sendEmailNotifications = () => {
     const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
     const paymentMethodArabic = formData.paymentMethod === 'cash' ? 'نقداً' : 'تأمين';
@@ -113,19 +112,6 @@ ${insuranceEnglish ? `Insurance: ${insuranceEnglish},` : ''}
 Relationship: ${formData.relationship},
 Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}
-
----------------------------------------------
-
-===== هذه الرسالة للمريض =====
-طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'} في ${formatDate(date)} عند ${formatTime(time)} مع دكتور/ة ${data.name},
-طريقة الدفع: ${paymentMethodArabic}
-${insuranceArabic ? `التأمين: ${insuranceArabic}` : ''}
-للتواصل مع خدمة العملاء: +962 7 9794 2027
-
-Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed on ${formatDate(date)} at ${formatTime(time)} with Dr. ${data.name}.
-Payment method: ${paymentMethodEnglish}
-${insuranceEnglish ? `Insurance: ${insuranceEnglish}` : ''}
-For customer service: +962 7 9794 2027
 `;
 
     emailjs.send(
@@ -142,20 +128,25 @@ For customer service: +962 7 9794 2027
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          {/* ✅ Clickable logo */}
-          <img 
-            src="/images/logo.png" 
-            alt="طب جو" 
-            className="h-16 w-auto cursor-pointer" 
-            onClick={() => navigate('/')} 
-          />
+          <button onClick={() => navigate('/')}>
+            <img src="/images/logo.png" alt="طب جو" className="h-16 w-auto cursor-pointer" />
+          </button>
           <LanguageToggle />
         </div>
 
-        {/* Rest of your page code... */}
-        {/* (unchanged form + success popup code remains as you sent it) */}
-
+        {/* Page Content ... (rest of your code stays the same) */}
       </div>
+
+      {/* Success Popup */}
+      {showSuccessPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-sm mx-4 text-center">
+            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{t('bookingConfirmed')}</h3>
+            <p className="text-gray-600">{t('confirmationEmail')}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
