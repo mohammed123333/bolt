@@ -68,6 +68,18 @@ const translations = {
     time: 'الوقت',
     consultationType: 'نوع الاستشارة',
     changeTime: 'اختر وقت آخر',
+
+    //Relationships
+
+          relationships: {
+    self: 'أنا',
+    child: 'ابني/ابنتي',
+    spouse: 'زوجي/زوجتي',
+    parent: 'والدي/والدتي',
+    sibling: 'أخي/أختي',
+    relative: 'قريب',
+    friend: 'صديق',
+  }
       
     //Insurance Companies
     insuranceCompanies: {
@@ -266,6 +278,18 @@ const translations = {
     time: 'Time',
     consultationType: 'Consultation Type',
     changeTime: 'Choose Another Time',
+
+    //Relationships
+
+          relationships: {
+    self: 'Self',
+    child: 'Child',
+    spouse: 'Spouse',
+    parent: 'Parent',
+    sibling: 'Sibling',
+    relative: 'Relative',
+    friend: 'Friend',
+  }
 
     // Insurance Companies
 
