@@ -7,7 +7,7 @@ import LanguageToggle from '../components/LanguageToggle';
 import emailjs from '@emailjs/browser';
 
 const PersonalInfoPage = () => {
-  const { doctorId } = useParams();
+  const { doctorId } = useParams<{ doctorId: string }>();
   const doctor = doctorData[doctorId as keyof typeof doctorData];
   const location = useLocation();
   const navigate = useNavigate();
