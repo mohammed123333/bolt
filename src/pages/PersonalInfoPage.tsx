@@ -264,12 +264,12 @@ For customer service: +962 7 9794 2027
   >
     <option value={t('chooseRelationship')}>{t('chooseRelationship')}</option>
     <option value={t('relationships.self')}>{t('relationships.self')}</option>
-    <option value="child">{t('relationships.child')}</option>
-    <option value="spouse">{t('relationships.spouse')}</option>
-    <option value="parent">{t('relationships.parent')}</option>
-    <option value="sibling">{t('relationships.sibling')}</option>
-    <option value="relative">{t('relationships.relative')}</option>
-    <option value="friend">{t('relationships.friend')}</option>
+    <option value={t('relationships.child')}>{t('relationships.child')}</option>
+    <option value={t('relationships.spouse')}>{t('relationships.spouse')}</option>
+    <option value={t('relationships.parent')}<>{t('relationships.parent')}</option>
+    <option value={t('relationships.sibling')}>{t('relationships.sibling')}</option>
+    <option value={t('relationships.relative')}>{t('relationships.relative')}</option>
+    <option value={t('relationships.friend')}>{t('relationships.friend')}</option>
   </select>
 </div>
 
