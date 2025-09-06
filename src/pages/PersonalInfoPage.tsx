@@ -103,7 +103,7 @@ const countryCodes = [
 
     const combinedEmailContent = `
 ===== هذه الرسالة للطبيب =====
-طب جو: لدى الدكتور ${data.name} حجز يوم ${formatDate(date)},
+طب جو: لدى ${data.name} حجز يوم ${formatDate(date)},
 الساعة: ${formatTime(time)},
 نوع الزيارة: ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'},
 طريقة الدفع: ${paymentMethodArabic},
@@ -112,7 +112,7 @@ ${insuranceArabic ? `التأمين: ${insuranceArabic},` : ''}
 اسم المريض: ${formData.firstName} ${formData.lastName},
 رقم المريض: ${fullPhoneNumber}
 
-Tib Jo: Dr. ${data.name} has an appointment on ${formatDate(date)},
+Tib Jo: ${data.name} has an appointment on ${formatDate(date)},
 Time: ${formatTime(time)},
 Visit type: ${visitType === 'clinic' ? 'Clinic visit' : 'Home visit'},
 Payment method: ${paymentMethodEnglish},
@@ -262,11 +262,11 @@ For customer service: +962 7 9794 2027
     onChange={(e) => handleInputChange('relationship', e.target.value)}
     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
   >
-    <option value="">{t('chooseRelationship')}</option>
-    <option value="self">{t('relationships.self')}</option>
-    <option value="child">{t('relationships.child')}</option>
-    <option value="spouse">{t('relationships.spouse')}</option>
-    <option value="parent">{t('relationships.parent')}</option>
+    <option value={t('chooseRelationship')}>{t('chooseRelationship')}</option>
+    <option value={t('relationships.self')}{t('relationships.self')}</option>
+    <option value={t('relationships.child')}>{t('relationships.child')}</option>
+    <option value={t('relationships.spouse')}>{t('relationships.spouse')}</option>
+    <option value={t('relationships.parent')}>{t('relationships.parent')}</option>
     <option value="sibling">{t('relationships.sibling')}</option>
     <option value="relative">{t('relationships.relative')}</option>
     <option value="friend">{t('relationships.friend')}</option>
