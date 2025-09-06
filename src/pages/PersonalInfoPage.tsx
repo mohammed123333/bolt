@@ -263,7 +263,7 @@ For customer service: +962 7 9794 2027
     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
   >
     <option value={t('chooseRelationship')}>{t('chooseRelationship')}</option>
-    <option value="self">{t('relationships.self')}</option>
+    <option value={t('relationships.self')}>{t('relationships.self')}</option>
     <option value="child">{t('relationships.child')}</option>
     <option value="spouse">{t('relationships.spouse')}</option>
     <option value="parent">{t('relationships.parent')}</option>
