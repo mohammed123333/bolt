@@ -103,21 +103,34 @@ const formatTime = (timeString: string) => {
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
+  // Determine user language by checking if doctor name exists in Arabic or English
+  const doctorId = Object.keys(doctorData).find(
+    id => doctorData[id].ar.name === formData.doctorName || doctorData[id].en.name === formData.doctorName
+  );
+
+  // Detect language user booked in
+  const userLang = doctorData[doctorId].ar.name === formData.doctorName ? 'ar' : 'en';
+  const targetLang = userLang === 'ar' ? 'en' : 'ar';
+
+  // Doctor names
+  const doctorNameArabic = doctorData[doctorId]?.ar?.name || formData.doctorName;
+  const doctorNameEnglish = doctorData[doctorId]?.en?.name || formData.doctorName;
+
   // Payment method
   const paymentMethodArabic = formData.paymentMethod === 'cash' ? 'نقداً' : 'تأمين';
   const paymentMethodEnglish = formData.paymentMethod === 'cash' ? 'Cash' : 'Insurance';
 
-  // Insurance (only add line if exists)
+  // Insurance translation from language file
   const insuranceArabic =
     formData.paymentMethod === 'insurance' && formData.insurance
-      ? `التأمين: ${formData.insurance}`
+      ? `التأمين: ${insuranceTranslations[formData.insurance]?.ar || formData.insurance}`
       : '';
   const insuranceEnglish =
     formData.paymentMethod === 'insurance' && formData.insurance
-      ? `Insurance: ${formData.insurance}`
+      ? `Insurance: ${insuranceTranslations[formData.insurance]?.en || formData.insurance}`
       : '';
 
-  // Date & Time in both languages
+  // Date & Time
   const dateArabic = new Date(date).toLocaleDateString('ar-JO', {
     weekday: 'long',
     year: 'numeric',
@@ -139,12 +152,6 @@ const sendEmailNotifications = () => {
     hour: 'numeric',
     minute: '2-digit',
   });
-
-  // Doctor name from doctorData
-  const doctorId = data.id;
-  const doctorNameArabic = doctorData[doctorId]?.ar?.name || data.name;
-  const doctorNameEnglish = doctorData[doctorId]?.en?.name || data.name;
-
 
   // Relationship translation
   const relationshipArabic = formData.relationship === 'Father' ? 'أب' :
@@ -171,10 +178,8 @@ const sendEmailNotifications = () => {
                               formData.relationship === 'صديق' ? 'Friend' :
                               formData.relationship;
 
-
-
-// Doctor message Arabic
-const doctorMessageArabic = `
+  // Doctor message Arabic
+  const doctorMessageArabic = `
 ===== هذه الرسالة للطبيب =====
 طب جو: لدى ${doctorNameArabic} حجز يوم ${dateArabic},
 الساعة: ${timeArabic},
@@ -185,8 +190,8 @@ const doctorMessageArabic = `
 رقم المريض: ${fullPhoneNumber}
 `;
 
-// Doctor message English
-const doctorMessageEnglish = `
+  // Doctor message English
+  const doctorMessageEnglish = `
 Tib Jo: ${doctorNameEnglish} has an appointment on ${dateEnglish},
 Time: ${timeEnglish},
 Visit type: ${visitType === 'clinic' ? 'Clinic visit' : 'Home visit'},
@@ -196,8 +201,8 @@ Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}
 `;
 
-// Patient message Arabic
-const patientMessageArabic = `
+  // Patient message Arabic
+  const patientMessageArabic = `
 ===== هذه الرسالة للمريض =====
 طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
 في ${dateArabic} عند ${timeArabic} مع ${doctorNameArabic},
@@ -205,15 +210,15 @@ const patientMessageArabic = `
 للتواصل مع خدمة العملاء: +2027 9794 7 962
 `;
 
-// Patient message English
-const patientMessageEnglish = `
+  // Patient message English
+  const patientMessageEnglish = `
 Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed
 on ${dateEnglish} at ${timeEnglish} with ${doctorNameEnglish}.
 Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''},
 For customer service: +962 7 9794 2027
 `;
 
-  // Combine in your required order
+  // Combine
   const combinedEmailContent =
     doctorMessageArabic +
     "\n" +
@@ -228,15 +233,12 @@ For customer service: +962 7 9794 2027
     .send(
       'service_mu7jzcm',
       'template_nw2maje',
-      { to_email: doctor.email || 'appointments.tibjo@gmail.com', message: combinedEmailContent },
+      { to_email: doctorData[doctorId]?.email || 'appointments.tibjo@gmail.com', message: combinedEmailContent },
       'p6TA6jdE3qG_7qi25'
     )
     .then(() => console.log('Email sent to doctor'))
     .catch((error) => console.error('Error sending email:', error));
 };
-
-
-
 
   return (
     <div className="min-h-screen bg-gray-50 py-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
