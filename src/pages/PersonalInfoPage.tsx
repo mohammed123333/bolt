@@ -97,38 +97,57 @@ const countryCodes = [
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
-  // Detect language from formData.language (you should store it in the form)
+  // detect booking language
   const isArabic = formData.language === 'ar';
 
   // Payment method
   const paymentMethodArabic = formData.paymentMethod === 'cash' ? 'نقداً' : 'تأمين';
   const paymentMethodEnglish = formData.paymentMethod === 'cash' ? 'Cash' : 'Insurance';
 
-  // Insurance
+  // Insurance (only add line if exists)
   const insuranceArabic =
-    formData.paymentMethod === 'insurance' ? (formData.insurance || 'غير محدد') : null;
+    formData.paymentMethod === 'insurance' && formData.insurance
+      ? `التأمين: ${formData.insurance}`
+      : '';
   const insuranceEnglish =
-    formData.paymentMethod === 'insurance' ? (formData.insurance || 'Not specified') : null;
+    formData.paymentMethod === 'insurance' && formData.insurance
+      ? `Insurance: ${formData.insurance}`
+      : '';
 
   // Date & Time in both languages
-  const dateArabic = new Date(date).toLocaleDateString('ar-JO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  const dateEnglish = new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const dateArabic = new Date(date).toLocaleDateString('ar-JO', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const dateEnglish = new Date(date).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
-  const timeArabic = new Date(`1970-01-01T${time}`).toLocaleTimeString('ar-JO', { hour: '2-digit', minute: '2-digit' });
-  const timeEnglish = new Date(`1970-01-01T${time}`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  const timeArabic = new Date(`1970-01-01T${time}`).toLocaleTimeString('ar-JO', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const timeEnglish = new Date(`1970-01-01T${time}`).toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
-  // Doctor name in both languages (if you store them separately in DB, else just use one)
-  const doctorNameArabic = data.name_ar || data.name; 
-  const doctorNameEnglish = data.name_en || data.name;
+  // Doctor name (use as-is, no translation)
+  const doctorName = data.name;
 
-  // Build Arabic message
+  // Arabic section
   const messageArabic = `
 ===== هذه الرسالة للطبيب =====
-طب جو: لدى ${doctorNameArabic} حجز يوم ${dateArabic},
+طب جو: لدى ${doctorName} حجز يوم ${dateArabic},
 الساعة: ${timeArabic},
 نوع الزيارة: ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'},
-طريقة الدفع: ${paymentMethodArabic},
-${insuranceArabic ? `التأمين: ${insuranceArabic},` : ''}
+طريقة الدفع: ${paymentMethodArabic}
+${insuranceArabic ? insuranceArabic : ''}
 صلة القرابة: ${formData.relationship},
 اسم المريض: ${formData.firstName} ${formData.lastName},
 رقم المريض: ${fullPhoneNumber}
@@ -136,41 +155,37 @@ ${insuranceArabic ? `التأمين: ${insuranceArabic},` : ''}
 ---------------------------------------------
 
 ===== هذه الرسالة للمريض =====
-طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'} 
-في ${dateArabic} عند ${timeArabic} مع ${doctorNameArabic},
+طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
+في ${dateArabic} عند ${timeArabic} مع ${doctorName},
 طريقة الدفع: ${paymentMethodArabic}
-${insuranceArabic ? `التأمين: ${insuranceArabic}` : ''}
+${insuranceArabic ? insuranceArabic : ''}
 للتواصل مع خدمة العملاء: +962 7 9794 2027
 `;
 
-  // Build English message
+  // English section
   const messageEnglish = `
-===== Message for Doctor =====
-Tib Jo: ${doctorNameEnglish} has an appointment on ${dateEnglish},
+Tib Jo: ${doctorName} has an appointment on ${dateEnglish},
 Time: ${timeEnglish},
 Visit type: ${visitType === 'clinic' ? 'Clinic visit' : 'Home visit'},
-Payment method: ${paymentMethodEnglish},
-${insuranceEnglish ? `Insurance: ${insuranceEnglish},` : ''}
+Payment method: ${paymentMethodEnglish}
+${insuranceEnglish ? insuranceEnglish : ''}
 Relationship: ${formData.relationship},
 Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}
 
 ---------------------------------------------
 
-===== Message for Patient =====
-Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed 
-on ${dateEnglish} at ${timeEnglish} with ${doctorNameEnglish}.
+Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed
+on ${dateEnglish} at ${timeEnglish} with ${doctorName}.
 Payment method: ${paymentMethodEnglish}
-${insuranceEnglish ? `Insurance: ${insuranceEnglish}` : ''}
+${insuranceEnglish ? insuranceEnglish : ''}
 For customer service: +962 7 9794 2027
 `;
 
-  // Combine based on booking language
-  const combinedEmailContent = isArabic
-    ? messageArabic + "\n\n" + messageEnglish
-    : messageEnglish + "\n\n" + messageArabic;
+  // Combine: Arabic first then English (always)
+  const combinedEmailContent = messageArabic + "\n\n" + messageEnglish;
 
-  // Send Email
+  // Send email
   emailjs
     .send(
       'service_mu7jzcm',
@@ -181,6 +196,7 @@ For customer service: +962 7 9794 2027
     .then(() => console.log('Email sent to doctor'))
     .catch((error) => console.error('Error sending email:', error));
 };
+
 
 
   return (
