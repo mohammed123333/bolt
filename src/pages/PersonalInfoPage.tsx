@@ -8,21 +8,15 @@ import emailjs from '@emailjs/browser';
 
 
 
-// input: booked doctor name (ar or en)
-function getDoctorNames(bookedName: string) {
-  for (const key in doctorData) {
-    const doctor = doctorData[key];
+function getDoctorNamesById(doctorId: string | undefined) {
+  if (!doctorId) return { ar: "غير محدد", en: "Not specified" };
 
-    if (doctor.ar.name === bookedName) {
-      return { ar: doctor.ar.name, en: doctor.en.name };
-    }
-    if (doctor.en.name === bookedName) {
-      return { ar: doctor.ar.name, en: doctor.en.name };
-    }
-  }
-  // fallback if no match found
-  return { ar: bookedName, en: bookedName };
+  const doctor = doctorData[doctorId as keyof typeof doctorData];
+  if (!doctor) return { ar: "غير موجود", en: "Not Found" };
+
+  return { ar: doctor.ar.name, en: doctor.en.name };
 }
+
 
 const PersonalInfoPage = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
@@ -31,14 +25,10 @@ const PersonalInfoPage = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { visitType, date, time } = location.state || {};
-    // get both Arabic and English doctor names
-  const doctorNames = getDoctorNames(bookedDoctorName || doctor?.ar.name || doctor?.en.name);
-
+  const doctorNames = getDoctorNamesById(doctorId);
   const doctorNameArabic = doctorNames.ar;
   const doctorNameEnglish = doctorNames.en;
 
-  // now you can safely use doctorNameArabic and doctorNameEnglish anywhere in this component
-  console.log(doctorNameArabic, doctorNameEnglish);
 
   const [formData, setFormData] = useState({
     firstName: '',
