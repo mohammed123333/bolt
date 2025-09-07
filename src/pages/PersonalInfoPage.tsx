@@ -140,12 +140,23 @@ const sendEmailNotifications = () => {
     minute: '2-digit',
   });
 
-  // Doctor name (translate depending on lang)
-  const doctorNameArabic = data.name_ar || data.name; 
-  const doctorNameEnglish = data.name_en || data.name;
+// Doctor name (translate safely)
+let doctorNameArabic = data.name_ar;
+let doctorNameEnglish = data.name_en;
 
-  // Relationship translation
-  // Relationship translation
+// If one is missing, fallback with best guess
+if (!doctorNameArabic && data.name) {
+  // Assume it's English if it contains only Latin letters
+  const isEnglish = /^[A-Za-z\s]+$/.test(data.name);
+  doctorNameArabic = isEnglish ? `د. ${data.name}` : data.name; 
+}
+if (!doctorNameEnglish && data.name) {
+  // Assume it's Arabic if it has Arabic characters
+  const isArabic = /[\u0600-\u06FF]/.test(data.name);
+  doctorNameEnglish = isArabic ? `Dr. ${data.name}` : data.name;
+}
+
+
   // Relationship translation
   const relationshipArabic = formData.relationship === 'Father' ? 'أب' :
                              formData.relationship === 'Mother' ? 'أم' :
@@ -173,47 +184,43 @@ const sendEmailNotifications = () => {
 
 
 
-  // Doctor message Arabic
-  const doctorMessageArabic = `
+// Doctor message Arabic
+const doctorMessageArabic = `
 ===== هذه الرسالة للطبيب =====
 طب جو: لدى ${doctorNameArabic} حجز يوم ${dateArabic},
 الساعة: ${timeArabic},
 نوع الزيارة: ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'},
-طريقة الدفع: ${paymentMethodArabic}
-${insuranceArabic ? insuranceArabic : ''}
+طريقة الدفع: ${paymentMethodArabic}${insuranceArabic ? `\n${insuranceArabic}` : ''}
 صلة القرابة: ${relationshipArabic},
 اسم المريض: ${formData.firstName} ${formData.lastName},
 رقم المريض: ${fullPhoneNumber}
 `;
 
-  // Doctor message English
-  const doctorMessageEnglish = `
+// Doctor message English
+const doctorMessageEnglish = `
 Tib Jo: ${doctorNameEnglish} has an appointment on ${dateEnglish},
 Time: ${timeEnglish},
 Visit type: ${visitType === 'clinic' ? 'Clinic visit' : 'Home visit'},
-Payment method: ${paymentMethodEnglish}
-${insuranceEnglish ? insuranceEnglish : ''}
+Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''}
 Relationship: ${relationshipEnglish},
 Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}
 `;
 
-  // Patient message Arabic
-  const patientMessageArabic = `
+// Patient message Arabic
+const patientMessageArabic = `
 ===== هذه الرسالة للمريض =====
 طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
 في ${dateArabic} عند ${timeArabic} مع ${doctorNameArabic},
-طريقة الدفع: ${paymentMethodArabic}
-${insuranceArabic ? insuranceArabic : ''}
+طريقة الدفع: ${paymentMethodArabic}${insuranceArabic ? `\n${insuranceArabic}` : ''}
 للتواصل مع خدمة العملاء: +2027 9794 7 962
 `;
 
-  // Patient message English
-  const patientMessageEnglish = `
+// Patient message English
+const patientMessageEnglish = `
 Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed
 on ${dateEnglish} at ${timeEnglish} with ${doctorNameEnglish}.
-Payment method: ${paymentMethodEnglish}
-${insuranceEnglish ? insuranceEnglish : ''}
+Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''}
 For customer service: +962 7 9794 2027
 `;
 
