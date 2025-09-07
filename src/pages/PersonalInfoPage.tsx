@@ -109,17 +109,12 @@ const doctorId = Object.keys(doctorData).find(
   id => doctorData[id]?.ar?.name === formData.doctorName || doctorData[id]?.en?.name === formData.doctorName
 );
 
-// Fallback if not found
-if (!doctorId) {
-  console.warn('Doctor not found in doctorData:', formData.doctorName);
-}
-
 // Detect language safely
 const userLang = doctorId && doctorData[doctorId]?.ar?.name === formData.doctorName ? 'ar' : 'en';
 
-// Doctor names with safe fallback
-const doctorNameArabic = doctorId ? (doctorData[doctorId]?.ar?.name || formData.doctorName) : formData.doctorName;
-const doctorNameEnglish = doctorId ? (doctorData[doctorId]?.en?.name || formData.doctorName) : formData.doctorName;
+  // Doctor names
+  const doctorNameArabic = doctorData[doctorId]?.ar?.name || formData.doctorName;
+  const doctorNameEnglish = doctorData[doctorId]?.en?.name || formData.doctorName;
 
 
   // Payment method
