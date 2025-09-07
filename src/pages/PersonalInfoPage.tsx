@@ -140,21 +140,10 @@ const sendEmailNotifications = () => {
     minute: '2-digit',
   });
 
-// Doctor name (translate safely)
-let doctorNameArabic = data.name_ar;
-let doctorNameEnglish = data.name_en;
-
-// If one is missing, fallback with best guess
-if (!doctorNameArabic && data.name) {
-  // Assume it's English if it contains only Latin letters
-  const isEnglish = /^[A-Za-z\s]+$/.test(data.name);
-  doctorNameArabic = isEnglish ? `د. ${data.name}` : data.name; 
-}
-if (!doctorNameEnglish && data.name) {
-  // Assume it's Arabic if it has Arabic characters
-  const isArabic = /[\u0600-\u06FF]/.test(data.name);
-  doctorNameEnglish = isArabic ? `Dr. ${data.name}` : data.name;
-}
+  // Doctor name from doctorData
+  const doctorId = data.id;
+  const doctorNameArabic = doctorData[doctorId]?.ar?.name || data.name;
+  const doctorNameEnglish = doctorData[doctorId]?.en?.name || data.name;
 
 
   // Relationship translation
@@ -201,7 +190,7 @@ const doctorMessageEnglish = `
 Tib Jo: ${doctorNameEnglish} has an appointment on ${dateEnglish},
 Time: ${timeEnglish},
 Visit type: ${visitType === 'clinic' ? 'Clinic visit' : 'Home visit'},
-Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''}
+Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''},
 Relationship: ${relationshipEnglish},
 Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}
@@ -212,7 +201,7 @@ const patientMessageArabic = `
 ===== هذه الرسالة للمريض =====
 طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
 في ${dateArabic} عند ${timeArabic} مع ${doctorNameArabic},
-طريقة الدفع: ${paymentMethodArabic}${insuranceArabic ? `\n${insuranceArabic}` : ''}
+طريقة الدفع: ${paymentMethodArabic}${insuranceArabic ? `\n${insuranceArabic}` : ''},
 للتواصل مع خدمة العملاء: +2027 9794 7 962
 `;
 
@@ -220,7 +209,7 @@ const patientMessageArabic = `
 const patientMessageEnglish = `
 Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed
 on ${dateEnglish} at ${timeEnglish} with ${doctorNameEnglish}.
-Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''}
+Payment method: ${paymentMethodEnglish}${insuranceEnglish ? `\n${insuranceEnglish}` : ''},
 For customer service: +962 7 9794 2027
 `;
 
