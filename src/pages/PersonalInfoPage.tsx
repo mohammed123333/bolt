@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Star, CheckCircle } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage, translations } from '../contexts/LanguageContext';
 import { doctorData, insuranceCompanies } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
 import emailjs from '@emailjs/browser';
-import { translations } from './LanguageContext';
 
 
 const PersonalInfoPage = () => {
