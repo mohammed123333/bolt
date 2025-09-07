@@ -126,11 +126,11 @@ const sendEmailNotifications = () => {
   });
 
   const timeArabic = new Date(`1970-01-01T${time}`).toLocaleTimeString('ar-JO', {
-    hour: '2-digit',
+    hour: '1-digit',
     minute: '2-digit',
   });
   const timeEnglish = new Date(`1970-01-01T${time}`).toLocaleTimeString('en-US', {
-    hour: '2-digit',
+    hour: '1-digit',
     minute: '2-digit',
   });
 
