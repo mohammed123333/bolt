@@ -125,16 +125,26 @@ const doctorNameEnglish = doctorId ? (doctorData[doctorId]?.en?.name || formData
   const paymentMethodArabic = formData.paymentMethod === 'cash' ? 'نقداً' : 'تأمين';
   const paymentMethodEnglish = formData.paymentMethod === 'cash' ? 'Cash' : 'Insurance';
 
-  // Insurance translation from language file
-  const insuranceArabic =
-    formData.paymentMethod === 'insurance' && formData.insurance
-      ? `التأمين: ${insuranceTranslations[formData.insurance]?.ar || formData.insurance}`
-      : '';
-  const insuranceEnglish =
-    formData.paymentMethod === 'insurance' && formData.insurance
-      ? `Insurance: ${insuranceTranslations[formData.insurance]?.en || formData.insurance}`
-      : '';
+// Get insurance translation dynamically
+let insuranceArabic = '';
+let insuranceEnglish = '';
 
+if (formData.paymentMethod === 'insurance' && formData.insurance) {
+  const insuranceName = formData.insurance;
+
+  // Determine if user booked in Arabic or English
+  const bookedInArabic = /[\u0600-\u06FF]/.test(insuranceName);
+
+  if (bookedInArabic) {
+    // Booked in Arabic, get English translation
+    insuranceArabic = `التأمين: ${insuranceName}`;
+    insuranceEnglish = `Insurance: ${translations.en.insuranceCompanies[insuranceName] || insuranceName}`;
+  } else {
+    // Booked in English, get Arabic translation
+    insuranceEnglish = `Insurance: ${insuranceName}`;
+    insuranceArabic = `التأمين: ${translations.ar.insuranceCompanies[insuranceName] || insuranceName}`;
+  }
+}
   // Date & Time
   const dateArabic = new Date(date).toLocaleDateString('ar-JO', {
     weekday: 'long',
