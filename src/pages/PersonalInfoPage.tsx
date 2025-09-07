@@ -5,6 +5,8 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData, insuranceCompanies } from '../data/doctorData';
 import LanguageToggle from '../components/LanguageToggle';
 import emailjs from '@emailjs/browser';
+import { translations } from './LanguageContext';
+
 
 const PersonalInfoPage = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
