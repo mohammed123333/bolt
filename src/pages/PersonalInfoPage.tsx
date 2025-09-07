@@ -104,14 +104,20 @@ const formatTime = (timeString: string) => {
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
-// Suppose the user selects doctor name in formData.doctorName (either Arabic or English)
-const doctorEntry = Object.values(doctorData).find(
-  (doc) => doc.ar.name === formData.doctorName || doc.en.name === formData.doctorName
-);
+// Function to find doctor ID from Arabic or English name
+const getDoctorIdFromName = (name) => {
+  return Object.values(doctorData).find(
+    (doc) => doc.ar.name === name || doc.en.name === name
+  )?.id;
+};
 
-const doctorId = doctorEntry?.id || ''; // fallback if not found
-const doctorNameArabic = doctorEntry?.ar?.name || formData.doctorName;
-const doctorNameEnglish = doctorEntry?.en?.name || formData.doctorName;
+// Get doctor ID from formData.name (could be Arabic or English)
+const doctorId = getDoctorIdFromName(formData.doctorName);
+
+// Fallback if not found
+const doctorNameArabic = doctorData[doctorId]?.ar?.name || formData.doctorName;
+const doctorNameEnglish = doctorData[doctorId]?.en?.name || formData.doctorName;
+
 
 
 // Detect language safely
