@@ -97,9 +97,6 @@ const countryCodes = [
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
-  // detect booking language
-  const isArabic = formData.language === 'ar';
-
   // Payment method
   const paymentMethodArabic = formData.paymentMethod === 'cash' ? 'نقداً' : 'تأمين';
   const paymentMethodEnglish = formData.paymentMethod === 'cash' ? 'Cash' : 'Insurance';
@@ -137,53 +134,84 @@ const sendEmailNotifications = () => {
     minute: '2-digit',
   });
 
-  // Doctor name (use as-is, no translation)
-  const doctorName = data.name;
+  // Doctor name (translate depending on lang)
+  const doctorNameArabic = data.name_ar || data.name; 
+  const doctorNameEnglish = data.name_en || data.name;
 
-  // Arabic section
-  const messageArabic = `
+  // Relationship translation
+  // Relationship translation
+  const relationshipArabic = formData.relationship === 'Father' ? 'أب' :
+                             formData.relationship === 'Mother' ? 'أم' :
+                             formData.relationship === 'Brother' ? 'أخ' :
+                             formData.relationship === 'Sister' ? 'أخت' :
+                             formData.relationship === 'Son' ? 'ابن' :
+                             formData.relationship === 'Daughter' ? 'ابنة' :
+                             formData.relationship === 'Me' ? 'أنا' :
+                             formData.relationship;
+  
+  const relationshipEnglish = formData.relationship === 'أب' ? 'Father' :
+                              formData.relationship === 'أم' ? 'Mother' :
+                              formData.relationship === 'أخ' ? 'Brother' :
+                              formData.relationship === 'أخت' ? 'Sister' :
+                              formData.relationship === 'ابن' ? 'Son' :
+                              formData.relationship === 'ابنة' ? 'Daughter' :
+                              formData.relationship === 'أنا' ? 'Me' :
+                              formData.relationship;
+
+
+  // Doctor message Arabic
+  const doctorMessageArabic = `
 ===== هذه الرسالة للطبيب =====
-طب جو: لدى ${doctorName} حجز يوم ${dateArabic},
+طب جو: لدى ${doctorNameArabic} حجز يوم ${dateArabic},
 الساعة: ${timeArabic},
 نوع الزيارة: ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'},
 طريقة الدفع: ${paymentMethodArabic}
 ${insuranceArabic ? insuranceArabic : ''}
-صلة القرابة: ${formData.relationship},
+صلة القرابة: ${relationshipArabic},
 اسم المريض: ${formData.firstName} ${formData.lastName},
 رقم المريض: ${fullPhoneNumber}
-
----------------------------------------------
-
-===== هذه الرسالة للمريض =====
-طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
-في ${dateArabic} عند ${timeArabic} مع ${doctorName},
-طريقة الدفع: ${paymentMethodArabic}
-${insuranceArabic ? insuranceArabic : ''}
-للتواصل مع خدمة العملاء: +962 7 9794 2027
 `;
 
-  // English section
-  const messageEnglish = `
-Tib Jo: ${doctorName} has an appointment on ${dateEnglish},
+  // Doctor message English
+  const doctorMessageEnglish = `
+Tib Jo: ${doctorNameEnglish} has an appointment on ${dateEnglish},
 Time: ${timeEnglish},
 Visit type: ${visitType === 'clinic' ? 'Clinic visit' : 'Home visit'},
 Payment method: ${paymentMethodEnglish}
 ${insuranceEnglish ? insuranceEnglish : ''}
-Relationship: ${formData.relationship},
+Relationship: ${relationshipEnglish},
 Patient Name: ${formData.firstName} ${formData.lastName},
 Patient Phone: ${fullPhoneNumber}
+`;
 
----------------------------------------------
+  // Patient message Arabic
+  const patientMessageArabic = `
+===== هذه الرسالة للمريض =====
+طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
+في ${dateArabic} عند ${timeArabic} مع ${doctorNameArabic},
+طريقة الدفع: ${paymentMethodArabic}
+${insuranceArabic ? insuranceArabic : ''}
+للتواصل مع خدمة العملاء: +2027 9794 7 962
+`;
 
+  // Patient message English
+  const patientMessageEnglish = `
 Tib Jo: Your ${visitType === 'clinic' ? 'clinic visit' : 'home visit'} appointment has been confirmed
-on ${dateEnglish} at ${timeEnglish} with ${doctorName}.
+on ${dateEnglish} at ${timeEnglish} with ${doctorNameEnglish}.
 Payment method: ${paymentMethodEnglish}
 ${insuranceEnglish ? insuranceEnglish : ''}
 For customer service: +962 7 9794 2027
 `;
 
-  // Combine: Arabic first then English (always)
-  const combinedEmailContent = messageArabic + "\n\n" + messageEnglish;
+  // Combine in your required order
+  const combinedEmailContent =
+    doctorMessageArabic +
+    "\n" +
+    doctorMessageEnglish +
+    "\n---------------------------------------------\n" +
+    patientMessageArabic +
+    "\n" +
+    patientMessageEnglish;
 
   // Send email
   emailjs
@@ -196,6 +224,7 @@ For customer service: +962 7 9794 2027
     .then(() => console.log('Email sent to doctor'))
     .catch((error) => console.error('Error sending email:', error));
 };
+
 
 
 
