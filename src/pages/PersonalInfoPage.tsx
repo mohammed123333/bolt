@@ -25,9 +25,6 @@ const PersonalInfoPage = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { visitType, date, time } = location.state || {};
-  const doctorNames = getDoctorNamesById(doctorId);
-  const doctorNameArabic = doctorNames.ar;
-  const doctorNameEnglish = doctorNames.en;
 
 
   const [formData, setFormData] = useState({
@@ -118,6 +115,10 @@ const formatTime = (timeString: string) => {
 
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
+
+  const doctorNames = getDoctorNamesById(doctorId);
+  const doctorNameArabic = doctorNames.ar;
+  const doctorNameEnglish = doctorNames.en;
 
 
   // Payment method
