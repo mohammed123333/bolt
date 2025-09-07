@@ -211,7 +211,7 @@ Patient Phone: ${fullPhoneNumber}
   const patientMessageArabic = `
 ===== هذه الرسالة للمريض =====
 طب جو: تم تأكيد حجز ${visitType === 'clinic' ? 'زيارة العيادة' : 'زيارة منزلية'}
-في ${dateArabic} عند ${timeArabic} مع ${doctorNameArabic},
+يوم ${dateArabic} الساعة ${timeArabic} مع ${doctorNameArabic},
 طريقة الدفع: ${paymentMethodArabic}${insuranceArabic ? `\n${insuranceArabic}` : ''},
 للتواصل مع خدمة العملاء: +2027 9794 7 962
 `;
