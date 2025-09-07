@@ -8,7 +8,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const translations = {
+export const translations = {
   ar: {
     // Navigation
     home: 'الرئيسية',
