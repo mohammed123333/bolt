@@ -104,18 +104,18 @@ const formatTime = (timeString: string) => {
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
-// Find doctor ID safely
-const doctorId = Object.keys(doctorData).find(
-  id => doctorData[id]?.ar?.name === formData.doctorName || doctorData[id]?.en?.name === formData.doctorName
+// Suppose the user selects doctor name in formData.doctorName (either Arabic or English)
+const doctorEntry = Object.values(doctorData).find(
+  (doc) => doc.ar.name === formData.doctorName || doc.en.name === formData.doctorName
 );
+
+const doctorId = doctorEntry?.id || ''; // fallback if not found
+const doctorNameArabic = doctorEntry?.ar?.name || formData.doctorName;
+const doctorNameEnglish = doctorEntry?.en?.name || formData.doctorName;
+
 
 // Detect language safely
 const userLang = doctorId && doctorData[doctorId]?.ar?.name === formData.doctorName ? 'ar' : 'en';
-
-  // Doctor names
-  const doctorNameArabic = doctorData[doctorId]?.ar?.name || formData.doctorName;
-  const doctorNameEnglish = doctorData[doctorId]?.en?.name || formData.doctorName;
-
 
   // Payment method
   const paymentMethodArabic = formData.paymentMethod === 'cash' ? 'نقداً' : 'تأمين';
