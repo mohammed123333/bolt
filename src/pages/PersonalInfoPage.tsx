@@ -74,13 +74,19 @@ const countryCodes = [
     });
   };
 
-  const formatTime = (timeString: string) => {
-    const [hours, minutes] = timeString.split(':').map(Number);
-    if (language === 'ar') {
-      return hours >= 12 ? `${hours === 12 ? 12 : hours - 12}:${minutes.toString().padStart(2, '0')} م` : `${hours}:${minutes.toString().padStart(2, '0')} ص`;
-    }
-    return hours >= 12 ? `${hours === 12 ? 12 : hours - 12}:${minutes.toString().padStart(2, '0')} PM` : `${hours}:${minutes.toString().padStart(2, '0')} AM`;
-  };
+const formatTime = (timeString: string) => {
+  const date = new Date(timeString);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  // خلي الساعات بدون leading zero
+  const formattedHours = hours.toString(); 
+  // الدقائق لازم تضل 2 digits
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+
+  return `${formattedHours}:${formattedMinutes}`;
+};
+
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -140,6 +146,7 @@ const sendEmailNotifications = () => {
 
   // Relationship translation
   // Relationship translation
+  // Relationship translation
   const relationshipArabic = formData.relationship === 'Father' ? 'أب' :
                              formData.relationship === 'Mother' ? 'أم' :
                              formData.relationship === 'Brother' ? 'أخ' :
@@ -147,6 +154,9 @@ const sendEmailNotifications = () => {
                              formData.relationship === 'Son' ? 'ابن' :
                              formData.relationship === 'Daughter' ? 'ابنة' :
                              formData.relationship === 'Me' ? 'أنا' :
+                             formData.relationship === 'Spouse' ? 'زوجي/زوجتي' :
+                             formData.relationship === 'Relative' ? 'قريب' :
+                             formData.relationship === 'Friend' ? 'صديق' :
                              formData.relationship;
   
   const relationshipEnglish = formData.relationship === 'أب' ? 'Father' :
@@ -156,7 +166,11 @@ const sendEmailNotifications = () => {
                               formData.relationship === 'ابن' ? 'Son' :
                               formData.relationship === 'ابنة' ? 'Daughter' :
                               formData.relationship === 'أنا' ? 'Me' :
+                              formData.relationship === 'زوجي/زوجتي' ? 'Spouse' :
+                              formData.relationship === 'قريب' ? 'Relative' :
+                              formData.relationship === 'صديق' ? 'Friend' :
                               formData.relationship;
+
 
 
   // Doctor message Arabic
