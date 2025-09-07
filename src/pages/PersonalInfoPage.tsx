@@ -8,18 +8,20 @@ import emailjs from '@emailjs/browser';
 
 
 
-function getDoctorNameByLanguage(name: string, targetLang: 'ar' | 'en'): string {
-  for (const doctorId in doctorData) {
-    const doctor = doctorData[doctorId];
-    if (doctor.ar?.name === name) {
-      return targetLang === 'en' ? doctor.en?.name || '' : doctor.ar?.name || '';
+// input: booked doctor name (ar or en)
+function getDoctorNames(bookedName: string) {
+  for (const key in doctorData) {
+    const doctor = doctorData[key];
+
+    if (doctor.ar.name === bookedName) {
+      return { ar: doctor.ar.name, en: doctor.en.name };
     }
-    if (doctor.en?.name === name) {
-      return targetLang === 'ar' ? doctor.ar?.name || '' : doctor.en?.name || '';
+    if (doctor.en.name === bookedName) {
+      return { ar: doctor.ar.name, en: doctor.en.name };
     }
   }
   // fallback if no match found
-  return '';
+  return { ar: bookedName, en: bookedName };
 }
 
 const PersonalInfoPage = () => {
@@ -119,13 +121,12 @@ const formatTime = (timeString: string) => {
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
-const bookedName = formData.doctorName; // can be in Arabic or English
+// usage in sendEmailNotifications
+const bookedName = bookedDoctorName; // the doctor name selected by the user
+const doctorNames = getDoctorNames(bookedName);
 
-const doctorNameArabic = getDoctorNameByLanguage(bookedName, 'ar');
-const doctorNameEnglish = getDoctorNameByLanguage(bookedName, 'en');
-
-console.log('Arabic:', doctorNameArabic);
-console.log('English:', doctorNameEnglish);
+console.log(doctorNames.ar); // Arabic name
+console.log(doctorNames.en); // English name
 
 
   // Payment method
