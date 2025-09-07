@@ -130,21 +130,12 @@ let insuranceArabic = '';
 let insuranceEnglish = '';
 
 if (formData.paymentMethod === 'insurance' && formData.insurance) {
-  const insuranceName = formData.insurance;
+  const insuranceId = formData.insurance;
 
-  // Determine if user booked in Arabic or English
-  const bookedInArabic = /[\u0600-\u06FF]/.test(insuranceName);
-
-  if (bookedInArabic) {
-    // Booked in Arabic, get English translation
-    insuranceArabic = `التأمين: ${insuranceName}`;
-    insuranceEnglish = `Insurance: ${translations.en.insuranceCompanies[insuranceName] || insuranceName}`;
-  } else {
-    // Booked in English, get Arabic translation
-    insuranceEnglish = `Insurance: ${insuranceName}`;
-    insuranceArabic = `التأمين: ${translations.ar.insuranceCompanies[insuranceName] || insuranceName}`;
-  }
+  insuranceArabic = `التأمين: ${translations.ar.insuranceCompanies[insuranceId] || insuranceId}`;
+  insuranceEnglish = `Insurance: ${translations.en.insuranceCompanies[insuranceId] || insuranceId}`;
 }
+
   // Date & Time
   const dateArabic = new Date(date).toLocaleDateString('ar-JO', {
     weekday: 'long',
