@@ -10,6 +10,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const translations = {
   ar: {
+    
     // Navigation
     home: 'الرئيسية',
     about: 'من نحن',
