@@ -122,7 +122,7 @@ const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
 
 // usage in sendEmailNotifications
-const bookedName = bookedDoctorName; // the doctor name selected by the user
+const bookedName = formData.doctorName; // <-- make sure this exists
 const doctorNames = getDoctorNames(bookedName);
 
 console.log(doctorNames.ar); // Arabic name
