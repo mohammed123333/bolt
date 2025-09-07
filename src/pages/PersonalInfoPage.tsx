@@ -125,8 +125,11 @@ const sendEmailNotifications = () => {
 const bookedName = formData.doctorName; // <-- make sure this exists
 const doctorNames = getDoctorNames(bookedName);
 
-console.log(doctorNames.ar); // Arabic name
-console.log(doctorNames.en); // English name
+const doctorNameArabic = doctorNames.ar;
+const doctorNameEnglish = doctorNames.en;
+
+// Now use doctorNameArabic and doctorNameEnglish safely in your email
+console.log(doctorNameArabic, doctorNameEnglish);
 
 
   // Payment method
