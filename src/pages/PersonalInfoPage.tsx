@@ -31,6 +31,14 @@ const PersonalInfoPage = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { visitType, date, time } = location.state || {};
+    // get both Arabic and English doctor names
+  const doctorNames = getDoctorNames(bookedDoctorName || doctor?.ar.name || doctor?.en.name);
+
+  const doctorNameArabic = doctorNames.ar;
+  const doctorNameEnglish = doctorNames.en;
+
+  // now you can safely use doctorNameArabic and doctorNameEnglish anywhere in this component
+  console.log(doctorNameArabic, doctorNameEnglish);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -120,16 +128,6 @@ const formatTime = (timeString: string) => {
 
 const sendEmailNotifications = () => {
   const fullPhoneNumber = formData.countryCode + formData.phoneNumber;
-
-// usage in sendEmailNotifications
-const bookedName = formData.doctorName; // <-- make sure this exists
-const doctorNames = getDoctorNames(bookedName);
-
-const doctorNameArabic = doctorNames.ar;
-const doctorNameEnglish = doctorNames.en;
-
-// Now use doctorNameArabic and doctorNameEnglish safely in your email
-console.log(doctorNameArabic, doctorNameEnglish);
 
 
   // Payment method
