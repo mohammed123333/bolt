@@ -2,7 +2,7 @@ export const doctorData = {
   drmuhanedalzoubi: {
     id: 'drmuhanedalzoubi',
     slug: 'drmuhanedalzoubi',
-    image: '/images/IMG_8538.jpeg',
+    image: '/images/drmuhanedalzoubi.jpeg',
     email: 'muhaned.alzoubi@example.com',
     phone: '+962 7 9794 2027',
     priceClinic: 30,
