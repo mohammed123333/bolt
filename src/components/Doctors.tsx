@@ -14,7 +14,7 @@ const Doctors = () => {
       name: 'د. مهند الزعبي',
       specialty: 'إستشاري جراحة العظام و المفاصل',
       experience: '10+ سنة خبرة',
-      image: '/images/IMG_8538.jpeg',
+      image: '/images/drmuhanedalzoubi.jpeg',
       qualifications: ['البورد العربي', 'البورد الأوروبي', 'البورد الأردني']
     },
     {
