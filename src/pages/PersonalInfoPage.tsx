@@ -439,23 +439,6 @@ For customer service: +962 7 9794 2027
                 {/* Confirm Button */}
                 <button
                   onClick={handleConfirmBooking}
-                  <!-- Event snippet for Website traffic conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-16829402981/rYY6CJT0_JYbEOWe8dg-',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
-
                   disabled={!formData.firstName || !formData.lastName || !formData.phoneNumber || !formData.paymentMethod || !acceptedTerms}
                   className={`w-full py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-medium text-base lg:text-lg transition-all ${
                     formData.firstName && formData.lastName && formData.phoneNumber && formData.paymentMethod && acceptedTerms
