@@ -438,7 +438,10 @@ For customer service: +962 7 9794 2027
 
                 {/* Confirm Button */}
                 <button
-                  onClick={handleConfirmBooking}
+                    onClick={() => {
+    gtag_report_conversion(); // fire conversion
+    handleConfirmBooking();   // your original function
+  }}
                   disabled={!formData.firstName || !formData.lastName || !formData.phoneNumber || !formData.paymentMethod || !acceptedTerms}
                   className={`w-full py-3 lg:py-4 px-4 lg:px-6 rounded-lg font-medium text-base lg:text-lg transition-all ${
                     formData.firstName && formData.lastName && formData.phoneNumber && formData.paymentMethod && acceptedTerms
