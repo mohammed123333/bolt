@@ -9,6 +9,7 @@ export const doctorData = {
     priceHome: 35,
     waitingTime: '15',
     location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
+    googleMapsUrl: 'https://share.google/uOo0RP0BlH9AYuhoJ',
     ar: {
       name: 'د. مهند الزعبي',
       specialty: 'إستشاري جراحة العظام و المفاصل',
@@ -291,6 +292,7 @@ drmutasemhaloush: {
   priceClinic: 30,
   waitingTime: '30',
   location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
+  googleMapsUrl: 'https://maps.google.com',
   ar: {
     name: 'د. معتصم حلوش',
     specialty: 'استشاري طب وجراحة العيون',
@@ -363,6 +365,7 @@ dramjadalzwairy: {
   priceClinic: 30,
   waitingTime: '30',
   location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
+  googleMapsUrl: 'https://maps.google.com',
   ar: {
     name: 'د. أمجد الزويري',
     specialty: 'استشاري جراحة الوجه والفكين',

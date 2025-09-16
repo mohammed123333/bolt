@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Star, DollarSign, Home, Clock, MapPin, Phone } from 'lucide-react';
+import { Star, DollarSign, Home, Clock, MapPin, Phone, MessageCircle } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData } from '../data/doctorData';
@@ -63,12 +63,24 @@ const DoctorProfile = () => {
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <img
-            src="/images/logo.png"
-            alt="طب جو"
-            className="h-16 w-auto cursor-pointer"
-            onClick={() => navigate('/')}
-          />
+          <div className="flex items-center space-x-4 space-x-reverse">
+            <img
+              src="/images/logo.png"
+              alt="طب جو"
+              className="h-16 w-auto cursor-pointer"
+              onClick={() => navigate('/')}
+            />
+            <a 
+              href="tel:+962797942027" 
+              className="flex items-center space-x-2 space-x-reverse bg-blue-500 hover:bg-blue-400 px-3 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+              title={language === 'ar' ? 'اتصل الآن' : 'Call Now'}
+            >
+              <Phone size={18} className="text-white" />
+              <span className="text-white font-semibold text-sm">
+                {language === 'ar' ? 'اتصل بنا' : 'Contact Us'}
+              </span>
+            </a>
+          </div>
           <LanguageToggle />
         </div>
 
@@ -120,7 +132,15 @@ const DoctorProfile = () => {
 
               <div className="flex items-center">
                 <MapPin className={`w-5 h-5 text-gray-600 ${language === 'ar' ? 'ml-3' : 'mr-3'}`} />
-                <span className="text-gray-700">{doctor.location[language]}</span>
+                <div className="flex items-center space-x-2 space-x-reverse">
+                  <span className="text-gray-700">{doctor.location[language]}</span>
+                  <button
+                    onClick={() => window.open(doctor.googleMapsUrl || 'https://maps.google.com', '_blank')}
+                    className="text-blue-600 hover:text-blue-800 underline text-sm transition-colors"
+                  >
+                    {language === 'ar' ? 'الموقع على خرائط جوجل' : 'Location on Google Maps'}
+                  </button>
+                </div>
               </div>
 
 <div className="flex items-center">
@@ -216,13 +236,22 @@ const DoctorProfile = () => {
         : 'fixed bottom-4 left-0 right-0 z-50 flex justify-center px-4'
     }`}
   >
-    <button
-      onClick={handleBookAppointment}
-      className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg
-                 w-64 sm:w-80 md:w-96" // responsive widths
-    >
-      {t('bookAppointment')}
-    </button>
+    <div className="flex items-center space-x-3 space-x-reverse">
+      <button
+        onClick={handleBookAppointment}
+        className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-500 font-medium text-base sm:text-lg shadow-lg
+                   w-64 sm:w-80 md:w-96" // responsive widths
+      >
+        {t('bookAppointment')}
+      </button>
+      <button
+        onClick={() => window.open('https://wa.me/962797942027', '_blank')}
+        className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+        title={language === 'ar' ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
+      >
+        <MessageCircle size={24} />
+      </button>
+    </div>
   </div>
 </div>
 

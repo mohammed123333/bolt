@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Star } from 'lucide-react';
+import { Star, Phone, MessageCircle } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { doctorData } from '../data/doctorData';
@@ -118,13 +118,24 @@ const BookingPage = () => {
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          {/* ✅ Clickable logo */}
-          <img
-            src="/images/logo.png"
-            alt="طب جو"
-            className="h-16 w-auto cursor-pointer"
-            onClick={() => navigate('/')}
-          />
+          <div className="flex items-center space-x-4 space-x-reverse">
+            <img
+              src="/images/logo.png"
+              alt="طب جو"
+              className="h-16 w-auto cursor-pointer"
+              onClick={() => navigate('/')}
+            />
+            <a 
+              href="tel:+962797942027" 
+              className="flex items-center space-x-2 space-x-reverse bg-blue-500 hover:bg-blue-400 px-3 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+              title={language === 'ar' ? 'اتصل الآن' : 'Call Now'}
+            >
+              <Phone size={18} className="text-white" />
+              <span className="text-white font-semibold text-sm">
+                {language === 'ar' ? 'اتصل بنا' : 'Contact Us'}
+              </span>
+            </a>
+          </div>
           <LanguageToggle />
         </div>
 
@@ -302,6 +313,15 @@ const BookingPage = () => {
             </div>
           </div>
         </div>
+
+        {/* WhatsApp Button */}
+        <button
+          onClick={() => window.open('https://wa.me/962797942027', '_blank')}
+          className="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 z-50"
+          title={language === 'ar' ? 'تواصل عبر واتساب' : 'Contact via WhatsApp'}
+        >
+          <MessageCircle size={24} />
+        </button>
       </div>
     </div>
   );
