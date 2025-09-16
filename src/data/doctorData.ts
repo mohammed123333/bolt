@@ -9,7 +9,7 @@ export const doctorData = {
     priceHome: 35,
     waitingTime: '15',
     location: { ar: 'عمّان - الدوار الخامس', en: 'Amman - Fifth Circle' },
-    googleMapsUrl: 'https://share.google/uOo0RP0BlH9AYuhoJ',
+    googleMapsUrl: 'https://maps.app.goo.gl/Tw8mpSXKLPxtSEgq7',
     ar: {
       name: 'د. مهند الزعبي',
       specialty: 'إستشاري جراحة العظام و المفاصل',
